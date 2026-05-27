@@ -33,6 +33,7 @@ theme on the way in). If you must diverge, list the path in your theme's
 | `inc/assets.php` | Cascade-ordered enqueue + the filterable font-preload mechanism. |
 | `inc/bindings.php` | Footer copyright-year + removable credit (reads the theme's own header, so it carries no theme string). |
 | `inc/admin.php` | The WP.org-compliant Get-started page + welcome notice (mechanism only; the copy is filtered in from skin). |
+| `inc/github-updater.php` | `[REMOVABLE]` self-update from a GitHub release. Dormant until a theme names its repo via the `colophon/github_updater_repo` filter (set in `inc/skin.php`). Delete the one file to remove it — the loader in `functions.php` is `file_exists`-guarded. **Remove before a WordPress.org submission** (.org supplies updates there and self-updaters are disallowed). |
 | `assets/css/core/reset.css` | Declares the `@layer` order + a design-agnostic reset. |
 | `assets/css/core/base.css` | A11y scaffolding + the `--cl-*` semantic-token contract. |
 | `assets/css/core/print.css` | A generic ink-on-white print proof keyed only off core-block selectors. |
@@ -58,6 +59,34 @@ make-pot`), `screenshot.png` (your 1200×900 capture).
 > touch your design (templates, skin CSS, patterns, theme.json), because design
 > is the part that's supposed to differ. That's the right boundary: the shared
 > value is the standards and the plumbing, not the markup.
+
+### The removable GitHub updater
+
+`inc/github-updater.php` lets a theme distributed from a GitHub repo show the
+one-click update banner in **Appearance → Themes** when a newer release is
+published — no Plugin/Theme Update Checker library, no service, nothing phoned
+home anywhere but GitHub's release API. It is a `core` file, so every theme in
+the line inherits it on `sync`, but it ships **dormant**: it does nothing until a
+theme names its repo.
+
+A theme opts in with one filter in its `inc/skin.php` (the file `sync` never
+touches):
+
+```php
+add_filter( 'colophon/github_updater_repo', static fn () => 'owner/repo' );
+```
+
+The release must carry a real `.zip` **asset** whose filename starts with the
+theme slug (e.g. `colophon-1.3.0.zip`); the updater never falls back to GitHub's
+auto-generated zipball, because that archive nests everything under
+`{owner}-{repo}-{sha}` and WordPress would unpack the update into the wrong
+directory.
+
+**Removing it is the headline feature: delete `inc/github-updater.php`.** The
+loader in `functions.php` is wrapped in `file_exists()`, so the file simply
+vanishing is safe — no companion edit required. **Do remove it before any
+WordPress.org submission**: .org supplies the update path there, and a theme that
+ships its own updater is rejected.
 
 ---
 

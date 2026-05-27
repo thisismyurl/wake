@@ -75,6 +75,18 @@ function skin_pattern_categories(): void {
 add_action( 'init', __NAMESPACE__ . '\\skin_pattern_categories' );
 
 /*
+ * Opt this theme into GitHub-release self-updates from its own repo.
+ *
+ * The updater (inc/github-updater.php) is dormant until this filter returns a
+ * non-empty 'owner/name'. Each theme points it at its own repo here, in the one
+ * file the CLI never overwrites. Remove this filter (or delete the updater file)
+ * before a WordPress.org submission — .org supplies updates there.
+ */
+add_filter( 'colophon/github_updater_repo', static function () {
+	return 'thisismyurl/thisismyurl-colophon';
+} );
+
+/*
  * To preload this theme's largest-paint font, uncomment and point at the WOFF2:
  *
  * add_filter( 'colophon/preload_fonts', static function ( array $fonts ): array {
