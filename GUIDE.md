@@ -6,6 +6,22 @@ There's no upsell here. No Pro tier behind a button, no "unlock the real core" w
 
 A note on who this is for: you write WordPress themes, or you'd like to. I'll assume you know what `theme.json` is and why a block theme keeps its markup in `templates/`. I won't assume you've ever tried to keep *five* themes consistent at once, because that's the problem Colophon solves, and it's a stranger problem than it first looks. The deep version of everything below lives in [ARCHITECTURE.md](ARCHITECTURE.md); this is the on-ramp.
 
+## What you get
+
+Installing Colophon gives you a reading-first site with warm type, classical proportions, and nothing in the way of the words. Three touchpoints get you started: **Settings → Reading** to choose a front page, **Appearance → Editor** to browse templates and adjust styles, **Posts → Add New** to write something. The theme handles the rest — self-hosted fonts with no third-party requests, WCAG 2.2 AA focus and heading hierarchy, a skip link, and clean templates for posts, archives, author pages, and media attachments.
+
+If you want a site that looks different, start in **Styles** inside the Site Editor. Change the typeface. Change the palette. Nothing is permanent until you click Save, and nothing you do there can break the theme from underneath.
+
+## Understanding Full-Site Editing
+
+Before block themes, a WordPress site was divided into two territories: PHP templates you edited in a code editor, and content you edited in the admin. Every header, footer, sidebar, and archive page lived in a `.php` file. To change the structure of a page, you had to write code.
+
+Full-site editing collapses that boundary. In Colophon, every template is an `.html` file containing block markup — not PHP. You can open **Appearance → Editor**, click into any template, and rearrange the blocks directly in the browser, the same way you edit a post. Want to move the author box below the content? Drag it. Want a different layout for your archive? Edit the template. Changes live in your database, not on disk, so they survive theme updates.
+
+The building blocks are **templates** and **template parts**. A template is the whole-page layout for a content type — the single-post layout, the home-page layout, the archive layout. A template part is a reusable chunk those templates share — the header, the footer. Colophon ships one of each that matters: a single-post template, an archive template, an author archive, a media attachment page, a 404, a header part, and a footer part. You can leave them alone, adjust them in the Editor, or override them entirely by duplicating them in the Editor and editing the copy.
+
+The thing worth holding onto: **you edit this in the browser, not in a `.php` file.** If you've been building WordPress sites since before block themes, this will feel strange for about three days and then obvious. The code is there if you want it — templates are plain `.html` files, `theme.json` is readable JSON — but you do not have to touch code to change the layout of a page.
+
 ## The one idea: copied, not inherited
 
 Here's the decision the whole thing hangs on. **Themes built on Colophon do not inherit from it. They copy it and re-skin it.**

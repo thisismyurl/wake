@@ -34,26 +34,28 @@
 
 	.cl-main { isolation: isolate; }
 
-	/* Sticky header. z-index sits below core's mobile nav overlay (100000) so
-	   the menu always paints over a stuck header. */
+	/* Sticky header: warm paper tint with frosted-glass blur.
+	   rgba(250, 249, 246) is paper (#faf9f6) at 95% opacity — pure white
+	   would fight the warm literary palette. z-index sits below core's
+	   mobile-nav overlay (100000) so the menu always paints over the header. */
 	.cl-header {
 		position: sticky;
 		inset-block-start: 0;
 		z-index: 100;
-		background: rgba(255, 255, 255, 0.95);
+		background: rgba(250, 249, 246, 0.95);
 		-webkit-backdrop-filter: blur(8px);
 		backdrop-filter: blur(8px);
-		border-block-end: 1px solid var(--wp--preset--color--line, #e3e2de);
+		border-block-end: 1px solid var(--wp--preset--color--line, #dedad3);
 	}
 
 	.cl-section {
 		padding-block: var(--cl-section-gap);
 		padding-inline: var(--cl-gutter);
 	}
-	.cl-section--soft { background: var(--wp--preset--color--paper-soft, #f7f6f3); }
+	.cl-section--soft { background: var(--wp--preset--color--paper-soft, #f2f0eb); }
 	.cl-section--ink {
-		background: var(--wp--preset--color--ink-deep, #14181c);
-		color: var(--wp--preset--color--paper, #fff);
+		background: var(--wp--preset--color--ink-deep, #0f0d0c);
+		color: var(--wp--preset--color--paper, #faf9f6);
 	}
 }
 
@@ -62,18 +64,18 @@
 	/* Header nav: ink at rest, accent on interaction. Type comes from theme.json
 	   core/navigation; colour and underline behaviour are skin. */
 	.cl-header .wp-block-navigation a {
-		color: var(--wp--preset--color--ink-soft, #3d3d3d);
+		color: var(--wp--preset--color--ink-soft, #433e3b);
 		text-decoration: none;
 	}
 	.cl-header .wp-block-navigation a:hover,
 	.cl-header .wp-block-navigation a:focus {
-		color: var(--wp--preset--color--accent, #34597a);
+		color: var(--wp--preset--color--accent, #3d6b5e);
 	}
 
 	/* Footer sits on the ink-deep band; paper text clears contrast there. */
 	.cl-footer .wp-block-navigation a,
 	.cl-footer__bottom a {
-		color: var(--wp--preset--color--paper, #fff);
+		color: var(--wp--preset--color--paper, #faf9f6);
 	}
 	.cl-footer .wp-block-navigation a:hover,
 	.cl-footer .wp-block-navigation a:focus,
@@ -103,7 +105,7 @@
 	   core left us for exactly this. */
 	.cl-section--ink :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible,
 	.cl-footer :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
-		outline-color: var(--cl-focus-ring-inverse, #fff);
+		outline-color: var(--cl-focus-ring-inverse, #faf9f6);
 	}
 
 	/* Card hover — a quiet lift, neutralised for reduced-motion by core/reset. */
@@ -117,8 +119,122 @@
 }
 
 @layer blocks {
+
 	/* Reading-column link underline offset. */
 	.cl-main :where(p, li) a { text-underline-offset: 0.15em; }
+
+	/* ------------------------------------------------------------------ */
+	/* LITERARY READING REFINEMENTS                                         */
+	/* theme.json expresses typefaces, weights, and sizes. CSS handles the  */
+	/* micro-typographic features theme.json has no key for: font-variant-* */
+	/* properties, text-wrap, hanging punctuation, and the paragraph indent  */
+	/* convention. These are the details that make body text feel like a     */
+	/* book rather than a web page.                                          */
+	/* ------------------------------------------------------------------ */
+
+	/* OpenType features and reading comfort for prose columns.
+	   common-ligatures gives fi/fl/ff joins; oldstyle-nums drops numerals
+	   below the baseline like lowercase letters — both are Garamond-school
+	   conventions that Spectral was designed to support. */
+	.cl-prose :is(p, li) {
+		font-variant-ligatures: common-ligatures;
+		font-variant-numeric:   oldstyle-nums;
+		text-wrap:              pretty;             /* multi-line orphan prevention */
+		hanging-punctuation:    first allow-end last;
+	}
+
+	/* Paragraph rhythm: indent continuation paragraphs instead of spacing them.
+	   This is the printed-prose convention used in literary magazines (n+1,
+	   Ploughshares, NYRB). The first paragraph after a heading is never indented
+	   — only genuine continuation paragraphs.
+	   To revert to the more common margin-gap approach: remove the p+p block. */
+	.cl-prose p {
+		text-indent: 0;
+	}
+	.cl-prose p + p {
+		text-indent:        1.5em;
+		margin-block-start: 0;
+	}
+	.cl-prose :is(h2, h3, h4, h5, h6) + p {
+		text-indent: 0;
+	}
+	/* Blockquotes and list items never inherit the indent. */
+	.cl-prose blockquote p,
+	.cl-prose li > p {
+		text-indent: 0;
+	}
+
+	/* Drop cap: the first letter of the opening paragraph on single posts.
+	   EB Garamond's classical cut needs the 0.05em block-start nudge to
+	   sit its baseline flush with the body text — a quirk of the font's
+	   cap-height proportion.
+	   The .no-dropcap class on .cl-prose suppresses it when a post opens
+	   with a heading or when the design calls for a plain open. */
+	.single .cl-prose:not(.no-dropcap) > .wp-block-post-content > p:first-of-type::first-letter,
+	.cl-prose.cl-dropcap > p:first-of-type::first-letter {
+		font-family:        var(--wp--preset--font-family--eb-garamond), Georgia, serif;
+		font-size:          3.4em;
+		font-weight:        500;
+		line-height:        0.78;
+		float:              left;
+		margin-inline-end:  0.06em;
+		margin-block-start: 0.05em;
+		color:              var(--wp--preset--color--ink);
+	}
+
+	/* Pull quote: the magazine standout — centred, EB Garamond italic,
+	   bracketed by rules at the weight of a separator, not a border. */
+	.wp-block-pullquote {
+		border-block:  2px solid var(--wp--preset--color--line);
+		padding-block: var(--wp--preset--spacing--8);
+		text-align:    center;
+	}
+	.wp-block-pullquote blockquote p {
+		font-family:            var(--wp--preset--font-family--eb-garamond), Georgia, serif;
+		font-style:             italic;
+		font-size:              clamp(1.25rem, 2.5vw, 1.75rem);
+		line-height:            1.35;
+		font-variant-ligatures: common-ligatures;
+		text-indent:            0; /* reset the p+p convention inside pull quotes */
+	}
+	.wp-block-pullquote cite {
+		display:        block;
+		margin-top:     0.75em;
+		font-size:      0.8125rem;
+		font-style:     normal;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color:          var(--wp--preset--color--ink-muted);
+	}
+
+	/* Story card: the atom of every index and archive loop. */
+	.cl-story {
+		padding-block-end: var(--wp--preset--spacing--8);
+		border-block-end:  1px solid var(--wp--preset--color--line);
+	}
+
+	/* Byline strip: the author name and date cap under a post title. */
+	.cl-byline .wp-block-post-author__name {
+		font-size:      0.875rem;
+		letter-spacing: 0.02em;
+		color:          var(--wp--preset--color--ink-soft);
+	}
+	.cl-byline .wp-block-post-date {
+		font-size: 0.875rem;
+		color:     var(--wp--preset--color--ink-muted);
+	}
+
+	/* Eyebrow label: the small uppercase line above a section heading.
+	   Registered as a block style (core/paragraph → is-style-cl-eyebrow)
+	   so editors can apply it from the block toolbar. */
+	.is-style-cl-eyebrow,
+	.cl-eyebrow {
+		font-size:      0.75rem;
+		font-weight:    400;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color:          var(--wp--preset--color--ink-muted);
+	}
 }
 
 @layer utilities {

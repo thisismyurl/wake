@@ -62,15 +62,16 @@ function clear_welcome_notice(): void {
 /**
  * Register the "Get started" page under Appearance.
  *
- * edit_theme_options gates it to the users who can switch themes and edit global
- * styles — the right audience for onboarding.
+ * The required capability comes from get_onboarding_capability() — default is
+ * edit_theme_options (users who can switch themes and configure global styles),
+ * filterable via colophon/onboarding_capability.
  */
 function register_get_started_page(): void {
 	add_theme_page(
 		/* translators: %s: theme name. */
 		sprintf( esc_html__( '%s: Get started', 'colophon' ), get_theme_name() ),
 		get_theme_name(),
-		'edit_theme_options',
+		get_onboarding_capability(),
 		GET_STARTED_SLUG,
 		__NAMESPACE__ . '\\render_get_started_page'
 	);
@@ -84,6 +85,30 @@ add_action( 'admin_menu', __NAMESPACE__ . '\\register_get_started_page' );
  */
 function get_theme_name(): string {
 	return (string) wp_get_theme()->get( 'Name' );
+}
+
+/**
+ * The WordPress capability required to view and dismiss the onboarding flow.
+ *
+ * Centralised so the filter changes the check in all four places at once — the
+ * menu registration, the notice render, the dismiss handler, and the page render.
+ * Default 'edit_theme_options' targets users who can switch themes and configure
+ * global styles: the right audience for onboarding copy.
+ *
+ * @return string WordPress capability slug.
+ */
+function get_onboarding_capability(): string {
+	/**
+	 * Filters the capability required to see the Get-started page and welcome notice.
+	 *
+	 * Raise to 'manage_options' on multi-author sites where editors should not
+	 * see theme onboarding. Lower to any custom capability for a tighter fit.
+	 *
+	 * @since 1.6150
+	 *
+	 * @param string $capability WordPress capability slug.
+	 */
+	return (string) apply_filters( 'colophon/onboarding_capability', 'edit_theme_options' );
 }
 
 /**
@@ -116,13 +141,13 @@ add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\enqueue_get_started_asse
 /**
  * Show the dismissible welcome notice while the flag is set.
  *
- * Shown only to users who can edit_theme_options, and never on the Get-started
+ * Shown only to users who pass get_onboarding_capability(), and never on the Get-started
  * page itself. A standard `notice is-dismissible`, so core renders the close
  * button and handles keyboard dismissal; the persistent server-side dismissal
  * rides the nonce link.
  */
 function render_welcome_notice(): void {
-	if ( ! current_user_can( 'edit_theme_options' ) ) {
+	if ( ! current_user_can( get_onboarding_capability() ) ) {
 		return;
 	}
 
@@ -172,7 +197,7 @@ add_action( 'admin_notices', __NAMESPACE__ . '\\render_welcome_notice' );
  * mutation. Redirects back to the dashboard so a refresh does not replay it.
  */
 function handle_welcome_dismiss(): void {
-	if ( ! current_user_can( 'edit_theme_options' ) ) {
+	if ( ! current_user_can( get_onboarding_capability() ) ) {
 		wp_die( esc_html__( 'You do not have permission to do that.', 'colophon' ) );
 	}
 
@@ -253,7 +278,7 @@ function get_started_content(): array {
  * at the point of echo. Reaching this page clears the welcome flag.
  */
 function render_get_started_page(): void {
-	if ( ! current_user_can( 'edit_theme_options' ) ) {
+	if ( ! current_user_can( get_onboarding_capability() ) ) {
 		return;
 	}
 

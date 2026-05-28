@@ -28,6 +28,16 @@ defined( 'ABSPATH' ) || exit;
 function skin_image_sizes(): void {
 	add_image_size( 'cl-wide', 1600, 900, true ); // 16:9 wide/hero crop.
 	add_image_size( 'cl-card', 720, 480, true );  // 3:2 card crop.
+
+	/**
+	 * Fires after the theme registers its image crop sizes.
+	 *
+	 * Companion plugins and re-skins hook here to add their own sizes
+	 * without editing this file.
+	 *
+	 * @since 1.6150
+	 */
+	do_action( 'colophon/register_image_sizes' );
 }
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\skin_image_sizes' );
 
@@ -54,6 +64,16 @@ function skin_block_styles(): void {
 			'label' => __( 'Eyebrow', 'colophon' ),
 		)
 	);
+
+	/**
+	 * Fires after the theme registers its block styles.
+	 *
+	 * Hook here to add is-style-* options to any block without touching
+	 * this file. The CSS for each style lives in assets/css/skin.css.
+	 *
+	 * @since 1.6150
+	 */
+	do_action( 'colophon/register_block_styles' );
 }
 add_action( 'init', __NAMESPACE__ . '\\skin_block_styles' );
 
@@ -71,6 +91,16 @@ function skin_pattern_categories(): void {
 			'description' => __( 'Section patterns for building pages.', 'colophon' ),
 		)
 	);
+
+	/**
+	 * Fires after the theme registers its pattern categories.
+	 *
+	 * Hook here to register additional categories alongside the theme's
+	 * own, so all categories appear grouped in the block inserter.
+	 *
+	 * @since 1.6150
+	 */
+	do_action( 'colophon/register_pattern_categories' );
 }
 add_action( 'init', __NAMESPACE__ . '\\skin_pattern_categories' );
 
@@ -87,12 +117,13 @@ add_filter( 'colophon/github_updater_repo', static function () {
 } );
 
 /*
- * To preload this theme's largest-paint font, uncomment and point at the WOFF2:
- *
- * add_filter( 'colophon/preload_fonts', static function ( array $fonts ): array {
- *     $fonts[] = 'assets/fonts/your-family/your-family-variable.woff2';
- *     return $fonts;
- * } );
- *
- * Colophon's default skin uses system fonts, so there's nothing to preload.
+ * Preload the LCP font — EB Garamond is the display serif used for headings,
+ * so it is the Largest Contentful Paint candidate on single posts and landing
+ * pages. Only the latin-subset file is preloaded (the smaller of the two);
+ * the browser fetches the latin-ext file separately and only when the page
+ * content actually requires those glyphs.
  */
+add_filter( 'colophon/preload_fonts', static function ( array $fonts ): array {
+	$fonts[] = 'assets/fonts/eb-garamond/eb-garamond-normal.woff2';
+	return $fonts;
+} );
