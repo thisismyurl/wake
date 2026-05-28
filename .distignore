@@ -1,6 +1,10 @@
-# Files excluded from a distributable theme .zip (WP.org / production).
+# Files excluded from a distributable theme .zip.
 # Build-time and development artefacts only — never user-facing theme code.
 # `colophon new` copies this into every generated theme so the line ships clean.
+#
+# NOTE: inc/github-updater.php is intentionally NOT listed here.
+# It is excluded from WP.org builds only — GitHub release builds include it.
+# package-theme.sh handles this distinction via --wporg / --github flags.
 /.distignore
 /.git
 /.github
@@ -12,6 +16,7 @@
 /colophon.manifest.json
 /ARCHITECTURE.md
 /DESIGN-UPLIFT.md
+/PILLARS.md
 /README.md
 /GUIDE.md
 /THEME-CHECK.md
@@ -23,3 +28,4 @@
 /package.json
 /package-lock.json
 *.zip
+
