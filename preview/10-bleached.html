@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>Wake — Bleached Coast Variant (Sun-Washed Palette)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Literata:ital,opsz,wght@0,7..72,300..900;1,7..72,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wake-preview.css">
+<style>
+  /*
+   * BLEACHED COAST PALETTE — sun-washed sand and linen.
+   * The warm, coastal-summer version of Wake. Suited to yacht club social
+   * media, junior sailing programs, regatta welcome sites, and clubs that
+   * want their brand to feel like August on the water.
+   *
+   * The design shift is entirely achieved by overriding nine root tokens.
+   * Every layout, every component, every typographic rule inherits unchanged
+   * from the CORE layer. This is the SKIN contract in action.
+   */
+  :root {
+    --wp--preset--color--wake-void:       #2c2418;
+    --wp--preset--color--wake-navy:       #3d4f3a;
+    --wp--preset--color--wake-steel:      #6b7c5e;
+    --wp--preset--color--wake-fog:        #9aaa8e;
+    --wp--preset--color--wake-salt:       #f7f2e5;
+    --wp--preset--color--wake-white:      #fffef8;
+    --wp--preset--color--wake-brass:      #9a6d38;
+    --wp--preset--color--wake-brass-tint: #f5eddc;
+    --wp--preset--color--wake-rule:       #e2d9c5;
+  }
+</style>
+</head>
+<body>
+<div class="wake-site">
+
+  <header class="wake-site-header">
+    <div style="display:flex; align-items:baseline; gap: var(--wp--preset--spacing--3);">
+      <a class="wake-site-title-link" href="#">Sandbar Sailing</a>
+      <span class="wake-site-tagline">Junior Program &amp; Regatta</span>
+    </div>
+    <nav class="wake-nav">
+      <a href="#">Learn</a>
+      <a href="#">Regattas</a>
+      <a href="#">Coaches</a>
+      <a href="#">Register</a>
+    </nav>
+  </header>
+
+  <main class="wake-main">
+
+    <!-- Hero — bleached coast, warm sand gradient -->
+    <section style="min-height:500px; display:flex; flex-direction:column; justify-content:flex-end; padding:var(--wp--preset--spacing--12) var(--wp--preset--spacing--5); background:linear-gradient(160deg,#c8b898,#d4c4a0 50%,#e2d8c0); position:relative;">
+      <div style="position:absolute; top:0; left:0; right:0; height:3px; background:var(--wp--preset--color--wake-brass); opacity:0.8;"></div>
+      <div class="wake-constrained">
+        <p class="is-style-wake-eyebrow" style="color:var(--wp--preset--color--wake-navy) !important; opacity:0.7; margin-bottom:var(--wp--preset--spacing--4);">2026 Summer Programme</p>
+        <h1 style="color:var(--wp--preset--color--wake-void); margin-bottom:var(--wp--preset--spacing--5); font-size:clamp(2.5rem,4vw,4.5rem);">
+          Learn to Race.<br>Learn to Read the Water.
+        </h1>
+        <p style="font-family:var(--wp--preset--font-family--literata); font-size:var(--wp--preset--font-size--lg); font-style:italic; color:var(--wp--preset--color--wake-navy); margin-bottom:var(--wp--preset--spacing--6); max-width:52ch; line-height:1.55; opacity:0.85;">
+          Eight weeks of sailing instruction, two regattas, and one summer that changes how you think about moving on water.
+        </p>
+        <a href="#" class="wake-btn" style="background:var(--wp--preset--color--wake-brass); color:#fffef8;">Register Now</a>
+      </div>
+    </section>
+
+    <!-- Programme summary -->
+    <section class="wake-band--white wake-section">
+      <div class="wake-constrained">
+
+        <div class="wake-section-header" style="margin-bottom:var(--wp--preset--spacing--10);">
+          <p class="is-style-wake-eyebrow">2026 Programme</p>
+          <a href="#" style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); color:var(--wp--preset--color--wake-fog); letter-spacing:0.05em;">Full schedule &rarr;</a>
+        </div>
+
+        <div class="wake-article-grid">
+          <div class="wake-article-card">
+            <div style="height:200px; background:linear-gradient(135deg,#c8d4b8,#a8ba98); display:flex; align-items:center; justify-content:center;">
+              <span style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); letter-spacing:0.08em; text-transform:uppercase; color:var(--wp--preset--color--wake-navy); opacity:0.7;">JUNIORS · LEARN TO SAIL</span>
+            </div>
+            <div class="wake-article-card-body">
+              <p class="wake-terms">Instruction</p>
+              <h3 style="font-size:var(--wp--preset--font-size--xl);">Learn to Sail — Ages 9–14</h3>
+              <p style="font-family:var(--wp--preset--font-family--literata); font-size:var(--wp--preset--font-size--sm); color:var(--wp--preset--color--wake-steel); line-height:1.65;">Six weeks in an Optimist. Racing starts in week four. Participants finish the programme able to rig, launch, and race independently.</p>
+              <p class="wake-post-meta-date" style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--wp--preset--color--wake-brass);">7 July — 11 August</p>
+            </div>
+          </div>
+
+          <div class="wake-article-card">
+            <div style="height:200px; background:linear-gradient(135deg,#b8c8d0,#98b0ba); display:flex; align-items:center; justify-content:center;">
+              <span style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); letter-spacing:0.08em; text-transform:uppercase; color:var(--wp--preset--color--wake-navy); opacity:0.7;">RACING · 420 CLASS</span>
+            </div>
+            <div class="wake-article-card-body">
+              <p class="wake-terms">Racing</p>
+              <h3 style="font-size:var(--wp--preset--font-size--xl);">Race Training — 420 Class</h3>
+              <p style="font-family:var(--wp--preset--font-family--literata); font-size:var(--wp--preset--font-size--sm); color:var(--wp--preset--color--wake-steel); line-height:1.65;">For sailors with prior experience who want to learn to race seriously. Mark roundings, starts, protests, and the PHRF system explained.</p>
+              <p class="wake-post-meta-date" style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--wp--preset--color--wake-brass);">7 July — 11 August</p>
+            </div>
+          </div>
+
+          <div class="wake-article-card">
+            <div style="height:200px; background:linear-gradient(135deg,#d4c8a8,#c0b090); display:flex; align-items:center; justify-content:center;">
+              <span style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); letter-spacing:0.08em; text-transform:uppercase; color:var(--wp--preset--color--wake-navy); opacity:0.7;">REGATTA · END OF SUMMER</span>
+            </div>
+            <div class="wake-article-card-body">
+              <p class="wake-terms">Events</p>
+              <h3 style="font-size:var(--wp--preset--font-size--xl);">Sandbar Open Regatta</h3>
+              <p style="font-family:var(--wp--preset--font-family--literata); font-size:var(--wp--preset--font-size--sm); color:var(--wp--preset--color--wake-steel); line-height:1.65;">The end-of-summer regatta that draws juniors from four clubs across the bay. Three race days, one trophy, and a barbecue at the dock.</p>
+              <p class="wake-post-meta-date" style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--wp--preset--color--wake-brass);">22–24 August</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Coaches / about band -->
+    <section class="wake-band--salt wake-section">
+      <div class="wake-constrained">
+        <div class="wake-cols-50-50" style="align-items:center;">
+          <div>
+            <p class="is-style-wake-eyebrow" style="margin-bottom:var(--wp--preset--spacing--5);">Our Coaches</p>
+            <h2 style="font-size:var(--wp--preset--font-size--3xl); margin-bottom:var(--wp--preset--spacing--6);">Sailors who teach what they do</h2>
+            <p style="font-family:var(--wp--preset--font-family--literata); font-size:var(--wp--preset--font-size--base); color:var(--wp--preset--color--wake-steel); line-height:1.75; margin-bottom:var(--wp--preset--spacing--6);">
+              Every coach at Sandbar is an active racer. They teach starts by doing them, mark roundings by demonstrating them, and protest hearings by having been in them. The classroom is the water.
+            </p>
+            <a href="#" class="wake-btn">Meet the Coaches</a>
+          </div>
+          <div class="wake-img-placeholder" style="height:320px; background:linear-gradient(135deg,#d4c8a8,#b8a880);">
+            <span style="color:var(--wp--preset--color--wake-fog);">COACHING ON THE WATER</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Palette note -->
+    <section class="wake-band--brass-tint wake-section-sm">
+      <div class="wake-constrained">
+        <p class="is-style-wake-eyebrow" style="margin-bottom:var(--wp--preset--spacing--4);">About this palette</p>
+        <p style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--base); line-height:1.7; color:var(--wp--preset--color--wake-void); max-width:65ch;">
+          <strong>Bleached Coast</strong> — wake-void: #2c2418 · wake-navy: #3d4f3a · wake-salt: #f7f2e5 · wake-brass: #9a6d38. A warm sand-and-driftwood palette suited to junior programmes, regattas, and the sociable end of coastal sailing culture. Nine CSS custom property overrides — nothing else changes.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wake-site-footer" style="background:var(--wp--preset--color--wake-void);">
+    <div class="wake-footer-row">
+      <div>
+        <div class="wake-footer-title">Sandbar Sailing</div>
+        <div class="wake-footer-sub">Junior Programme &amp; Regatta</div>
+      </div>
+      <nav class="wake-footer-nav-links">
+        <a href="#">Learn</a>
+        <a href="#">Regattas</a>
+        <a href="#">Coaches</a>
+        <a href="#">Register</a>
+      </nav>
+    </div>
+    <hr class="wake-footer-hr">
+    <div class="wake-footer-bottom">
+      <span>&copy; 2026 Sandbar Sailing Club</span>
+      <span>Built with WordPress &amp; <a href="https://thisismyurl.com/wake/">Wake</a></span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

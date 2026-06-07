@@ -1,0 +1,35 @@
+<!-- wp:template-part {"slug":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"wake-main wake-search","id":"main-content","layout":{"type":"constrained","contentSize":"1280px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|20"}}}} -->
+<main class="wp-block-group wake-main wake-search" id="main-content">
+
+	<!-- wp:query-title {"type":"search","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|8"}}}} /-->
+	<!-- wp:search {"label":"Search","buttonText":"Search again","buttonPosition":"button-outside","showLabel":false} /-->
+
+	<!-- wp:query {"queryId":0,"query":{"perPage":10,"postType":"post","order":"desc","orderBy":"relevance","inherit":true},"layout":{"type":"default"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|10"}}}} -->
+	<div class="wp-block-query">
+		<!-- wp:post-template {"layout":{"type":"grid","columnCount":1},"className":"wake-search-loop"} -->
+			<!-- wp:group {"className":"wake-story-card","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|8"},"margin":{"bottom":"var:preset|spacing|8"}},"border":{"bottom":{"color":"var:preset|color|wake-rule","style":"solid","width":"1px"}}},"layout":{"type":"default"}} -->
+			<div class="wp-block-group wake-story-card">
+				<!-- wp:post-title {"level":2,"isLink":true} /-->
+				<!-- wp:post-excerpt {"moreText":"Read more"} /-->
+				<!-- wp:post-date /-->
+			</div>
+			<!-- /wp:group -->
+		<!-- /wp:post-template -->
+		<!-- wp:query-no-results -->
+			<!-- wp:heading {"level":2} --><h2>Nothing matched your search.</h2><!-- /wp:heading -->
+			<!-- wp:search {"label":"Try again","buttonText":"Search","buttonPosition":"button-outside","showLabel":true} /-->
+		<!-- /wp:query-no-results -->
+		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"flex-start"}} -->
+			<!-- wp:query-pagination-previous /-->
+			<!-- wp:query-pagination-numbers /-->
+			<!-- wp:query-pagination-next /-->
+		<!-- /wp:query-pagination -->
+	</div>
+	<!-- /wp:query -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer"} /-->

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wake — Theme Previews</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f0ece4;
+      color: #0d1b2a;
+      padding: 2.5rem 1.5rem;
+    }
+    .wrap { max-width: 1200px; margin: 0 auto; }
+    header { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 2px solid #0d1b2a; }
+    h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; }
+    .tagline { margin-top: 0.4rem; color: #3d6080; font-size: 0.95rem; }
+    .meta { margin-top: 0.75rem; font-size: 0.8rem; color: #8faab8; }
+    .meta a { color: inherit; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .card {
+      background: #fdfcfa;
+      border: 1px solid #d0cbc2;
+      border-radius: 4px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .card:hover { border-color: #1b3a5c; box-shadow: 0 2px 8px rgba(13,27,42,0.1); }
+    .card-thumb {
+      width: 100%;
+      height: 175px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      background: linear-gradient(135deg, #1b3a5c, #3d6080);
+    }
+    .card-body { padding: 0.75rem 1rem 0.9rem; }
+    .card-title { font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+    .card-note { margin-top: 0.25rem; font-size: 0.75rem; color: #8faab8; }
+    .badge {
+      font-size: 0.65rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 20px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Wake</h1>
+      <p class="tagline">A photography-forward coastal lifestyle theme for sailing clubs, maritime journals, and sea-going storytellers. Literata + Jost.</p>
+      <p class="meta">
+        <a href="https://github.com/thisismyurl/colophon-wake">github.com/thisismyurl/colophon-wake</a>
+        &nbsp;·&nbsp;
+        <a href="https://thisismyurl.com/wake/">thisismyurl.com/wake/</a>
+      </p>
+    </header>
+    <div class="grid">
+
+      <a class="card" href="01-front-page.html">
+        <div class="card-thumb" style="background: linear-gradient(160deg, #0d1b2a, #1b3a5c 60%, #3d6080);"></div>
+        <div class="card-body">
+          <div class="card-title">Front Page <span class="badge" style="background:#0073aa;color:#fff">WP.org</span></div>
+          <div class="card-note">WP.org submission — 1200×900</div>
+        </div>
+      </a>
+
+      <a class="card" href="02-voyage-log.html">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #f0ece4, #d0cbc2);"></div>
+        <div class="card-body">
+          <div class="card-title">Voyage Log</div>
+          <div class="card-note">Ship's log archive — voyage entries list</div>
+        </div>
+      </a>
+
+      <a class="card" href="03-article.html">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #fdfcfa, #f0ece4);"></div>
+        <div class="card-body">
+          <div class="card-title">Article</div>
+          <div class="card-note">Single narrative post with drop-cap + pull quote</div>
+        </div>
+      </a>
+
+      <a class="card" href="04-about.html">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #f5ede0, #f0ece4);"></div>
+        <div class="card-body">
+          <div class="card-title">About</div>
+          <div class="card-note">Club story, team, brass-band CTA</div>
+        </div>
+      </a>
+
+      <a class="card" href="05-membership.html">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #1b3a5c, #0d1b2a);"></div>
+        <div class="card-body">
+          <div class="card-title">Membership</div>
+          <div class="card-note">Guest / Member / Commodore tier cards</div>
+        </div>
+      </a>
+
+      <a class="card" href="06-racing.html">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #3d6080, #1b3a5c);"></div>
+        <div class="card-body">
+          <div class="card-title">Racing</div>
+          <div class="card-note">Race schedule table with status badges</div>
+        </div>
+      </a>
+
+      <a class="card" href="07-front-mobile.html">
+        <div class="card-thumb" style="background: linear-gradient(160deg, #0d1b2a, #3d6080);"></div>
+        <div class="card-body">
+          <div class="card-title">Front — 375px <span class="badge" style="background:#2e7d32;color:#fff">mobile</span></div>
+          <div class="card-note">Mobile front page, hamburger nav</div>
+        </div>
+      </a>
+
+      <a class="card" href="08-article-mobile.html">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #fdfcfa, #f0ece4);"></div>
+        <div class="card-body">
+          <div class="card-title">Article — 390px <span class="badge" style="background:#2e7d32;color:#fff">mobile</span></div>
+          <div class="card-note">Mobile single article reading experience</div>
+        </div>
+      </a>
+
+      <a class="card" href="09-deep-ocean.html">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #050d14, #0d1b2a);"></div>
+        <div class="card-body">
+          <div class="card-title">Deep Ocean <span class="badge" style="background:#b08d57;color:#fff">variant</span></div>
+          <div class="card-note">Colour variant — midnight ocean, near-black</div>
+        </div>
+      </a>
+
+      <a class="card" href="10-bleached.html">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #f7f2e8, #e8dfc8);"></div>
+        <div class="card-body">
+          <div class="card-title">Bleached Coast <span class="badge" style="background:#b08d57;color:#fff">variant</span></div>
+          <div class="card-note">Colour variant — warm sand/linen, sun-washed</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</body>
+</html>

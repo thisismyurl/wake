@@ -1,0 +1,16 @@
+/* =====================================================================
+   [SKIN] Wake — block editor styles.
+   Loaded only in the block editor (inc/setup.php registers this file).
+   theme.json supplies the global tokens; this file carries only the
+   ::before/::after and personality that theme.json cannot express.
+   ===================================================================== */
+
+.editor-styles-wrapper {
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Prevent the block editor from rendering inline SVG edit-mode chrome
+   that would confuse the editorial preview. */
+.editor-styles-wrapper .wp-block[data-type="core/navigation"] .wp-block-navigation__responsive-container {
+	display: flex;
+}

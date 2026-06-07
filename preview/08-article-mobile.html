@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<title>Wake — Article Mobile (390px)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Literata:ital,opsz,wght@0,7..72,300..900;1,7..72,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wake-preview.css">
+<style>
+  /* Mobile nav hidden */
+  .wake-nav      { display: none; }
+  .wake-hamburger { display: flex; }
+
+  /* Mobile section padding */
+  .wake-section    { padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--4); }
+  .wake-section-sm { padding: var(--wp--preset--spacing--8)  var(--wp--preset--spacing--4); }
+  .wake-site-header { padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--4); }
+  .wake-site-tagline { display: none; }
+
+  /* Reading measure unrestricted on mobile — full width with padding */
+  .wake-reading { max-width: 100%; margin: 0; }
+
+  /* Hero shorter on mobile */
+  .wake-article-hero { min-height: 280px; height: 280px; }
+
+  /* Drop-cap smaller on mobile */
+  .wake-drop-cap::first-letter {
+    font-size: 3.5rem;
+    margin-right: 0.06em;
+  }
+
+  /* Post nav stacks */
+  .wake-post-nav {
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--6);
+  }
+  .wake-post-nav > div:last-child { text-align: left; }
+
+  /* Footer stacks */
+  .wake-footer-row       { flex-direction: column; gap: var(--wp--preset--spacing--5); }
+  .wake-footer-nav-links { flex-wrap: wrap; gap: var(--wp--preset--spacing--4); }
+  .wake-footer-bottom    { flex-direction: column; gap: var(--wp--preset--spacing--2); }
+</style>
+</head>
+<body>
+<div class="wake-site">
+
+  <!-- Mobile header -->
+  <header class="wake-site-header">
+    <a class="wake-site-title-link" href="#">Harbour &amp; Sea</a>
+    <div class="wake-hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <main class="wake-main">
+
+    <!-- Article hero image — mobile height -->
+    <section class="wake-article-hero wake-band--void wake-img-placeholder wake-img-hero"
+             style="display:flex; flex-direction:column; justify-content:flex-end; padding: var(--wp--preset--spacing--6) var(--wp--preset--spacing--4);">
+      <div class="wake-post-meta" style="padding-block:0; margin-bottom:var(--wp--preset--spacing--3);">
+        <span class="wake-post-meta-date">14 July 2026</span>
+        <span class="wake-post-meta-sep">/</span>
+        <span class="wake-post-meta-cat">North Channel</span>
+      </div>
+      <h1 style="color:var(--wp--preset--color--wake-white); font-size:clamp(1.6rem,6vw,2.4rem); max-width:20ch;">
+        The North Channel in High Summer
+      </h1>
+    </section>
+
+    <!-- Article body — mobile reading experience -->
+    <section class="wake-band--white wake-section">
+
+      <!-- Byline -->
+      <div style="display:flex; align-items:center; gap:var(--wp--preset--spacing--3); padding-bottom:var(--wp--preset--spacing--6); border-bottom:1px solid var(--wp--preset--color--wake-rule); margin-bottom:var(--wp--preset--spacing--8);">
+        <div class="wake-img-placeholder wake-img-card" style="width:40px; height:40px; border-radius:50%; flex-shrink:0;"></div>
+        <div>
+          <p style="font-family:var(--wp--preset--font-family--jost); font-weight:600; font-size:var(--wp--preset--font-size--sm); color:var(--wp--preset--color--wake-void);">Margaret Calloway</p>
+          <p style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); color:var(--wp--preset--color--wake-fog); letter-spacing:0.04em;">Cruising Correspondent</p>
+        </div>
+      </div>
+
+      <!-- Body text -->
+      <p class="wake-drop-cap" style="margin-bottom:var(--wp--preset--spacing--5);">
+        The approach to Killarney from the south is one of the great pieces of navigation on the Canadian inland seas. You commit to the channel between Beaverstone Bay and the Collins Inlet approach, and then the water does the rest — it funnels you through, barely a boat-length of clearance on either side at places, the pink granite walls of the Precambrian Shield close enough to read the lichen.
+      </p>
+
+      <p style="margin-bottom:var(--wp--preset--spacing--5); color:var(--wp--preset--color--wake-void);">
+        We arrived on a Tuesday with a northwest wind behind us, having left Midland on Saturday morning. The passage north through the open bay had been uneventful — two days of reaching in fifteen knots, the boat moving easily, the crew settled into watch routines.
+      </p>
+
+      <p style="margin-bottom:var(--wp--preset--spacing--5); color:var(--wp--preset--color--wake-void);">
+        Killarney is where most Channel cruisers take stock. It has two marinas, a fuel dock, a restaurant where the fish is local, and a pay phone outside the government dock that actually works. We stayed two nights, took on water, and studied the pilot charts for the week ahead.
+      </p>
+
+      <!-- Pull quote — mobile -->
+      <blockquote class="wake-quote" style="margin-inline:0;">
+        "The North Channel asks something of you. It is not difficult sailing — the distances are short, the anchorages plentiful — but it pays attention to whether you are paying attention."
+      </blockquote>
+
+      <h2 style="font-size:var(--wp--preset--font-size--xl); margin-bottom:var(--wp--preset--spacing--4); margin-top:var(--wp--preset--spacing--8);">The Passage to Baie Fine</h2>
+
+      <p style="margin-bottom:var(--wp--preset--spacing--5); color:var(--wp--preset--color--wake-void);">
+        Baie Fine is thirteen miles east of Killarney by the most direct route. The chart shows it as a narrow finger of water running almost due south into the Shield, terminating in a pool that the pilots call the Pool. You anchor in eight to twelve feet of water surrounded by hills that rise four hundred feet from the waterline on both sides, and the silence is complete.
+      </p>
+
+      <!-- Mobile inline image placeholder -->
+      <div class="wake-img-placeholder wake-img-card" style="height:220px; margin-block:var(--wp--preset--spacing--8);">
+        <span>THE POOL, BAIE FINE</span>
+      </div>
+
+      <p style="margin-bottom:var(--wp--preset--spacing--5); color:var(--wp--preset--color--wake-void);">
+        We followed the convention, dropped the hook, backed toward the eastern wall, and tied off a spring line to a ring that someone put there seventy years ago for exactly this purpose.
+      </p>
+
+      <!-- Tags -->
+      <div style="display:flex; flex-wrap:wrap; gap:var(--wp--preset--spacing--3); padding-top:var(--wp--preset--spacing--8); border-top:1px solid var(--wp--preset--color--wake-rule);">
+        <a href="#" style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--2xs); font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--wp--preset--color--wake-steel); text-decoration:none;">North Channel</a>
+        <a href="#" style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--2xs); font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--wp--preset--color--wake-steel); text-decoration:none;">Cruising</a>
+        <a href="#" style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--2xs); font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--wp--preset--color--wake-steel); text-decoration:none;">Georgian Bay</a>
+      </div>
+
+    </section>
+
+    <!-- Post navigation — stacked -->
+    <section class="wake-band--salt wake-section-sm">
+      <div class="wake-post-nav">
+        <div>
+          <div class="wake-post-nav-label">&larr; Previous</div>
+          <div class="wake-post-nav-title">Race Week: Erie Shore Circuit, Day Four</div>
+        </div>
+        <div>
+          <div class="wake-post-nav-label">Next &rarr;</div>
+          <div class="wake-post-nav-title">Anchoring in Shoal Water</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer — mobile -->
+  <footer class="wake-site-footer" style="padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--4) var(--wp--preset--spacing--8);">
+    <div class="wake-footer-row">
+      <div>
+        <div class="wake-footer-title">Harbour &amp; Sea</div>
+        <div class="wake-footer-sub">Maritime Journal</div>
+      </div>
+      <nav class="wake-footer-nav-links">
+        <a href="#">Voyages</a>
+        <a href="#">Racing</a>
+        <a href="#">Club</a>
+        <a href="#">Join</a>
+      </nav>
+    </div>
+    <hr class="wake-footer-hr" style="margin-block:var(--wp--preset--spacing--8);">
+    <div class="wake-footer-bottom">
+      <span>&copy; 2026 Harbour &amp; Sea</span>
+      <span>Built with <a href="https://thisismyurl.com/wake/">Wake</a></span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

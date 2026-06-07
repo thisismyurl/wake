@@ -1,0 +1,320 @@
+/* =====================================================================
+   [SKIN] Wake — maritime editorial theme.
+   Layer order: reset (core) → base (core) → skin (here) → utilities.
+   All custom properties are prefixed --wake-* to avoid collisions.
+   ===================================================================== */
+
+@layer skin {
+
+/* ── CSS custom properties ───────────────────────────────────────────── */
+:root {
+	--wake-hero-overlay: linear-gradient(
+		to top,
+		rgba(13, 27, 42, 0.72) 0%,
+		rgba(13, 27, 42, 0.28) 40%,
+		rgba(13, 27, 42, 0.00) 68%
+	);
+	--wake-tide-gap:          6px;
+	--wake-tide-inner-weight: 1.5px;
+	--wake-tide-outer-weight: 3px;
+	--cl-focus-ring:          var(--wp--preset--color--wake-brass);
+	--cl-focus-ring-inverse:  var(--wp--preset--color--wake-white);
+	--cl-skip-bg:             var(--wp--preset--color--wake-navy);
+	--cl-skip-fg:             var(--wp--preset--color--wake-white);
+}
+
+/* ── Site header ─────────────────────────────────────────────────────── */
+.wake-site-header {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	border-block-end: 1px solid var(--wp--preset--color--wake-rule);
+	background-color: var(--wp--preset--color--wake-white);
+}
+
+.wake-header-inner {
+	max-inline-size: var(--wp--style--global--wide-size);
+	margin-inline: auto;
+	padding-inline: var(--wp--preset--spacing--5);
+}
+
+/* ── Hero section ────────────────────────────────────────────────────── */
+.wake-hero {
+	position: relative;
+	min-block-size: 88dvh;
+	overflow: hidden;
+	background-color: var(--wp--preset--color--wake-void);
+}
+
+.wake-hero .wp-block-post-featured-image,
+.wake-hero .wp-block-post-featured-image img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	margin: 0;
+}
+
+.wake-hero::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: var(--wake-hero-overlay);
+	pointer-events: none;
+}
+
+.wake-hero__overlay {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	padding: var(--wp--preset--spacing--12);
+	padding-block-end: var(--wp--preset--spacing--16);
+	color: var(--wp--preset--color--wake-white);
+}
+
+.wake-hero__title,
+.wake-hero__title a {
+	color: var(--wp--preset--color--wake-white);
+	text-decoration: none;
+}
+
+.wake-hero__deck {
+	color: var(--wp--preset--color--wake-salt);
+	font-style: italic;
+	max-inline-size: 60ch;
+}
+
+@media (max-width: 479px) {
+	.wake-hero {
+		min-block-size: auto;
+	}
+	.wake-hero .wp-block-post-featured-image {
+		position: relative;
+		height: 60vw;
+	}
+	.wake-hero::after {
+		display: none;
+	}
+	.wake-hero__overlay {
+		position: static;
+		padding: var(--wp--preset--spacing--6);
+		color: var(--wp--preset--color--wake-void);
+	}
+	.wake-hero__title,
+	.wake-hero__title a {
+		color: var(--wp--preset--color--wake-void);
+	}
+	.wake-hero__deck {
+		color: var(--wp--preset--color--wake-navy);
+	}
+}
+
+/* ── Story grid ──────────────────────────────────────────────────────── */
+.wake-story-grid-section {
+	background-color: var(--wp--preset--color--wake-salt);
+}
+
+.wake-story-grid,
+.wp-block-post-template.wake-story-grid {
+	gap: var(--wp--preset--spacing--8);
+}
+
+.wake-story-card {
+	background-color: var(--wp--preset--color--wake-white);
+	overflow: hidden;
+}
+
+.wake-story-card__image,
+.wake-story-card .wp-block-post-featured-image {
+	overflow: hidden;
+}
+
+.wake-story-card .wp-block-post-featured-image img {
+	transition: transform 0.3s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.wake-story-card:hover .wp-block-post-featured-image img {
+		transform: scale(1.03);
+	}
+}
+
+.wake-story-card__body {
+	padding: var(--wp--preset--spacing--5);
+}
+
+.wake-category-label,
+.wake-story-card .wp-block-post-terms {
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-weight: 600;
+	color: var(--wp--preset--color--wake-steel);
+}
+
+/* ── Article / single ────────────────────────────────────────────────── */
+.wake-single__hero {
+	width: 100%;
+	max-block-size: 70vh;
+	object-fit: cover;
+	object-position: center;
+	margin-block-end: 0;
+}
+
+.wake-single__hero .wp-block-post-featured-image img {
+	width: 100%;
+	max-block-size: 70vh;
+	object-fit: cover;
+}
+
+.wake-single__content {
+	max-inline-size: var(--wp--style--global--content-size);
+	margin-inline: auto;
+}
+
+.wake-post-meta {
+	color: var(--wp--preset--color--wake-fog);
+	border-block: 1px solid var(--wp--preset--color--wake-rule);
+	padding-block: var(--wp--preset--spacing--3);
+	margin-block: var(--wp--preset--spacing--6);
+}
+
+.wake-byline {
+	gap: var(--wp--preset--spacing--3);
+	align-items: center;
+}
+
+/* ── Byline (date in brass) ──────────────────────────────────────────── */
+.wp-block-post-date {
+	color: var(--wp--preset--color--wake-brass);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: var(--wp--preset--font-size--2xs);
+	font-weight: 500;
+}
+
+/* ── Block style: tide-rule separator ───────────────────────────────── */
+.wp-block-separator.is-style-wake-tide-rule {
+	border: none;
+	border-block-start: var(--wake-tide-outer-weight) solid var(--wp--preset--color--wake-brass);
+	position: relative;
+	margin-block: var(--wp--preset--spacing--8);
+}
+
+.wp-block-separator.is-style-wake-tide-rule::after {
+	content: "";
+	position: absolute;
+	top: calc(var(--wake-tide-outer-weight) + var(--wake-tide-gap));
+	left: 0;
+	right: 0;
+	height: var(--wake-tide-inner-weight);
+	background-color: var(--wp--preset--color--wake-brass);
+	opacity: 0.35;
+}
+
+/* ── Block style: log-entry paragraph ───────────────────────────────── */
+.wp-block-paragraph.is-style-wake-log-entry {
+	border-inline-start: 2px solid var(--wp--preset--color--wake-brass);
+	padding-inline-start: var(--wp--preset--spacing--4);
+	font-style: italic;
+	color: var(--wp--preset--color--wake-steel);
+	font-size: var(--wp--preset--font-size--sm);
+}
+
+/* ── Block style: story card group ──────────────────────────────────── */
+.is-style-wake-story-card {
+	overflow: hidden;
+}
+
+.is-style-wake-story-card img {
+	transition: transform 0.3s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.is-style-wake-story-card:hover img {
+		transform: scale(1.03);
+	}
+}
+
+/* ── Block style: standfirst heading ────────────────────────────────── */
+.is-style-wake-standfirst {
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1.45;
+	color: var(--wp--preset--color--wake-navy);
+}
+
+/* ── Site footer ─────────────────────────────────────────────────────── */
+.wake-site-footer {
+	background-color: var(--wp--preset--color--wake-void);
+	color: var(--wp--preset--color--wake-salt);
+}
+
+.wake-site-footer a {
+	color: var(--wp--preset--color--wake-salt);
+	text-decoration: none;
+}
+
+.wake-site-footer a:hover {
+	color: var(--wp--preset--color--wake-brass);
+}
+
+.wake-copyright,
+.wake-credit {
+	color: var(--wp--preset--color--wake-fog);
+	font-size: var(--wp--preset--font-size--2xs);
+}
+
+/* ── Related stories section ────────────────────────────────────────── */
+.wake-related {
+	background-color: var(--wp--preset--color--wake-salt);
+}
+
+/* ── Archive + search ────────────────────────────────────────────────── */
+.wake-archive-header {
+	padding-block-end: var(--wp--preset--spacing--8);
+	border-block-end: 1px solid var(--wp--preset--color--wake-rule);
+	margin-block-end: var(--wp--preset--spacing--10);
+}
+
+.wake-pagination {
+	margin-block-start: var(--wp--preset--spacing--12);
+	gap: var(--wp--preset--spacing--2);
+}
+
+/* ── 404 ─────────────────────────────────────────────────────────────── */
+.wake-404 {
+	text-align: center;
+}
+
+/* ── Focus styles ────────────────────────────────────────────────────── */
+:focus-visible {
+	outline: 2px solid var(--cl-focus-ring);
+	outline-offset: 3px;
+}
+
+.wake-site-header :focus-visible,
+.wake-site-footer :focus-visible {
+	outline-color: var(--cl-focus-ring-inverse);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 899px) {
+	.wake-story-grid.wp-block-post-template {
+		grid-template-columns: repeat(2, 1fr) !important;
+	}
+}
+
+@media (max-width: 599px) {
+	.wake-story-grid.wp-block-post-template {
+		grid-template-columns: 1fr !important;
+	}
+	.wake-story-grid-section {
+		padding-block: var(--wp--preset--spacing--10);
+	}
+}
+
+} /* end @layer skin */

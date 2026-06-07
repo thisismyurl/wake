@@ -1,0 +1,45 @@
+<!-- wp:template-part {"slug":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"wake-main wake-archive","id":"main-content","layout":{"type":"constrained","contentSize":"1280px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|20"}}}} -->
+<main class="wp-block-group wake-main wake-archive" id="main-content">
+
+	<!-- ARCHIVE HEADER -->
+	<!-- wp:group {"className":"wake-archive-header","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|8"}},"border":{"bottom":{"color":"var:preset|color|wake-rule","style":"solid","width":"1px"}}},"layout":{"type":"default"}} -->
+	<div class="wp-block-group wake-archive-header">
+		<!-- wp:query-title {"type":"archive"} /-->
+		<!-- wp:term-description /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:query {"queryId":0,"query":{"perPage":12,"postType":"post","order":"desc","orderBy":"date","inherit":true},"layout":{"type":"default"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|10"}}}} -->
+	<div class="wp-block-query">
+
+		<!-- wp:post-template {"layout":{"type":"grid","columnCount":3},"className":"wake-archive-grid"} -->
+			<!-- wp:group {"className":"wake-story-card","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|6"},"margin":{"bottom":"var:preset|spacing|6"}},"border":{"bottom":{"color":"var:preset|color|wake-rule","style":"solid","width":"1px"}}},"layout":{"type":"default"}} -->
+			<div class="wp-block-group wake-story-card">
+				<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"3/2"} /-->
+				<!-- wp:post-terms {"term":"category","className":"wake-category-label"} /-->
+				<!-- wp:post-title {"level":2,"isLink":true} /-->
+				<!-- wp:post-excerpt {"moreText":"","numberOfWords":15} /-->
+				<!-- wp:post-date /-->
+			</div>
+			<!-- /wp:group -->
+		<!-- /wp:post-template -->
+
+		<!-- wp:query-no-results -->
+			<!-- wp:paragraph --><p>Nothing in this category yet.</p><!-- /wp:paragraph -->
+		<!-- /wp:query-no-results -->
+
+		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"flex-start"},"className":"wake-pagination"} -->
+			<!-- wp:query-pagination-previous /-->
+			<!-- wp:query-pagination-numbers /-->
+			<!-- wp:query-pagination-next /-->
+		<!-- /wp:query-pagination -->
+
+	</div>
+	<!-- /wp:query -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer"} /-->

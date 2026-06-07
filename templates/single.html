@@ -1,0 +1,56 @@
+<!-- wp:template-part {"slug":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"wake-main wake-single","id":"main-content","layout":{"type":"default"},"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|20"}}}} -->
+<main class="wp-block-group wake-main wake-single" id="main-content">
+
+	<!-- HERO IMAGE — full width above content -->
+	<!-- wp:post-featured-image {"aspectRatio":"21/9","className":"wake-single__hero","style":{"border":{"radius":"0"}}} /-->
+
+	<!-- ARTICLE CONTENT -->
+	<!-- wp:group {"className":"wake-single__content","layout":{"type":"constrained","contentSize":"780px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|10","left":"var:preset|spacing|6","right":"var:preset|spacing|6"}}}} -->
+	<div class="wp-block-group wake-single__content">
+
+		<!-- wp:post-terms {"term":"category","className":"wake-category-label"} /-->
+
+		<!-- wp:post-title {"level":1} /-->
+
+		<!-- wp:template-part {"slug":"post-meta","tagName":"div"} /-->
+
+		<!-- wp:post-content {"layout":{"type":"constrained","contentSize":"680px"}} /-->
+
+		<!-- TAGS -->
+		<!-- wp:group {"className":"wake-post-tags","style":{"spacing":{"padding":{"top":"var:preset|spacing|8"},"margin":{"top":"var:preset|spacing|8"}},"border":{"top":{"color":"var:preset|color|wake-rule","style":"solid","width":"1px"}}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
+		<div class="wp-block-group wake-post-tags">
+			<!-- wp:post-terms {"term":"post_tag"} /-->
+		</div>
+		<!-- /wp:group -->
+
+	</div>
+	<!-- /wp:group -->
+
+	<!-- RELATED STORIES -->
+	<!-- wp:group {"className":"wake-related","style":{"spacing":{"padding":{"top":"var:preset|spacing|16","bottom":"var:preset|spacing|16"}},"color":{"background":"var:preset|color|salt-off"}},"layout":{"type":"constrained","contentSize":"1280px"}} -->
+	<div class="wp-block-group wake-related" style="background-color:var(--wp--preset--color--salt-off)">
+		<!-- wp:heading {"level":3,"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|8"}}}} -->
+		<h3>More to Read</h3>
+		<!-- /wp:heading -->
+		<!-- wp:query {"queryId":10,"query":{"perPage":3,"postType":"post","order":"desc","orderBy":"date","inherit":false},"layout":{"type":"default"}} -->
+		<div class="wp-block-query">
+			<!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
+				<!-- wp:group {"className":"wake-story-card","style":{"spacing":{"blockGap":"var:preset|spacing|3"}},"layout":{"type":"default"}} -->
+				<div class="wp-block-group wake-story-card">
+					<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"3/2"} /-->
+					<!-- wp:post-title {"level":4,"isLink":true} /-->
+					<!-- wp:post-date /-->
+				</div>
+				<!-- /wp:group -->
+			<!-- /wp:post-template -->
+		</div>
+		<!-- /wp:query -->
+	</div>
+	<!-- /wp:group -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer"} /-->

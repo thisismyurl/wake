@@ -1,0 +1,796 @@
+/*
+ * wake-preview.css
+ * Standalone CSS for the Wake WordPress FSE theme preview pages.
+ * Replicates the WP-generated custom properties from theme.json plus all
+ * theme stylesheets (reset.css, base.css, skin.css) so browsers can render
+ * accurate screenshots without a live WordPress instance.
+ *
+ * Structure mirrors the theme's @layer declaration order.
+ * Fonts load from Google Fonts CDN (same SIL OFL 1.1 files; browser handles
+ * subset routing). In production the theme self-hosts from assets/fonts/.
+ *
+ * Theme: Wake — photography-forward coastal lifestyle
+ * Fictitious brand: Harbour & Sea (maritime lifestyle magazine)
+ * Palette: deep navy, steel blue, brass gold, warm salt and white grounds
+ */
+
+/* ================================================================
+   WP PRESET CUSTOM PROPERTIES
+   WordPress injects these inline from theme.json. We declare them
+   as :root custom properties so all CSS references resolve correctly.
+   ================================================================ */
+:root {
+  /* Color palette — deep water at dusk, brass editorial accents */
+  --wp--preset--color--wake-void:       #0d1b2a;
+  --wp--preset--color--wake-navy:       #1b3a5c;
+  --wp--preset--color--wake-steel:      #3d6080;
+  --wp--preset--color--wake-fog:        #8faab8;
+  --wp--preset--color--wake-salt:       #f0ece4;
+  --wp--preset--color--wake-white:      #fdfcfa;
+  --wp--preset--color--wake-brass:      #b08d57;
+  --wp--preset--color--wake-brass-tint: #f5ede0;
+  --wp--preset--color--wake-rule:       #d0cbc2;
+
+  /* Font families */
+  --wp--preset--font-family--literata: 'Literata', Georgia, 'Times New Roman', serif;
+  --wp--preset--font-family--jost:     'Jost', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Font sizes (fluid clamp scale) */
+  --wp--preset--font-size--2xs:     0.6875rem;
+  --wp--preset--font-size--xs:      clamp(0.75rem, 0.72rem + 0.15vw, 0.875rem);
+  --wp--preset--font-size--sm:      clamp(0.875rem, 0.83rem + 0.22vw, 1rem);
+  --wp--preset--font-size--base:    clamp(1rem, 0.96rem + 0.22vw, 1.125rem);
+  --wp--preset--font-size--md:      clamp(1.125rem, 1.07rem + 0.27vw, 1.25rem);
+  --wp--preset--font-size--lg:      clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --wp--preset--font-size--xl:      clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
+  --wp--preset--font-size--2xl:     clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem);
+  --wp--preset--font-size--3xl:     clamp(2rem, 1.6rem + 2vw, 3.5rem);
+  --wp--preset--font-size--4xl:     clamp(2.5rem, 1.9rem + 3vw, 5rem);
+  --wp--preset--font-size--display: clamp(3rem, 1.8rem + 6vw, 8rem);
+
+  /* Spacing (0.25rem increments, slugs mirror theme.json) */
+  --wp--preset--spacing--1:  0.25rem;
+  --wp--preset--spacing--2:  0.5rem;
+  --wp--preset--spacing--3:  0.75rem;
+  --wp--preset--spacing--4:  1rem;
+  --wp--preset--spacing--5:  1.5rem;
+  --wp--preset--spacing--6:  2rem;
+  --wp--preset--spacing--8:  2.5rem;
+  --wp--preset--spacing--10: 3rem;
+  --wp--preset--spacing--12: 4rem;
+  --wp--preset--spacing--16: 6rem;
+  --wp--preset--spacing--20: 8rem;
+  --wp--preset--spacing--24: 10rem;
+
+  /* Semantic a11y tokens (bound to palette in skin.css) */
+  --cl-focus-ring:         var(--wp--preset--color--wake-brass);
+  --cl-focus-ring-inverse: var(--wp--preset--color--wake-white);
+  --cl-skip-bg:            var(--wp--preset--color--wake-navy);
+  --cl-skip-fg:            var(--wp--preset--color--wake-white);
+}
+
+/* ================================================================
+   @layer declaration order — must precede all @layer blocks
+   Mirrors reset.css order: reset → base → layout → components →
+   blocks → utilities → preview
+   ================================================================ */
+@layer reset, base, layout, components, blocks, utilities, preview;
+
+/* ================================================================
+   RESET (mirrors reset.css)
+   ================================================================ */
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    color-scheme: light;
+    hanging-punctuation: first last;
+  }
+
+  body {
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  img, video, canvas { display: block; max-width: 100%; height: auto; }
+  input, button, textarea, select { font: inherit; }
+  p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
+  ol, ul { list-style: none; }
+}
+
+/* ================================================================
+   BASE (mirrors base.css)
+   ================================================================ */
+@layer base {
+  body {
+    font-family: var(--wp--preset--font-family--literata);
+    font-size: var(--wp--preset--font-size--base);
+    font-weight: 400;
+    line-height: 1.75;
+    background: var(--wp--preset--color--wake-white);
+    color: var(--wp--preset--color--wake-void);
+  }
+
+  /* text-wrap: balance on headings prevents orphaned single words */
+  h1, h2, h3, h4 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+
+  a {
+    color: var(--wp--preset--color--wake-navy);
+    text-decoration: none;
+  }
+  a:hover { color: var(--wp--preset--color--wake-void); }
+
+  /* Heading scale — from theme.json elements */
+  h1 {
+    font-family: var(--wp--preset--font-family--literata);
+    font-size: var(--wp--preset--font-size--display);
+    font-weight: 600;
+    font-optical-sizing: auto;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    color: var(--wp--preset--color--wake-void);
+  }
+  h2 {
+    font-family: var(--wp--preset--font-family--literata);
+    font-size: var(--wp--preset--font-size--3xl);
+    font-weight: 500;
+    font-optical-sizing: auto;
+    line-height: 1.14;
+    letter-spacing: -0.018em;
+    color: var(--wp--preset--color--wake-void);
+  }
+  h3 {
+    font-family: var(--wp--preset--font-family--literata);
+    font-size: var(--wp--preset--font-size--2xl);
+    font-weight: 500;
+    font-optical-sizing: auto;
+    line-height: 1.22;
+    color: var(--wp--preset--color--wake-navy);
+  }
+  h4 {
+    font-family: var(--wp--preset--font-family--literata);
+    font-size: var(--wp--preset--font-size--xl);
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--wp--preset--color--wake-navy);
+  }
+  h5 {
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--sm);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--wake-steel);
+  }
+  h6 {
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--2xs);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--wake-fog);
+  }
+
+  /* Focus ring — WCAG 2.4.7 visible focus */
+  :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    outline: 2px solid var(--cl-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+/* ================================================================
+   LAYOUT (skin.css @layer layout)
+   ================================================================ */
+@layer layout {
+  :root {
+    --cl-focus-ring: var(--wp--preset--color--wake-brass);
+    --cl-focus-ring-inverse: var(--wp--preset--color--wake-white);
+  }
+
+  .wake-site { display: flex; flex-direction: column; min-height: 100dvh; }
+  .wake-main { flex: 1; }
+
+  /* Constrained content wrapper (1440px max, centred) */
+  .wake-constrained {
+    max-width: 1440px;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  /* Reading measure (780px — wider than Kern for editorial prose) */
+  .wake-reading { max-width: 780px; margin-inline: auto; }
+
+  /* Two-column: 1/3 + 2/3 (sidebar + content) */
+  .wake-cols-33-67 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--wp--preset--spacing--8);
+  }
+  @media (min-width: 900px) {
+    .wake-cols-33-67 { grid-template-columns: 1fr 2fr; align-items: start; }
+  }
+
+  /* Two-column equal split */
+  .wake-cols-50-50 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--wp--preset--spacing--8);
+  }
+  @media (min-width: 768px) {
+    .wake-cols-50-50 { grid-template-columns: 1fr 1fr; gap: var(--wp--preset--spacing--12); }
+  }
+
+  /* Three-column membership/feature grid */
+  .wake-cols-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--wp--preset--spacing--6);
+  }
+  @media (min-width: 768px) {
+    .wake-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* Article card grid (2-up on desktop) */
+  .wake-article-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--wp--preset--spacing--8);
+  }
+  @media (min-width: 768px) {
+    .wake-article-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1100px) {
+    .wake-article-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+}
+
+/* ================================================================
+   COMPONENTS (skin.css @layer components)
+   ================================================================ */
+@layer components {
+  /* Voyage log row — the Wake signature: ship's log entry format */
+  .is-style-wake-log-entry {
+    border-block-start: 1px solid var(--wp--preset--color--wake-rule);
+    padding-block: var(--wp--preset--spacing--8);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--wp--preset--spacing--5);
+    transition: border-color 0.15s ease;
+  }
+  .is-style-wake-log-entry:hover {
+    border-block-start-color: var(--wp--preset--color--wake-brass);
+  }
+  .is-style-wake-log-entry:last-child {
+    border-block-end: 1px solid var(--wp--preset--color--wake-rule);
+  }
+
+  /* Article card */
+  .wake-article-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--4);
+  }
+  .wake-article-card-image {
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, var(--wp--preset--color--wake-steel), var(--wp--preset--color--wake-navy));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .wake-article-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--3);
+  }
+
+  /* Membership tier card */
+  .wake-tier-card {
+    background: var(--wp--preset--color--wake-white);
+    border: 1px solid var(--wp--preset--color--wake-rule);
+    padding: var(--wp--preset--spacing--12) var(--wp--preset--spacing--8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--5);
+  }
+  .wake-tier-card--featured {
+    background: var(--wp--preset--color--wake-navy);
+    border-color: var(--wp--preset--color--wake-navy);
+    color: var(--wp--preset--color--wake-white);
+  }
+  .wake-tier-card--featured h3,
+  .wake-tier-card--featured h4 {
+    color: var(--wp--preset--color--wake-white);
+  }
+
+  /* Race schedule table row */
+  .wake-race-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    gap: var(--wp--preset--spacing--4);
+    padding-block: var(--wp--preset--spacing--5);
+    border-bottom: 1px solid var(--wp--preset--color--wake-rule);
+    align-items: center;
+  }
+  .wake-race-header {
+    background: var(--wp--preset--color--wake-void);
+    color: var(--wp--preset--color--wake-white);
+  }
+  .wake-race-header .wake-race-row {
+    border-bottom: none;
+  }
+
+  /* Status badge */
+  .wake-status {
+    display: inline-block;
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--2xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+  }
+  .wake-status--open    { background: var(--wp--preset--color--wake-brass-tint); color: var(--wp--preset--color--wake-brass); }
+  .wake-status--full    { background: var(--wp--preset--color--wake-salt); color: var(--wp--preset--color--wake-fog); }
+  .wake-status--results { background: var(--wp--preset--color--wake-navy); color: var(--wp--preset--color--wake-white); }
+
+  /* Drop-cap first paragraph */
+  .wake-drop-cap::first-letter {
+    font-family: var(--wp--preset--font-family--literata);
+    font-size: 5.5rem;
+    font-weight: 600;
+    line-height: 0.8;
+    float: left;
+    margin-right: 0.08em;
+    margin-top: 0.05em;
+    color: var(--wp--preset--color--wake-navy);
+  }
+
+  /* Section header row */
+  .wake-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: var(--wp--preset--spacing--6);
+    border-bottom: 1px solid var(--wp--preset--color--wake-rule);
+  }
+}
+
+/* ================================================================
+   BLOCKS
+   ================================================================ */
+@layer blocks {
+  /* Log entry typography */
+  .wake-log-left { flex: 1; min-width: 0; }
+  .wake-log-title {
+    font-family: var(--wp--preset--font-family--literata);
+    font-size: var(--wp--preset--font-size--2xl);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.22;
+    color: var(--wp--preset--color--wake-void);
+    text-decoration: none;
+  }
+  .wake-log-title a { color: inherit; text-decoration: none; }
+  .wake-log-excerpt {
+    font-family: var(--wp--preset--font-family--literata);
+    font-size: var(--wp--preset--font-size--base);
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--wp--preset--color--wake-steel);
+    margin-top: 0.4rem;
+  }
+  .wake-log-date {
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--xs);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--wake-brass);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Category / terms label */
+  .wake-terms {
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--2xs);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--wake-steel);
+  }
+
+  /* Eyebrow label */
+  .is-style-wake-eyebrow {
+    font-family: var(--wp--preset--font-family--jost) !important;
+    font-size: var(--wp--preset--font-size--2xs) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    color: var(--wp--preset--color--wake-steel) !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Quote block — brass left border, italic */
+  .wake-quote {
+    border-left: 3px solid var(--wp--preset--color--wake-brass);
+    padding-left: var(--wp--preset--spacing--6);
+    font-style: italic;
+    margin-block: var(--wp--preset--spacing--8);
+    color: var(--wp--preset--color--wake-navy);
+    font-size: var(--wp--preset--font-size--lg);
+    line-height: 1.55;
+  }
+
+  /* Image placeholder */
+  .wake-img-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wp--preset--color--wake-fog);
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .wake-img-hero {
+    background: linear-gradient(160deg, var(--wp--preset--color--wake-void), var(--wp--preset--color--wake-navy) 60%, var(--wp--preset--color--wake-steel));
+  }
+  .wake-img-card {
+    background: linear-gradient(135deg, var(--wp--preset--color--wake-steel), var(--wp--preset--color--wake-navy));
+  }
+  .wake-img-muted {
+    background: var(--wp--preset--color--wake-salt);
+  }
+
+  /* Post nav */
+  .wake-post-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--wp--preset--spacing--8);
+    padding-block: var(--wp--preset--spacing--10);
+    border-top: 1px solid var(--wp--preset--color--wake-rule);
+  }
+  .wake-post-nav-label {
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--2xs);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--wake-fog);
+    margin-bottom: 0.5rem;
+  }
+  .wake-post-nav-title {
+    font-family: var(--wp--preset--font-family--literata);
+    font-size: var(--wp--preset--font-size--lg);
+    font-weight: 500;
+    color: var(--wp--preset--color--wake-void);
+    letter-spacing: -0.01em;
+  }
+
+  /* Tier feature list */
+  .wake-tier-features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--3);
+  }
+  .wake-tier-features li {
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--sm);
+    font-weight: 400;
+    color: inherit;
+    padding-left: 1.25em;
+    position: relative;
+  }
+  .wake-tier-features li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--wp--preset--color--wake-brass);
+  }
+  .wake-tier-card--featured .wake-tier-features li::before {
+    color: var(--wp--preset--color--wake-fog);
+  }
+
+  /* Price display */
+  .wake-price {
+    font-family: var(--wp--preset--font-family--literata);
+    font-size: var(--wp--preset--font-size--3xl);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--wp--preset--color--wake-void);
+  }
+  .wake-tier-card--featured .wake-price {
+    color: var(--wp--preset--color--wake-white);
+  }
+  .wake-price-period {
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--sm);
+    font-weight: 400;
+    color: var(--wp--preset--color--wake-fog);
+    margin-left: 0.3em;
+  }
+}
+
+/* ================================================================
+   UTILITIES (skin.css @layer utilities)
+   ================================================================ */
+@layer utilities {
+  /* Band colour helpers */
+  .wake-band--void {
+    background: var(--wp--preset--color--wake-void);
+    color: var(--wp--preset--color--wake-white);
+    --cl-focus-ring: var(--cl-focus-ring-inverse);
+  }
+  .wake-band--void a  { color: var(--wp--preset--color--wake-fog); }
+  .wake-band--void a:hover { color: var(--wp--preset--color--wake-white); }
+
+  .wake-band--navy {
+    background: var(--wp--preset--color--wake-navy);
+    color: var(--wp--preset--color--wake-white);
+    --cl-focus-ring: var(--cl-focus-ring-inverse);
+  }
+  .wake-band--navy a  { color: var(--wp--preset--color--wake-fog); }
+  .wake-band--navy a:hover { color: var(--wp--preset--color--wake-white); }
+
+  .wake-band--salt   { background: var(--wp--preset--color--wake-salt); }
+  .wake-band--white  { background: var(--wp--preset--color--wake-white); }
+  .wake-band--brass-tint { background: var(--wp--preset--color--wake-brass-tint); }
+
+  /* Eyebrow row (label + all-link) */
+  .wake-eyebrow-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: var(--wp--preset--spacing--8);
+    border-bottom: 1px solid var(--wp--preset--color--wake-rule);
+    margin-bottom: 0;
+  }
+}
+
+/* ================================================================
+   PREVIEW — header, footer, and shared page chrome
+   ================================================================ */
+@layer preview {
+  /* Site header */
+  .wake-site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--wp--preset--spacing--5) var(--wp--preset--spacing--5);
+    background: var(--wp--preset--color--wake-white);
+    border-bottom: 1px solid var(--wp--preset--color--wake-rule);
+  }
+
+  /* Site title: Literata 300 italic — the Wake signature logotype treatment */
+  .wake-site-title-link {
+    font-family: var(--wp--preset--font-family--literata);
+    font-size: var(--wp--preset--font-size--lg);
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: -0.01em;
+    color: var(--wp--preset--color--wake-void);
+    text-decoration: none;
+  }
+
+  /* Tagline beside title (optional) */
+  .wake-site-tagline {
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--2xs);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--wake-fog);
+    margin-left: var(--wp--preset--spacing--4);
+  }
+
+  /* Nav */
+  .wake-nav {
+    display: flex;
+    gap: var(--wp--preset--spacing--8);
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--sm);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .wake-nav a {
+    color: var(--wp--preset--color--wake-void);
+    text-decoration: none;
+  }
+  .wake-nav a:hover { color: var(--wp--preset--color--wake-navy); }
+
+  /* Footer */
+  .wake-site-footer {
+    padding: var(--wp--preset--spacing--12) var(--wp--preset--spacing--5) var(--wp--preset--spacing--10);
+    background: var(--wp--preset--color--wake-void);
+    color: var(--wp--preset--color--wake-white);
+  }
+  .wake-footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--wp--preset--spacing--8);
+    max-width: 1440px;
+    margin-inline: auto;
+  }
+  .wake-footer-title {
+    font-family: var(--wp--preset--font-family--literata);
+    font-size: var(--wp--preset--font-size--xl);
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: -0.01em;
+    color: var(--wp--preset--color--wake-white);
+  }
+  .wake-footer-sub {
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--2xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--wake-fog);
+    margin-top: 0.3rem;
+  }
+  .wake-footer-nav-links {
+    display: flex;
+    gap: var(--wp--preset--spacing--6);
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--sm);
+    letter-spacing: 0.04em;
+  }
+  .wake-footer-nav-links a { color: var(--wp--preset--color--wake-fog); text-decoration: none; }
+  .wake-footer-nav-links a:hover { color: var(--wp--preset--color--wake-white); }
+  .wake-footer-hr {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin: var(--wp--preset--spacing--10) auto var(--wp--preset--spacing--6);
+    max-width: 1440px;
+  }
+  .wake-footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--wp--preset--spacing--4);
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--2xs);
+    letter-spacing: 0.06em;
+    color: var(--wp--preset--color--wake-fog);
+    max-width: 1440px;
+    margin-inline: auto;
+  }
+  .wake-footer-bottom a { color: inherit; }
+
+  /* Section containers */
+  .wake-section {
+    padding: var(--wp--preset--spacing--16) var(--wp--preset--spacing--5);
+  }
+  .wake-section-sm {
+    padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--5);
+  }
+  .wake-section-inner {
+    max-width: 1440px;
+    margin-inline: auto;
+  }
+
+  /* Post meta line (date + category + reading time) */
+  .wake-post-meta {
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--xs);
+    letter-spacing: 0.06em;
+    display: flex;
+    gap: var(--wp--preset--spacing--5);
+    align-items: center;
+    flex-wrap: wrap;
+    padding-block: var(--wp--preset--spacing--5);
+  }
+  .wake-post-meta-date {
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--wake-brass);
+  }
+  .wake-post-meta-sep { color: var(--wp--preset--color--wake-rule); }
+  .wake-post-meta-cat {
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--wake-steel);
+  }
+  .wake-post-meta-read {
+    color: var(--wp--preset--color--wake-fog);
+    font-weight: 400;
+  }
+
+  /* Button — navy bg, no radius (square is the Wake design token) */
+  .wake-btn {
+    display: inline-block;
+    background: var(--wp--preset--color--wake-navy);
+    color: var(--wp--preset--color--wake-white);
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--sm);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-radius: 0;
+    border: none;
+    padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--6);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .wake-btn:hover {
+    background: var(--wp--preset--color--wake-void);
+    color: var(--wp--preset--color--wake-white);
+  }
+
+  /* Ghost button variant (bordered) */
+  .wake-btn-ghost {
+    display: inline-block;
+    background: transparent;
+    color: var(--wp--preset--color--wake-white);
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--sm);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-radius: 0;
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--6);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .wake-btn-ghost:hover {
+    border-color: var(--wp--preset--color--wake-white);
+    color: var(--wp--preset--color--wake-white);
+  }
+
+  /* Mobile hamburger icon */
+  .wake-hamburger {
+    width: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .wake-hamburger span {
+    display: block;
+    height: 1.5px;
+    background: var(--wp--preset--color--wake-void);
+  }
+
+  /* Race table typography */
+  .wake-race-cell {
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--sm);
+  }
+  .wake-race-cell-date {
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--wp--preset--color--wake-brass);
+    text-transform: uppercase;
+    font-size: var(--wp--preset--font-size--xs);
+  }
+  .wake-race-name {
+    font-family: var(--wp--preset--font-family--literata);
+    font-size: var(--wp--preset--font-size--base);
+    font-weight: 500;
+    color: var(--wp--preset--color--wake-void);
+  }
+  .wake-race-header-cell {
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--2xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--wake-fog);
+    padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--4);
+  }
+}

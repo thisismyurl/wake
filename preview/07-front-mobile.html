@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=375">
+<title>Wake — Front Page Mobile (375px)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Literata:ital,opsz,wght@0,7..72,300..900;1,7..72,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wake-preview.css">
+<style>
+  /* Mobile nav collapses to hamburger */
+  .wake-nav { display: none; }
+  .wake-hamburger { display: flex; }
+
+  /* Tighter section padding on mobile */
+  .wake-section     { padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--4); }
+  .wake-section-sm  { padding: var(--wp--preset--spacing--8)  var(--wp--preset--spacing--4); }
+  .wake-site-header { padding: var(--wp--preset--spacing--4)  var(--wp--preset--spacing--4); }
+
+  /* Hero adjusts for mobile viewport */
+  .wake-hero-mobile { min-height: 60dvh; }
+
+  /* Article cards stack full-width on mobile */
+  .wake-article-grid  { grid-template-columns: 1fr; }
+
+  /* Footer stacks */
+  .wake-footer-row         { flex-direction: column; gap: var(--wp--preset--spacing--5); }
+  .wake-footer-nav-links   { flex-wrap: wrap; gap: var(--wp--preset--spacing--4); }
+  .wake-footer-bottom      { flex-direction: column; gap: var(--wp--preset--spacing--2); }
+
+  /* Site tagline hidden on narrow header */
+  .wake-site-tagline { display: none; }
+
+  /* Log entries wrap tighter */
+  .is-style-wake-log-entry { flex-wrap: wrap; gap: var(--wp--preset--spacing--2); padding-block: var(--wp--preset--spacing--6); }
+  .wake-log-date { order: -1; }
+</style>
+</head>
+<body>
+<div class="wake-site">
+
+  <!-- Mobile header: title + hamburger -->
+  <header class="wake-site-header">
+    <a class="wake-site-title-link" href="#">Harbour &amp; Sea</a>
+    <div class="wake-hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <main class="wake-main">
+
+    <!-- Full-bleed dark hero — mobile -->
+    <section class="wake-hero-mobile wake-band--void wake-img-placeholder wake-img-hero"
+             style="display:flex; flex-direction:column; justify-content:flex-end; padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--4); position:relative; min-height:55dvh;">
+      <div style="position:absolute; top:0; left:0; right:0; height:3px; background:var(--wp--preset--color--wake-brass); opacity:0.6;"></div>
+      <p class="is-style-wake-eyebrow" style="color:var(--wp--preset--color--wake-fog) !important; margin-bottom:var(--wp--preset--spacing--3);">Georgian Bay</p>
+      <h1 style="color:var(--wp--preset--color--wake-white); font-size:clamp(2rem,8vw,2.8rem); margin-bottom:var(--wp--preset--spacing--4);">The North Channel in High Summer</h1>
+      <p style="font-family:var(--wp--preset--font-family--literata); font-size:var(--wp--preset--font-size--base); font-style:italic; color:var(--wp--preset--color--wake-fog); margin-bottom:var(--wp--preset--spacing--5); line-height:1.5;">
+        Seven hundred miles of Canadian Shield shoreline, and no two passages the same.
+      </p>
+      <a href="#" class="wake-btn-ghost" style="width:fit-content;">Read the Log</a>
+    </section>
+
+    <!-- Recent articles — mobile stacked -->
+    <section class="wake-band--white wake-section">
+
+      <div class="wake-section-header" style="margin-bottom:var(--wp--preset--spacing--8);">
+        <p class="is-style-wake-eyebrow">From the Journal</p>
+        <a href="#" style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); color:var(--wp--preset--color--wake-fog); letter-spacing:0.05em;">All &rarr;</a>
+      </div>
+
+      <div class="wake-article-grid">
+
+        <div class="wake-article-card">
+          <div class="wake-article-card-image wake-img-placeholder wake-img-card" style="height:200px;"><span>SAILING</span></div>
+          <div class="wake-article-card-body">
+            <p class="wake-terms">Racing</p>
+            <h3 style="font-size:var(--wp--preset--font-size--xl);"><a href="#" style="color:inherit; text-decoration:none;">Lake Erie Race Week: Final Standings</a></h3>
+            <p class="wake-post-meta-date" style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--wp--preset--color--wake-brass);">14 July 2026</p>
+          </div>
+        </div>
+
+        <div class="wake-article-card">
+          <div class="wake-article-card-image wake-img-placeholder wake-img-card" style="height:200px;"><span>HARBOUR</span></div>
+          <div class="wake-article-card-body">
+            <p class="wake-terms">Cruising</p>
+            <h3 style="font-size:var(--wp--preset--font-size--xl);"><a href="#" style="color:inherit; text-decoration:none;">Tobermory to Little Current: Four Days, No Plans</a></h3>
+            <p class="wake-post-meta-date" style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--wp--preset--color--wake-brass);">29 June 2026</p>
+          </div>
+        </div>
+
+        <div class="wake-article-card">
+          <div class="wake-article-card-image wake-img-placeholder wake-img-card" style="height:200px;"><span>PHOTOGRAPHY</span></div>
+          <div class="wake-article-card-body">
+            <p class="wake-terms">Seamanship</p>
+            <h3 style="font-size:var(--wp--preset--font-size--xl);"><a href="#" style="color:inherit; text-decoration:none;">Reading the Weather: Fog and the Bruce Peninsula</a></h3>
+            <p class="wake-post-meta-date" style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--wp--preset--color--wake-brass);">6 July 2026</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Club teaser — dark band -->
+    <section class="wake-band--navy wake-section">
+      <p class="is-style-wake-eyebrow" style="color:var(--wp--preset--color--wake-fog) !important; margin-bottom:var(--wp--preset--spacing--6);">The Club</p>
+      <h2 style="color:var(--wp--preset--color--wake-white); font-size:var(--wp--preset--font-size--2xl); margin-bottom:var(--wp--preset--spacing--5);">Sixty-four years on the water. Open to new members.</h2>
+      <p style="font-family:var(--wp--preset--font-family--literata); font-size:var(--wp--preset--font-size--base); font-style:italic; color:var(--wp--preset--color--wake-fog); margin-bottom:var(--wp--preset--spacing--8); line-height:1.55;">Racing, cruising, and the annual North Channel passage. Membership opens March 1.</p>
+      <a href="#" class="wake-btn" style="background:var(--wp--preset--color--wake-brass); color:var(--wp--preset--color--wake-void);">View Membership</a>
+    </section>
+
+  </main>
+
+  <!-- Footer — mobile -->
+  <footer class="wake-site-footer" style="padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--4) var(--wp--preset--spacing--8);">
+    <div class="wake-footer-row">
+      <div>
+        <div class="wake-footer-title">Harbour &amp; Sea</div>
+        <div class="wake-footer-sub">Maritime Journal</div>
+      </div>
+      <nav class="wake-footer-nav-links">
+        <a href="#">Voyages</a>
+        <a href="#">Racing</a>
+        <a href="#">Club</a>
+        <a href="#">Join</a>
+      </nav>
+    </div>
+    <hr class="wake-footer-hr" style="margin-block:var(--wp--preset--spacing--8);">
+    <div class="wake-footer-bottom">
+      <span>&copy; 2026 Harbour &amp; Sea</span>
+      <span>Built with <a href="https://thisismyurl.com/wake/">Wake</a></span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

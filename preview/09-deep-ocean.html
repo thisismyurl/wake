@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>Wake — Deep Ocean Variant (Midnight Palette)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Literata:ital,opsz,wght@0,7..72,300..900;1,7..72,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wake-preview.css">
+<style>
+  /*
+   * DEEP OCEAN PALETTE — near-black with abyssal depth.
+   * Wake makes this a 5-minute change: override the --wp--preset--color-- tokens.
+   * The structural CSS (spacing, layout, typography) is unchanged.
+   * This variant is for maritime publishers and clubs that operate at the
+   * serious, expedition end of the spectrum — offshore racing, blue-water
+   * passages, formal club communications.
+   *
+   * Demonstrating the CORE/SKIN split: not a single layout rule changes.
+   * The entire personality shift lives in nine custom property overrides.
+   */
+  :root {
+    --wp--preset--color--wake-void:       #060d14;
+    --wp--preset--color--wake-navy:       #0a1e2e;
+    --wp--preset--color--wake-steel:      #1d3a52;
+    --wp--preset--color--wake-fog:        #6a8a9e;
+    --wp--preset--color--wake-salt:       #0f1f2d;
+    --wp--preset--color--wake-white:      #131f2b;
+    --wp--preset--color--wake-brass:      #c9a660;
+    --wp--preset--color--wake-brass-tint: #14202c;
+    --wp--preset--color--wake-rule:       #1a2d3d;
+  }
+  /* Body text is bright on the dark bg */
+  body {
+    color: #c8d8e2;
+  }
+  h1, h2, h3, h4 {
+    color: #e8f0f5;
+  }
+  h3, h4 {
+    color: #c8d8e2;
+  }
+  a {
+    color: var(--wp--preset--color--wake-brass);
+  }
+  a:hover {
+    color: #e8f0f5;
+  }
+  p {
+    color: #a8c0ce;
+  }
+</style>
+</head>
+<body>
+<div class="wake-site">
+
+  <header class="wake-site-header" style="border-bottom-color:var(--wp--preset--color--wake-rule);">
+    <div style="display:flex; align-items:baseline; gap: var(--wp--preset--spacing--3);">
+      <a class="wake-site-title-link" href="#" style="color:#e8f0f5;">Deep Current Review</a>
+      <span class="wake-site-tagline">Offshore &amp; Expedition</span>
+    </div>
+    <nav class="wake-nav">
+      <a href="#" style="color:#c8d8e2;">Passages</a>
+      <a href="#" style="color:#c8d8e2;">Races</a>
+      <a href="#" style="color:#c8d8e2;">The Ship</a>
+      <a href="#" style="color:#c8d8e2;">Log</a>
+    </nav>
+  </header>
+
+  <main class="wake-main">
+
+    <!-- Hero — deep ocean -->
+    <section class="wake-band--void wake-img-placeholder wake-img-hero"
+             style="min-height:520px; display:flex; flex-direction:column; justify-content:flex-end; padding: var(--wp--preset--spacing--12) var(--wp--preset--spacing--5); position:relative; background:linear-gradient(160deg,#020609,#060d14 60%,#0a1e2e);">
+      <div style="position:absolute; top:0; left:0; right:0; height:2px; background:var(--wp--preset--color--wake-brass); opacity:0.8;"></div>
+      <div class="wake-constrained">
+        <p class="is-style-wake-eyebrow" style="color:var(--wp--preset--color--wake-fog) !important; margin-bottom:var(--wp--preset--spacing--4);">North Atlantic Passage Log</p>
+        <h1 style="color:#e8f0f5; margin-bottom:var(--wp--preset--spacing--5); font-size:clamp(2.5rem,4vw,4.5rem);">
+          Azores to Falmouth:<br>Twenty-two Days at Sea
+        </h1>
+        <p style="font-family:var(--wp--preset--font-family--literata); font-size:var(--wp--preset--font-size--lg); font-style:italic; color:var(--wp--preset--color--wake-fog); margin-bottom:var(--wp--preset--spacing--6); max-width:52ch; line-height:1.55;">
+          The passage that changes what you think sailing is. A running account from the offshore correspondent of <em>Deep Current Review</em>.
+        </p>
+        <a href="#" class="wake-btn-ghost" style="border-color:rgba(201,166,96,0.5); color:var(--wp--preset--color--wake-brass);">Read the Passage</a>
+      </div>
+    </section>
+
+    <!-- Recent entries — deep palette -->
+    <section class="wake-section" style="background:var(--wp--preset--color--wake-white); padding-top:var(--wp--preset--spacing--12); padding-bottom:var(--wp--preset--spacing--12);">
+      <div class="wake-constrained">
+
+        <div class="wake-section-header" style="margin-bottom:var(--wp--preset--spacing--10); border-bottom-color:var(--wp--preset--color--wake-rule);">
+          <p class="is-style-wake-eyebrow" style="color:var(--wp--preset--color--wake-brass) !important;">From the Log</p>
+          <a href="#" style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); color:var(--wp--preset--color--wake-fog); letter-spacing:0.05em;">All entries &rarr;</a>
+        </div>
+
+        <div>
+          <div class="is-style-wake-log-entry" style="border-top-color:var(--wp--preset--color--wake-rule);">
+            <div class="wake-log-left">
+              <p class="wake-terms" style="color:var(--wp--preset--color--wake-brass) !important; margin-bottom:0.3rem;">North Atlantic</p>
+              <div class="wake-log-title" style="color:#e8f0f5;"><a href="#" style="color:inherit;">Azores to Falmouth: The Passage Journal, Full Account</a></div>
+              <p class="wake-log-excerpt" style="color:var(--wp--preset--color--wake-fog); margin-top:0.5rem;">On day eleven the wind died for six hours, the boat rolled in the swell, and the crew went quiet. Not unhappy — quiet in the way that offshore sailing makes you quiet.</p>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div class="wake-log-date">8 June 2026</div>
+              <p style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); color:var(--wp--preset--color--wake-fog); margin-top:0.35rem;">28 min read</p>
+            </div>
+          </div>
+          <div class="is-style-wake-log-entry" style="border-top-color:var(--wp--preset--color--wake-rule);">
+            <div class="wake-log-left">
+              <p class="wake-terms" style="color:var(--wp--preset--color--wake-brass) !important; margin-bottom:0.3rem;">Seamanship</p>
+              <div class="wake-log-title" style="color:#e8f0f5;"><a href="#" style="color:inherit;">Night Watch Protocol: Managing Fatigue on a Short-Handed Passage</a></div>
+              <p class="wake-log-excerpt" style="color:var(--wp--preset--color--wake-fog); margin-top:0.5rem;">The three-on-three-off watch system is a consensus that no one has improved on in fifty years of offshore single-handed and short-handed racing.</p>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div class="wake-log-date">22 May 2026</div>
+              <p style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); color:var(--wp--preset--color--wake-fog); margin-top:0.35rem;">14 min read</p>
+            </div>
+          </div>
+          <div class="is-style-wake-log-entry" style="border-top-color:var(--wp--preset--color--wake-rule);">
+            <div class="wake-log-left">
+              <p class="wake-terms" style="color:var(--wp--preset--color--wake-brass) !important; margin-bottom:0.3rem;">Equipment</p>
+              <div class="wake-log-title" style="color:#e8f0f5;"><a href="#" style="color:inherit;">Five Years with the Same Nav Station: What Stayed, What Changed</a></div>
+              <p class="wake-log-excerpt" style="color:var(--wp--preset--color--wake-fog); margin-top:0.5rem;">The plotter has been replaced twice. The paper chart folio has not been opened in three seasons. The barometer is original equipment and has not been wrong about an approaching low yet.</p>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div class="wake-log-date">10 May 2026</div>
+              <p style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--xs); color:var(--wp--preset--color--wake-fog); margin-top:0.35rem;">9 min read</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Palette note -->
+    <section class="wake-section-sm" style="background:var(--wp--preset--color--wake-salt); padding-top:var(--wp--preset--spacing--10); padding-bottom:var(--wp--preset--spacing--10);">
+      <div class="wake-constrained">
+        <p class="is-style-wake-eyebrow" style="color:var(--wp--preset--color--wake-brass) !important; margin-bottom:var(--wp--preset--spacing--4);">About this palette</p>
+        <p style="font-family:var(--wp--preset--font-family--jost); font-size:var(--wp--preset--font-size--base); line-height:1.7; color:var(--wp--preset--color--wake-fog); max-width:65ch;">
+          <strong style="color:#c8d8e2;">Deep Ocean</strong> — wake-void: #060d14 · wake-navy: #0a1e2e · wake-brass: #c9a660. This variant overrides nine CSS custom property values in theme.json. No template, pattern, or stylesheet changes required. The full theme structure, typography scale, and component library are inherited unchanged from the CORE layer.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wake-site-footer" style="background:#030810;">
+    <div class="wake-footer-row">
+      <div>
+        <div class="wake-footer-title" style="color:#e8f0f5;">Deep Current Review</div>
+        <div class="wake-footer-sub">Offshore &amp; Expedition Sailing Journal</div>
+      </div>
+      <nav class="wake-footer-nav-links">
+        <a href="#">Passages</a>
+        <a href="#">Races</a>
+        <a href="#">The Ship</a>
+        <a href="#">Log</a>
+      </nav>
+    </div>
+    <hr class="wake-footer-hr">
+    <div class="wake-footer-bottom">
+      <span>&copy; 2026 Deep Current Review</span>
+      <span>Built with WordPress &amp; <a href="https://thisismyurl.com/wake/">Wake</a></span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
