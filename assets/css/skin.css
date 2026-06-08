@@ -1,3 +1,34 @@
+/* ── Parametric colour system (Colophon v2) ─────────────────────────────────
+   Three anchor custom props drive the entire neutral + accent scale via
+   color-mix() in OKLCh space. Set in settings.custom (theme.json); overridden
+   per style variation via the same settings.custom key.
+
+   Derived tokens (--clr-*) are intentionally separate from the block-editor
+   palette (--wp--preset--color--*). The palette tokens give the editor
+   accurate swatches; --clr-* tokens give CSS components automatic
+   variation-awareness without manual per-token overrides.
+
+   color-mix() browser support: Chrome 111+ · Firefox 113+ · Safari 16.2+
+   Global coverage ≈ 93 %. Fallback values (hex literals) serve older clients.
+   ─────────────────────────────────────────────────────────────────────────── */
+body {
+  /* Anchors — resolved from settings.custom; hex literals are the fallback */
+  --colophon-light:  var(--wp--custom--colophon-light,  #fdfcfa);
+  --colophon-dark:   var(--wp--custom--colophon-dark,   #0d1b2a);
+  --colophon-accent: var(--wp--custom--colophon-accent, #b08d57);
+
+  /* Derived neutral scale (8 % / 22 % / 45 % stops in OKLCh) */
+  --clr-bg:          var(--colophon-light);
+  --clr-fg:          var(--colophon-dark);
+  --clr-surface:     color-mix(in oklch, var(--colophon-dark)  8%,  var(--colophon-light));
+  --clr-rule:        color-mix(in oklch, var(--colophon-dark) 22%,  var(--colophon-light));
+  --clr-muted:       color-mix(in oklch, var(--colophon-dark) 45%,  var(--colophon-light));
+
+  /* Accent and its tinted surface */
+  --clr-accent:      var(--colophon-accent);
+  --clr-accent-tint: color-mix(in oklch, var(--colophon-accent) 12%, var(--colophon-light));
+}
+
 /* =====================================================================
    [SKIN] Wake — maritime editorial theme.
    Layer order: reset (core) → base (core) → skin (here) → utilities.
@@ -317,4 +348,310 @@
 	}
 }
 
+/* ── Voyage log list ─────────────────────────────────────────────────── */
+.wake-log-list-entry {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: var(--wp--preset--spacing--8);
+	padding-block: var(--wp--preset--spacing--8);
+	border-block-end: 1px solid var(--wp--preset--color--wake-rule);
+}
+
+.wake-log-list-entry .wp-block-post-title a {
+	color: var(--wp--preset--color--wake-void);
+	text-decoration: none;
+}
+
+.wake-log-list-entry .wp-block-post-title a:hover {
+	color: var(--wp--preset--color--wake-navy);
+}
+
+.wake-log-list-entry__meta {
+	flex-shrink: 0;
+	text-align: end;
+	padding-block-start: var(--wp--preset--spacing--2);
+}
+
+@media (max-width: 599px) {
+	.wake-log-list-entry {
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--4);
+	}
+	.wake-log-list-entry__meta {
+		text-align: start;
+	}
+}
+
+/* ── Crew cards ──────────────────────────────────────────────────────── */
+.wake-crew-card {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--4);
+}
+
+.wake-crew-card .wp-block-image img {
+	aspect-ratio: 1;
+	object-fit: cover;
+	max-inline-size: 120px;
+}
+
+/* ── Membership tier cards ───────────────────────────────────────────── */
+.wake-tier-card {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--5);
+	padding: var(--wp--preset--spacing--8);
+	border-block-start: 3px solid var(--wp--preset--color--wake-rule);
+	background-color: var(--wp--preset--color--wake-white);
+}
+
+.wake-tier-card--featured {
+	background-color: var(--wp--preset--color--wake-void);
+	border-block-start-color: var(--wp--preset--color--wake-brass);
+}
+
+.wake-tier-card__features {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--3);
+}
+
+.wake-tier-card__features li {
+	font-family: var(--wp--preset--font-family--jost);
+	font-size: var(--wp--preset--font-size--sm);
+	padding-inline-start: var(--wp--preset--spacing--5);
+	position: relative;
+	color: inherit;
+}
+
+.wake-tier-card__features li::before {
+	content: "—";
+	position: absolute;
+	inset-inline-start: 0;
+	color: var(--wp--preset--color--wake-brass);
+	font-weight: 600;
+}
+
+/* ── Race schedule table ─────────────────────────────────────────────── */
+.wake-race-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-family: var(--wp--preset--font-family--jost);
+}
+
+.wake-race-table th {
+	font-size: var(--wp--preset--font-size--2xs);
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--wake-fog);
+	padding-block: var(--wp--preset--spacing--4);
+	padding-inline: var(--wp--preset--spacing--4);
+	border-block-end: 1px solid var(--wp--preset--color--wake-steel);
+	text-align: start;
+	vertical-align: bottom;
+}
+
+.wake-race-table td {
+	padding-block: var(--wp--preset--spacing--5);
+	padding-inline: var(--wp--preset--spacing--4);
+	border-block-end: 1px solid var(--wp--preset--color--wake-rule);
+	vertical-align: top;
+}
+
+.wake-race-table tr:nth-child(even) td {
+	background-color: var(--wp--preset--color--wake-salt);
+}
+
+.wake-race-table .wake-race-date {
+	font-size: var(--wp--preset--font-size--sm);
+	font-weight: 600;
+	color: var(--wp--preset--color--wake-steel);
+	white-space: nowrap;
+}
+
+.wake-race-table .wake-race-name {
+	font-family: var(--wp--preset--font-family--literata);
+	font-size: var(--wp--preset--font-size--base);
+	font-weight: 500;
+	color: var(--wp--preset--color--wake-void);
+}
+
+.wake-race-table .wake-race-course {
+	font-size: var(--wp--preset--font-size--sm);
+	color: var(--wp--preset--color--wake-steel);
+}
+
+.wake-status {
+	display: inline-block;
+	font-family: var(--wp--preset--font-family--jost);
+	font-size: var(--wp--preset--font-size--2xs);
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	padding: 0.2em 0.55em;
+}
+
+.wake-status--results {
+	background-color: var(--wp--preset--color--wake-salt);
+	color: var(--wp--preset--color--wake-steel);
+}
+
+.wake-status--open {
+	background-color: var(--wp--preset--color--wake-brass);
+	color: var(--wp--preset--color--wake-void);
+}
+
+.wake-status--pending {
+	background-color: var(--wp--preset--color--wake-rule);
+	color: var(--wp--preset--color--wake-steel);
+}
+
+@media (max-width: 767px) {
+	.wake-race-table,
+	.wake-race-table tbody,
+	.wake-race-table tr,
+	.wake-race-table td,
+	.wake-race-table th {
+		display: block;
+	}
+	.wake-race-table thead {
+		display: none;
+	}
+	.wake-race-table td {
+		padding-block: var(--wp--preset--spacing--2);
+	}
+	.wake-race-table tr {
+		border-block-end: 1px solid var(--wp--preset--color--wake-rule);
+		padding-block: var(--wp--preset--spacing--5);
+	}
+	.wake-race-table tr:nth-child(even) td {
+		background-color: transparent;
+	}
+}
+
+/* ── Drop cap ────────────────────────────────────────────────────────── */
+.wake-drop-cap::first-letter {
+	float: left;
+	font-family: var(--wp--preset--font-family--literata);
+	font-size: 3.8em;
+	font-weight: 700;
+	line-height: 0.78;
+	margin-block-start: 0.1em;
+	margin-inline-end: 0.08em;
+	color: var(--wp--preset--color--wake-void);
+	font-feature-settings: "lnum" 1;
+}
+
+/* ── Coordinates paragraph style ─────────────────────────────────────── */
+.is-style-wake-coordinates {
+	font-family: var(--wp--preset--font-family--jost);
+	font-weight: 600;
+	font-size: var(--wp--preset--font-size--sm);
+	letter-spacing: 0.06em;
+	color: var(--wp--preset--color--wake-fog);
+	font-variant-numeric: tabular-nums;
+}
+
+/* ── Editorial split hero ────────────────────────────────────────────── */
+.wake-pattern-editorial-split {
+	min-block-size: max(72dvh, 520px);
+	overflow: hidden;
+}
+
+.wake-pattern-editorial-split > .wp-block-columns {
+	min-block-size: inherit;
+	gap: 0 !important;
+	margin: 0;
+}
+
+.wake-pattern-editorial-split > .wp-block-columns > .wp-block-column:first-child {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.wake-editorial-split__img-col {
+	display: flex;
+	padding: 0 !important;
+	overflow: hidden;
+}
+
+.wake-editorial-split__img-col > .wp-block-image {
+	flex: 1;
+	display: flex;
+	margin: 0;
+}
+
+.wake-editorial-split__img-col img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	display: block;
+}
+
+@media (max-width: 899px) {
+	.wake-pattern-editorial-split > .wp-block-columns {
+		flex-direction: column-reverse;
+	}
+	.wake-editorial-split__img-col {
+		flex-basis: auto !important;
+		aspect-ratio: 16/9;
+	}
+	.wake-editorial-split__img-col img {
+		height: auto;
+	}
+	.wake-pattern-editorial-split > .wp-block-columns > .wp-block-column:first-child {
+		flex-basis: auto !important;
+	}
+}
+
+/* ── Story short (compact secondary card) ───────────────────────────── */
+.wake-story-short .wp-block-post-title a {
+	color: var(--wp--preset--color--wake-void);
+	text-decoration: none;
+}
+
+.wake-story-short .wp-block-post-title a:hover {
+	color: var(--wp--preset--color--wake-navy);
+}
+
+.wake-story-card--lead {
+	background-color: transparent;
+}
+
+.wake-story-card--lead .wake-story-card__body {
+	background-color: transparent;
+}
+
 } /* end @layer skin */
+
+/* ── Print ──────────────────────────────────────────────────────────────────
+   Hide chrome; show clean reading content.
+   ─────────────────────────────────────────────────────────────────────────── */
+@media print {
+  .wp-block-navigation,
+  .wp-block-site-logo,
+  .wp-site-blocks > footer,
+  [data-wp-interactive] { display: none !important; }
+
+  body,
+  .wp-site-blocks {
+    font-size: 12pt;
+    color: #000 !important;
+    background: #fff !important;
+    max-width: 100% !important;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #555;
+  }
+}

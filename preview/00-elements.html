@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Wake — All Elements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..600&family=Jost:wght@300..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wake-preview.css">
+<style>
+  /* Page-local scaffolding for the element reference — not part of the theme. */
+  .el-pagenav {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 200;
+    background: var(--wp--preset--color--wake-void);
+    padding: 0.625rem var(--wp--preset--spacing--5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: center;
+  }
+  .el-pagenav a {
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--2xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--wp--preset--color--wake-fog);
+  }
+  .el-pagenav a:hover { color: var(--wp--preset--color--wake-brass); }
+  .el-pagenav strong { color: var(--wp--preset--color--wake-white); font-family: var(--wp--preset--font-family--literata); font-weight: 300; font-style: italic; text-transform: none; font-size: var(--wp--preset--font-size--md); margin-inline-end: auto; }
+
+  .el-section { padding: var(--wp--preset--spacing--16) var(--wp--preset--spacing--5); background: var(--wp--preset--color--wake-white); }
+  .el-section--salt { background: var(--wp--preset--color--wake-salt); }
+  .el-section__inner { max-width: 1440px; margin-inline: auto; }
+  .el-section__label {
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--2xs);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--wake-brass);
+    margin-bottom: var(--wp--preset--spacing--6);
+  }
+  .el-type-row { display: flex; align-items: baseline; gap: 1.5rem; padding-block: 0.5rem; border-bottom: 1px solid var(--wp--preset--color--wake-rule); }
+  .el-type-row__tag { flex: 0 0 5rem; font-family: var(--wp--preset--font-family--jost); font-size: var(--wp--preset--font-size--2xs); color: var(--wp--preset--color--wake-fog); letter-spacing: 0.06em; }
+  .el-swatches { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .el-swatch { width: 8.5rem; }
+  .el-swatch__chip { height: 4.5rem; border: 1px solid var(--wp--preset--color--wake-rule); }
+  .el-swatch__name { margin-top: 0.4rem; font-family: var(--wp--preset--font-family--jost); font-size: var(--wp--preset--font-size--2xs); color: var(--wp--preset--color--wake-steel); }
+  .el-btn-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .wake-btn-outline-dark {
+    display: inline-block; background: transparent;
+    color: var(--wp--preset--color--wake-navy);
+    font-family: var(--wp--preset--font-family--jost);
+    font-size: var(--wp--preset--font-size--sm); font-weight: 600;
+    letter-spacing: 0.05em; border-radius: 0;
+    border: 1px solid var(--wp--preset--color--wake-navy);
+    padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--6);
+    text-decoration: none; cursor: pointer;
+  }
+  .wake-btn-outline-dark:hover { background: var(--wp--preset--color--wake-navy); color: var(--wp--preset--color--wake-white); }
+  .wake-btn.is-disabled { opacity: 0.4; pointer-events: none; }
+  .el-prose p { font-family: var(--wp--preset--font-family--literata); line-height: 1.75; max-width: 780px; }
+  .el-prose a { color: var(--wp--preset--color--wake-navy); text-decoration: underline; text-underline-offset: 0.14em; }
+  .el-stack-list ul, .el-stack-list ol { margin-block: 0.75rem; padding-inline-start: 1.5rem; font-family: var(--wp--preset--font-family--literata); }
+  .el-stack-list ul li { list-style: disc; margin-block: 0.4rem; line-height: 1.7; color: var(--wp--preset--color--wake-navy); }
+  .el-stack-list ol li { list-style: decimal; margin-block: 0.4rem; line-height: 1.7; color: var(--wp--preset--color--wake-navy); }
+  code.el-inline { background: var(--wp--preset--color--wake-brass-tint); padding: 0.1rem 0.35rem; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em; color: var(--wp--preset--color--wake-void); }
+  pre.el-code {
+    background: var(--wp--preset--color--wake-void);
+    color: var(--wp--preset--color--wake-salt);
+    font-family: 'Courier New', monospace;
+    font-size: var(--wp--preset--font-size--sm);
+    line-height: 1.7;
+    padding: var(--wp--preset--spacing--6);
+    overflow-x: auto;
+  }
+  .el-rule { border: none; border-top: 1px solid var(--wp--preset--color--wake-rule); }
+  .el-card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--wp--preset--spacing--8); }
+  .el-card .wake-article-card-image { aspect-ratio: 16 / 9; }
+</style>
+</head>
+<body>
+
+<nav class="el-pagenav">
+  <strong>Wake — All Elements</strong>
+  <a href="#type">Type</a>
+  <a href="#color">Color</a>
+  <a href="#buttons">Buttons</a>
+  <a href="#links">Links &amp; Lists</a>
+  <a href="#quote">Blockquote</a>
+  <a href="#code">Code</a>
+  <a href="#rule">Separator</a>
+  <a href="#cards">Cards</a>
+</nav>
+
+<header class="wake-site-header">
+  <div>
+    <a class="wake-site-title-link" href="#">Harbour &amp; Sea</a>
+    <span class="wake-site-tagline">Maritime Lifestyle</span>
+  </div>
+  <nav class="wake-nav">
+    <a href="#">Logs</a>
+    <a href="#">Voyages</a>
+    <a href="#">Racing</a>
+    <a href="#">About</a>
+  </nav>
+</header>
+
+<section class="el-section" id="type">
+  <div class="el-section__inner">
+    <p class="el-section__label">Typography Scale</p>
+    <div class="el-type-row"><span class="el-type-row__tag">Display</span><span style="font-family:var(--wp--preset--font-family--literata);font-size:var(--wp--preset--font-size--4xl);font-weight:600;letter-spacing:-0.025em;line-height:1.06;color:var(--wp--preset--color--wake-void);">Notes from the water</span></div>
+    <div class="el-type-row"><span class="el-type-row__tag">H1</span><h1 style="font-size:var(--wp--preset--font-size--4xl);">A magazine for coastal life</h1></div>
+    <div class="el-type-row"><span class="el-type-row__tag">H2</span><h2>Long passages, told slowly</h2></div>
+    <div class="el-type-row"><span class="el-type-row__tag">H3</span><h3>Reporting from harbours and races</h3></div>
+    <div class="el-type-row"><span class="el-type-row__tag">H4</span><h4>Supporting heading</h4></div>
+    <div class="el-type-row"><span class="el-type-row__tag">H5</span><h5>Section label tier</h5></div>
+    <div class="el-type-row"><span class="el-type-row__tag">H6</span><h6>Smallest label</h6></div>
+    <p style="margin-top:1.5rem;max-width:780px;font-family:var(--wp--preset--font-family--literata);line-height:1.75;">This is body text in Literata at the base size — the serif carries the editorial prose end to end. Jost handles the labels, navigation, and the small uppercase metadata along the edges of the page.</p>
+    <p class="is-style-wake-eyebrow" style="margin-top:1.25rem;">Eyebrow label · caption tier</p>
+    <p style="font-family:var(--wp--preset--font-family--jost);font-size:var(--wp--preset--font-size--xs);color:var(--wp--preset--color--wake-fog);">Small text and captions sit here, one step below body, for metadata and asides.</p>
+  </div>
+</section>
+
+<section class="el-section el-section--salt" id="color">
+  <div class="el-section__inner">
+    <p class="el-section__label">Color Palette</p>
+    <div class="el-swatches">
+      <div class="el-swatch"><div class="el-swatch__chip" style="background:var(--wp--preset--color--wake-void)"></div><div class="el-swatch__name">wake-void</div></div>
+      <div class="el-swatch"><div class="el-swatch__chip" style="background:var(--wp--preset--color--wake-navy)"></div><div class="el-swatch__name">wake-navy</div></div>
+      <div class="el-swatch"><div class="el-swatch__chip" style="background:var(--wp--preset--color--wake-steel)"></div><div class="el-swatch__name">wake-steel</div></div>
+      <div class="el-swatch"><div class="el-swatch__chip" style="background:var(--wp--preset--color--wake-fog)"></div><div class="el-swatch__name">wake-fog</div></div>
+      <div class="el-swatch"><div class="el-swatch__chip" style="background:var(--wp--preset--color--wake-salt)"></div><div class="el-swatch__name">wake-salt</div></div>
+      <div class="el-swatch"><div class="el-swatch__chip" style="background:var(--wp--preset--color--wake-white)"></div><div class="el-swatch__name">wake-white</div></div>
+      <div class="el-swatch"><div class="el-swatch__chip" style="background:var(--wp--preset--color--wake-brass)"></div><div class="el-swatch__name">wake-brass</div></div>
+      <div class="el-swatch"><div class="el-swatch__chip" style="background:var(--wp--preset--color--wake-brass-tint)"></div><div class="el-swatch__name">wake-brass-tint</div></div>
+      <div class="el-swatch"><div class="el-swatch__chip" style="background:var(--wp--preset--color--wake-rule)"></div><div class="el-swatch__name">wake-rule</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="el-section" id="buttons">
+  <div class="el-section__inner">
+    <p class="el-section__label">Buttons</p>
+    <div class="el-btn-row">
+      <a class="wake-btn" href="#">Read the log</a>
+      <a class="wake-btn-outline-dark" href="#">Browse voyages</a>
+      <a class="wake-btn is-disabled" href="#" aria-disabled="true">Sold out</a>
+    </div>
+  </div>
+</section>
+
+<section class="el-section el-section--salt" id="links">
+  <div class="el-section__inner el-prose el-stack-list">
+    <p class="el-section__label">Links &amp; Lists</p>
+    <p>A paragraph carries <a href="#">an inline link</a> the way a reader expects it — underlined, in navy, with a second <a href="#">link further along</a> to prove the pattern holds across a line of running text.</p>
+    <ul>
+      <li>Voyage logs and passage notes</li>
+      <li>Boat reviews and gear tests</li>
+      <li>Harbour and anchorage guides</li>
+      <li>Race coverage and results</li>
+      <li>Interviews with skippers</li>
+    </ul>
+    <ol>
+      <li>Plan the passage and the tides</li>
+      <li>Provision and check the rig</li>
+      <li>Keep the log, watch by watch</li>
+      <li>Write it up once you're ashore</li>
+    </ol>
+  </div>
+</section>
+
+<section class="el-section" id="quote">
+  <div class="el-section__inner">
+    <p class="el-section__label">Blockquote</p>
+    <blockquote class="wake-quote">
+      The sea does not reward speed so much as patience — the boat that arrives is the one still sailing at dawn.
+      <footer style="font-style:normal;font-family:var(--wp--preset--font-family--jost);font-size:var(--wp--preset--font-size--xs);color:var(--wp--preset--color--wake-fog);margin-top:0.75rem;">— Captain Eli Brandt, <cite>Logbook of the Petrel</cite></footer>
+    </blockquote>
+  </div>
+</section>
+
+<section class="el-section el-section--salt" id="code">
+  <div class="el-section__inner el-prose">
+    <p class="el-section__label">Code</p>
+    <p>Format each log entry with a fixed timestamp using <code class="el-inline">toISOString()</code> before it renders to the page.</p>
+    <pre class="el-code"><code>const entry = {
+  time: new Date().toISOString(),
+  heading: 142,
+  wind: "SW 15kt",
+};</code></pre>
+  </div>
+</section>
+
+<section class="el-section" id="rule">
+  <div class="el-section__inner">
+    <p class="el-section__label">Separator</p>
+    <hr class="el-rule">
+  </div>
+</section>
+
+<section class="el-section el-section--salt" id="cards">
+  <div class="el-section__inner">
+    <p class="el-section__label">Cards</p>
+    <div class="el-card-grid">
+      <article class="wake-article-card el-card">
+        <div class="wake-article-card-image"><span class="wake-img-placeholder">Image</span></div>
+        <div class="wake-article-card-body">
+          <span class="wake-terms">Passage</span>
+          <a class="wake-log-title" href="#">Crossing the Solent at dusk</a>
+          <p class="wake-log-excerpt">A short hop that turned long when the wind backed against the tide.</p>
+        </div>
+      </article>
+      <article class="wake-article-card el-card">
+        <div class="wake-article-card-image"><span class="wake-img-placeholder">Image</span></div>
+        <div class="wake-article-card-body">
+          <span class="wake-terms">Gear</span>
+          <a class="wake-log-title" href="#">A season with a storm jib</a>
+          <p class="wake-log-excerpt">What we learned carrying less sail through a heavy autumn.</p>
+        </div>
+      </article>
+      <article class="wake-article-card el-card">
+        <div class="wake-article-card-image"><span class="wake-img-placeholder">Image</span></div>
+        <div class="wake-article-card-body">
+          <span class="wake-terms">Racing</span>
+          <a class="wake-log-title" href="#">The long beat to the windward mark</a>
+          <p class="wake-log-excerpt">Tactics from a fleet race decided in the final two tacks.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="wake-site-footer">
+  <div class="wake-footer-row">
+    <div>
+      <p class="wake-footer-title">Harbour &amp; Sea</p>
+      <p class="wake-footer-sub">Maritime lifestyle magazine · Since 2009</p>
+    </div>
+    <nav class="wake-footer-nav-links">
+      <a href="#">Logs</a>
+      <a href="#">Voyages</a>
+      <a href="#">Racing</a>
+      <a href="#">About</a>
+    </nav>
+  </div>
+  <hr class="wake-footer-hr">
+  <div class="wake-footer-bottom">
+    <span>© 2026 Harbour &amp; Sea</span>
+    <a href="#">Built with Wake</a>
+  </div>
+</footer>
+
+</body>
+</html>

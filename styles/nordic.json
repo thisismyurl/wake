@@ -1,0 +1,112 @@
+{
+  "$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+  "version": 3,
+  "title": "Nordic",
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "wake-void",
+          "color": "#1A1A1A",
+          "name": "Wake Void"
+        },
+        {
+          "slug": "wake-navy",
+          "color": "#303030",
+          "name": "Wake Navy"
+        },
+        {
+          "slug": "wake-steel",
+          "color": "#505050",
+          "name": "Wake Steel"
+        },
+        {
+          "slug": "wake-fog",
+          "color": "#909090",
+          "name": "Wake Fog"
+        },
+        {
+          "slug": "wake-salt",
+          "color": "#F8F7F4",
+          "name": "Wake Salt"
+        },
+        {
+          "slug": "wake-white",
+          "color": "#FFFFFF",
+          "name": "Wake White"
+        },
+        {
+          "slug": "wake-brass",
+          "color": "#686050",
+          "name": "Wake Brass"
+        },
+        {
+          "slug": "wake-brass-tint",
+          "color": "#EEE8E0",
+          "name": "Wake Brass Tint"
+        },
+        {
+          "slug": "wake-rule",
+          "color": "#D8D4CE",
+          "name": "Wake Rule"
+        },
+        {
+          "slug": "wake-deep",
+          "color": "#101010",
+          "name": "Wake Deep"
+        },
+        {
+          "slug": "wake-cream",
+          "color": "#F2F0EC",
+          "name": "Wake Cream"
+        }
+      ]
+    },
+    "custom": {
+      "colophon-light": "#FFFFFF",
+      "colophon-dark": "#1A1A1A",
+      "colophon-accent": "#686050"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--wake-white)",
+      "text": "var(--wp--preset--color--wake-void)"
+    },
+    "elements": {
+      "heading": {
+        "color": {
+          "text": "var(--wp--preset--color--wake-deep)"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "var(--wp--preset--color--wake-void)"
+        },
+        ":hover": {
+          "color": {
+            "text": "var(--wp--preset--color--wake-deep)"
+          }
+        }
+      },
+      "button": {
+        "color": {
+          "background": "var(--wp--preset--color--wake-void)",
+          "text": "var(--wp--preset--color--wake-white)"
+        }
+      }
+    },
+    "blocks": {
+      "core/site-title": {
+        "color": {
+          "text": "var(--wp--preset--color--wake-deep)"
+        }
+      },
+      "core/navigation": {
+        "color": {
+          "text": "var(--wp--preset--color--wake-void)"
+        }
+      }
+    }
+  }
+}

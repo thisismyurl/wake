@@ -4,6 +4,7 @@
  * Slug: wake/footer-cta
  * Categories: wake-cta
  * Viewport Width: 1280
+ * Inserter: true
  *
  * Pattern: Footer CTA — Subscribe to the Journal
  *

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+  "version": 3,
+  "title": "Fog",
+  "settings": {
+    "custom": {
+      "colophon-light": "#e4e7e9",
+      "colophon-dark": "#0d1b2a",
+      "colophon-accent": "#7a9aae"
+    },
+    "color": {
+      "palette": [
+        {
+          "slug": "wake-void",
+          "color": "#0d1b2a",
+          "name": "Wake Void"
+        },
+        {
+          "slug": "wake-navy",
+          "color": "#1f3a50",
+          "name": "Wake Navy"
+        },
+        {
+          "slug": "wake-steel",
+          "color": "#4a7090",
+          "name": "Wake Steel"
+        },
+        {
+          "slug": "wake-fog",
+          "color": "#e4e7e9",
+          "name": "Wake Fog"
+        },
+        {
+          "slug": "wake-salt",
+          "color": "#f0f3f5",
+          "name": "Wake Salt"
+        },
+        {
+          "slug": "wake-white",
+          "color": "#ffffff",
+          "name": "Wake White"
+        },
+        {
+          "slug": "wake-brass",
+          "color": "#7a9aae",
+          "name": "Wake Brass"
+        },
+        {
+          "slug": "wake-brass-tint",
+          "color": "#d0dce5",
+          "name": "Wake Brass Tint"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--wake-salt)",
+      "text": "var(--wp--preset--color--wake-void)"
+    }
+  }
+}

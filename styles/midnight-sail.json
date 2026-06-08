@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+  "version": 3,
+  "title": "Midnight Sail",
+  "settings": {
+    "custom": {
+      "colophon-light": "#081520",
+      "colophon-dark": "#d4cfc4",
+      "colophon-accent": "#c8a44a"
+    },
+    "color": {
+      "palette": [
+        {
+          "slug": "wake-void",
+          "color": "#081520",
+          "name": "Wake Void"
+        },
+        {
+          "slug": "wake-navy",
+          "color": "#0d2035",
+          "name": "Wake Navy"
+        },
+        {
+          "slug": "wake-steel",
+          "color": "#1a3a55",
+          "name": "Wake Steel"
+        },
+        {
+          "slug": "wake-fog",
+          "color": "#2a4a65",
+          "name": "Wake Fog"
+        },
+        {
+          "slug": "wake-salt",
+          "color": "#c4bfb4",
+          "name": "Wake Salt"
+        },
+        {
+          "slug": "wake-white",
+          "color": "#e8e4d8",
+          "name": "Wake White"
+        },
+        {
+          "slug": "wake-brass",
+          "color": "#c8a44a",
+          "name": "Wake Brass"
+        },
+        {
+          "slug": "wake-brass-tint",
+          "color": "#3a3020",
+          "name": "Wake Brass Tint"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--wake-salt)",
+      "text": "var(--wp--preset--color--wake-void)"
+    }
+  }
+}

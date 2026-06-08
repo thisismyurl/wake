@@ -4,6 +4,7 @@
  * Slug: wake/tidal-log
  * Categories: wake-editorial
  * Viewport Width: 1280
+ * Inserter: true
  *
  * Pattern: Tidal Log Entry
  *

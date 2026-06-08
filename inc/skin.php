@@ -146,6 +146,24 @@ function skin_block_styles(): void {
 		)
 	);
 
+	// Paragraph: log entry — italic, brass left border, steel text. For ship's-log inline notes.
+	register_block_style(
+		'core/paragraph',
+		array(
+			'name'  => 'wake-log-entry',
+			'label' => __( 'Log Entry', 'wake' ),
+		)
+	);
+
+	// Paragraph: coordinates — Jost tabular-nums, fog colour. For lat/lon datelines.
+	register_block_style(
+		'core/paragraph',
+		array(
+			'name'  => 'wake-coordinates',
+			'label' => __( 'Coordinates', 'wake' ),
+		)
+	);
+
 	// Heading: brass-underline treatment for section headers.
 	register_block_style(
 		'core/heading',
@@ -170,12 +188,8 @@ function skin_pattern_categories(): void {
 			'label'       => __( 'Wake: Editorial', 'wake' ),
 			'description' => __( 'Full-page editorial and hero patterns.', 'wake' ),
 		),
-		'wake-journal'   => array(
-			'label'       => __( 'Wake: Journal', 'wake' ),
-			'description' => __( 'Voyage log, journal entry, and story patterns.', 'wake' ),
-		),
 		'wake-crew'      => array(
-			'label'       => __( 'Wake: Crew & Club', 'wake' ),
+			'label'       => __( 'Wake: Crew &amp; Club', 'wake' ),
 			'description' => __( 'Member profiles, crew bios, and club information patterns.', 'wake' ),
 		),
 		'wake-cta'       => array(

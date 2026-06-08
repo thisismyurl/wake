@@ -1,11 +1,11 @@
 === Wake ===
 
 Contributors: thisismyurl
-Tags: blog, photoblogging, full-site-editing, block-patterns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, accessibility-ready, rtl-language-support, translation-ready, wide-blocks
+Tags: blog, full-site-editing, block-patterns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, accessibility-ready, rtl-language-support, translation-ready, wide-blocks
 Tested up to: 7.0
 Requires at least: 6.7
 Requires PHP: 8.1
-Stable tag: 1.6148
+Stable tag: 1.6148.1701
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,11 +48,16 @@ The fonts are bundled in the theme — no downloads required. Literata and Jost 
 
 == Changelog ==
 
+= 1.6148.1701 =
+* CA-tier design elevation: editorial split hero (42/58 column), asymmetric story-grid (lead + shorts), drop-cap CSS, wake-coordinates and wake-log-entry block styles.
+* Brass colour discipline: restricted to dates/metadata + tide-rule separator only.
+* Tested up to: 7.0 (current stable).
+
 = 1.6148 =
 * Initial release.
-* Patterns: editorial-hero, navigation-band, story-grid, tidal-log, footer-cta.
+* Patterns: editorial-hero (editorial split), story-grid (asymmetric 58/40 lead + shorts), navigation-band, tidal-log, footer-cta, voyage-log-archive, crew-cards, membership-tiers, race-schedule.
 * Templates: front-page, index, single, archive, page, page-wide, page-blank, search, 404.
-* Block styles: wake-hero-overlay, wake-tide-break, wake-log-entry, wake-full-bleed, wake-photo-caption.
+* Block styles: wake-hero-overlay, wake-tide-break, wake-log-entry, wake-log-entry (paragraph), wake-coordinates (paragraph), wake-brass-rule (heading), wake-bleed (image).
 
 == Credits ==
 
