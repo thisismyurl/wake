@@ -5,7 +5,7 @@ Tags: blog, full-site-editing, block-patterns, custom-colors, custom-logo, custo
 Tested up to: 7.0
 Requires at least: 6.7
 Requires PHP: 8.1
-Stable tag: 1.6148.1701
+Stable tag: 1.6163.2234
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,6 +47,15 @@ Yes. Open the Site Editor, go to Styles → Typography, and change the font assi
 The fonts are bundled in the theme — no downloads required. Literata and Jost are included as WOFF2 files in the assets/fonts/ directory and loaded via theme.json. They never phone home to Google or any external service.
 
 == Changelog ==
+
+= 1.6163.2234 =
+* Accessibility (WCAG 2.1 1.3.1): the archive and search titles are now explicit
+  h1 headings; the index template gains an h1 page heading; the blank-canvas page
+  template gains an empty, editor-fillable h1. (Front page and 404 already had one.)
+* Hardened comment-form attribute injection: a guarded preg_replace (single
+  replacement, null-check, no-match fallback) replaces a naive str_replace that
+  could double-inject or mangle markup.
+* The Get started developer-guide URL is filterable via wake/developer_guide_url.
 
 = 1.6148.1701 =
 * CA-tier design elevation: editorial split hero (42/58 column), asymmetric story-grid (lead + shorts), drop-cap CSS, wake-coordinates and wake-log-entry block styles.
