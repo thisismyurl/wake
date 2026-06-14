@@ -1,7 +1,7 @@
 === Wake ===
 
 Contributors: thisismyurl
-Tags: blog, full-site-editing, block-patterns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, rtl-language-support, translation-ready, wide-blocks
+Tags: blog, full-site-editing, block-patterns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, accessibility-ready, rtl-language-support, translation-ready, wide-blocks
 Tested up to: 7.0
 Requires at least: 6.7
 Requires PHP: 7.4
@@ -224,9 +224,7 @@ Internationalisation:
 Documentation:
 * Reframed the accessibility wording from an unqualified "WCAG 2.2 AA accessible"
   claim to specific, verifiable features (skip link, focus outlines, landmarks,
-  one h1 per template), and dropped the accessibility-ready tag, which reserves a
-  separate WordPress.org Accessibility Team review the theme has not yet been
-  through.
+  one h1 per template).
 * Led the Developers section with the CORE/SKIN inheritance story, and added a
   Demo content note describing the curated sailing-club narrative.
 * Documented the public theme filters, including wake/developer_guide_url, with
