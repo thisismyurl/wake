@@ -26,7 +26,7 @@
 	<!-- /wp:separator -->
 
 	<!-- wp:paragraph {"className":"is-style-wake-log-entry","style":{"typography":{"fontFamily":"var:preset|font-family|literata","fontStyle":"italic","fontSize":"var:preset|font-size|sm"},"color":{"text":"var:preset|color|wake-steel"},"spacing":{"margin":{"top":"var:preset|spacing|4","bottom":"var:preset|spacing|4"}}}} -->
-	<p class="is-style-wake-log-entry" style="color:var(--wp--preset--color--wake-steel)">28 May 2026 &nbsp;—&nbsp; Lake Ontario &nbsp;—&nbsp; Wind SSW 12 kt, visibility 8 nm, sea state slight</p>
+	<p class="is-style-wake-log-entry" style="color:var(--wp--preset--color--wake-steel)"><?php esc_html_e( '28 May 2026', 'wake' ); ?>&nbsp;—&nbsp;<?php esc_html_e( 'Lake Ontario', 'wake' ); ?>&nbsp;—&nbsp;<?php esc_html_e( 'Wind SSW 12 kt, visibility 8 nm, sea state slight', 'wake' ); ?></p>
 	<!-- /wp:paragraph -->
 
 	<!-- wp:separator {"className":"is-style-wake-tide-rule","style":{"color":{"background":"var:preset|color|wake-brass"}}} -->

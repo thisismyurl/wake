@@ -21,7 +21,7 @@
 <div class="wp-block-group wake-pattern-crew-cards" style="background-color:var(--wp--preset--color--wake-salt)">
 
 	<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.6875rem","fontWeight":"600","letterSpacing":"0.12em","textTransform":"uppercase"},"color":{"text":"var:preset|color|wake-steel"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
-	<p style="font-family:var(--wp--preset--font-family--jost);font-size:0.6875rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--wp--preset--color--wake-steel)">The Committee</p>
+	<p style="font-family:var(--wp--preset--font-family--jost);font-size:0.6875rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--wp--preset--color--wake-steel)"><?php esc_html_e( 'The Committee', 'wake' ); ?></p>
 	<!-- /wp:paragraph -->
 
 	<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
@@ -37,15 +37,15 @@
 				<!-- /wp:image -->
 
 				<!-- wp:heading {"level":4,"style":{"typography":{"fontFamily":"var:preset|font-family|literata","fontWeight":"500","fontSize":"var:preset|font-size|lg"},"color":{"text":"var:preset|color|wake-void"},"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|1"}}}} -->
-				<h4 style="font-family:var(--wp--preset--font-family--literata);font-weight:500;color:var(--wp--preset--color--wake-void)">Committee Member Name</h4>
+				<h4 style="font-family:var(--wp--preset--font-family--literata);font-weight:500;color:var(--wp--preset--color--wake-void)"><?php esc_html_e( 'Committee Member Name', 'wake' ); ?></h4>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.6875rem","fontWeight":"600","letterSpacing":"0.1em","textTransform":"uppercase"},"color":{"text":"var:preset|color|wake-steel"},"spacing":{"margin":{"bottom":"var:preset|spacing|3"}}}} -->
-				<p style="font-family:var(--wp--preset--font-family--jost);font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--wp--preset--color--wake-steel)">Role — Commodore</p>
+				<p style="font-family:var(--wp--preset--font-family--jost);font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--wp--preset--color--wake-steel)"><?php esc_html_e( 'Role — Commodore', 'wake' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|literata","fontSize":"var:preset|font-size|sm","lineHeight":"1.65"},"color":{"text":"var:preset|color|wake-steel"}}} -->
-				<p style="font-family:var(--wp--preset--font-family--literata);color:var(--wp--preset--color--wake-steel);line-height:1.65">Brief biography. The boat name, the water they've sailed, the years of service, and one detail that tells you who they are.</p>
+				<p style="font-family:var(--wp--preset--font-family--literata);color:var(--wp--preset--color--wake-steel);line-height:1.65"><?php esc_html_e( 'Brief biography. The boat name, the water they\'ve sailed, the years of service, and one detail that tells you who they are.', 'wake' ); ?></p>
 				<!-- /wp:paragraph -->
 
 			</div>
@@ -63,15 +63,15 @@
 				<!-- /wp:image -->
 
 				<!-- wp:heading {"level":4,"style":{"typography":{"fontFamily":"var:preset|font-family|literata","fontWeight":"500","fontSize":"var:preset|font-size|lg"},"color":{"text":"var:preset|color|wake-void"},"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|1"}}}} -->
-				<h4 style="font-family:var(--wp--preset--font-family--literata);font-weight:500;color:var(--wp--preset--color--wake-void)">Committee Member Name</h4>
+				<h4 style="font-family:var(--wp--preset--font-family--literata);font-weight:500;color:var(--wp--preset--color--wake-void)"><?php esc_html_e( 'Committee Member Name', 'wake' ); ?></h4>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.6875rem","fontWeight":"600","letterSpacing":"0.1em","textTransform":"uppercase"},"color":{"text":"var:preset|color|wake-steel"},"spacing":{"margin":{"bottom":"var:preset|spacing|3"}}}} -->
-				<p style="font-family:var(--wp--preset--font-family--jost);font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--wp--preset--color--wake-steel)">Role — Race Officer</p>
+				<p style="font-family:var(--wp--preset--font-family--jost);font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--wp--preset--color--wake-steel)"><?php esc_html_e( 'Role — Race Officer', 'wake' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|literata","fontSize":"var:preset|font-size|sm","lineHeight":"1.65"},"color":{"text":"var:preset|color|wake-steel"}}} -->
-				<p style="font-family:var(--wp--preset--font-family--literata);color:var(--wp--preset--color--wake-steel);line-height:1.65">Brief biography. The boat name, the water they've sailed, the years of service, and one detail that tells you who they are.</p>
+				<p style="font-family:var(--wp--preset--font-family--literata);color:var(--wp--preset--color--wake-steel);line-height:1.65"><?php esc_html_e( 'Brief biography. The boat name, the water they\'ve sailed, the years of service, and one detail that tells you who they are.', 'wake' ); ?></p>
 				<!-- /wp:paragraph -->
 
 			</div>
@@ -89,15 +89,15 @@
 				<!-- /wp:image -->
 
 				<!-- wp:heading {"level":4,"style":{"typography":{"fontFamily":"var:preset|font-family|literata","fontWeight":"500","fontSize":"var:preset|font-size|lg"},"color":{"text":"var:preset|color|wake-void"},"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|1"}}}} -->
-				<h4 style="font-family:var(--wp--preset--font-family--literata);font-weight:500;color:var(--wp--preset--color--wake-void)">Committee Member Name</h4>
+				<h4 style="font-family:var(--wp--preset--font-family--literata);font-weight:500;color:var(--wp--preset--color--wake-void)"><?php esc_html_e( 'Committee Member Name', 'wake' ); ?></h4>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.6875rem","fontWeight":"600","letterSpacing":"0.1em","textTransform":"uppercase"},"color":{"text":"var:preset|color|wake-steel"},"spacing":{"margin":{"bottom":"var:preset|spacing|3"}}}} -->
-				<p style="font-family:var(--wp--preset--font-family--jost);font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--wp--preset--color--wake-steel)">Role — Journal Editor</p>
+				<p style="font-family:var(--wp--preset--font-family--jost);font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--wp--preset--color--wake-steel)"><?php esc_html_e( 'Role — Journal Editor', 'wake' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|literata","fontSize":"var:preset|font-size|sm","lineHeight":"1.65"},"color":{"text":"var:preset|color|wake-steel"}}} -->
-				<p style="font-family:var(--wp--preset--font-family--literata);color:var(--wp--preset--color--wake-steel);line-height:1.65">Brief biography. The boat name, the water they've sailed, the years of service, and one detail that tells you who they are.</p>
+				<p style="font-family:var(--wp--preset--font-family--literata);color:var(--wp--preset--color--wake-steel);line-height:1.65"><?php esc_html_e( 'Brief biography. The boat name, the water they\'ve sailed, the years of service, and one detail that tells you who they are.', 'wake' ); ?></p>
 				<!-- /wp:paragraph -->
 
 			</div>

@@ -1,9 +1,14 @@
-<!-- wp:html -->
-<a class="skip-link screen-reader-text" href="#main-content">Skip to content</a>
-<!-- /wp:html -->
+<!-- The skip-to-content link is output in PHP on wp_body_open (see
+     Wake\skip_link() in inc/setup.php), where "Skip to content" is translatable
+     via esc_html__(). It is intentionally not duplicated here as untranslatable
+     wp:html markup. -->
 
-<!-- wp:group {"tagName":"header","className":"wake-site-header","role":"banner","backgroundColor":"wake-deep","textColor":"wake-cream","style":{"spacing":{"padding":{"top":"var:preset|spacing|5","bottom":"var:preset|spacing|5"}}},"layout":{"type":"constrained","contentSize":"1280px"}} -->
-<header class="wp-block-group wake-site-header has-wake-deep-background-color has-wake-cream-color has-background has-text-color" role="banner">
+<!-- The header is edition-stable dark chrome. backgroundColor:wake-deep is the
+     darkest token in every style variation, so the ground stays dark; the text
+     colour is bound in skin.css to a fixed light value (not an inverting palette
+     token) so the masthead never paints dark-on-dark in an inverted edition. -->
+<!-- wp:group {"tagName":"header","className":"wake-site-header","role":"banner","backgroundColor":"wake-deep","style":{"spacing":{"padding":{"top":"var:preset|spacing|5","bottom":"var:preset|spacing|5"}}},"layout":{"type":"constrained","contentSize":"1280px"}} -->
+<header class="wp-block-group wake-site-header has-wake-deep-background-color has-background" role="banner">
 
 	<!-- wp:group {"className":"wake-header-inner","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
 	<div class="wp-block-group wake-header-inner">

@@ -30,9 +30,10 @@ function setup(): void {
 	// CLI rewrites the literal when it generates a theme.
 	load_theme_textdomain( 'wake', DIR . '/languages' );
 
-	// Fallback content width for oEmbeds in the reading column.
-	// Matches theme.json contentSize (720px).
-	$GLOBALS['content_width'] = 1100; // Matches theme.json contentSize (1100px).
+	// Fallback content width for oEmbeds, matching theme.json
+	// settings.layout.contentSize (720px) so embeds never exceed the
+	// reading column.
+	$GLOBALS['content_width'] = 720;
 
 	add_theme_support( 'wp-block-styles' );
 	add_theme_support( 'editor-styles' );
@@ -76,7 +77,7 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup' );
 /**
  * Declare WooCommerce support.
  *
- * Kern is not a shop design, but "not a shop design" must never mean "broken
+ * Wake is not a shop design, but "not a shop design" must never mean "broken
  * shop." On a block theme, WooCommerce ships its own block-based fallback
  * templates and resolves them automatically; declaring support clears the
  * persistent admin notice and enables the product-gallery features.

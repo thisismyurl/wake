@@ -48,19 +48,55 @@ body {
 	--wake-tide-gap:          6px;
 	--wake-tide-inner-weight: 1.5px;
 	--wake-tide-outer-weight: 3px;
-	--cl-focus-ring:          var(--wp--preset--color--wake-brass);
-	--cl-focus-ring-inverse:  var(--wp--preset--color--wake-white);
+
+	/* Edition-STABLE chrome pairing. The site header and footer are a dark
+	   masthead in every style variation, so their ground and text must NOT ride
+	   the inverting palette tokens — a token like wake-cream flips to near-black
+	   in the Dusk edition and would paint dark-on-dark on the dark chrome ground.
+	   These fixed values give a deep-navy band with cream text in all six
+	   variations (cream/ground 16.1:1, muted 8.3:1). Decorative only on chrome;
+	   never reused on body grounds. */
+	--wake-chrome-bg:         #0a1628;
+	--wake-chrome-fg:         #f4f1ec;
+	--wake-chrome-muted:      #9fb2c0;
+	--wake-chrome-link:       #f0ece4;
+	--wake-chrome-link-hover: #d9b98a;
+	--wake-chrome-focus:      #fdfcfa;
+
+	/* CTA button ink. The subscribe CTA fills with the decorative wake-brass
+	   token, which stays a warm gold in five editions where a dark ink reads
+	   best — but Nordic mutes brass to a cool taupe (#686050) where dark ink
+	   falls to 3.03:1. The ink is a token so a variation can flip it: Nordic
+	   redefines --wake-cta-ink to white via styles.css (white on #686050 =
+	   6.22:1). Default dark ink clears AA on every other edition's brass
+	   (Coastal 5.11 → Dusk 9.65). */
+	--wake-cta-ink:           #14110b;
+
+	--cl-focus-ring:          var(--wp--preset--color--wake-steel);
+	--cl-focus-ring-inverse:  var(--wake-chrome-focus);
 	--cl-skip-bg:             var(--wp--preset--color--wake-navy);
 	--cl-skip-fg:             var(--wp--preset--color--wake-white);
 }
 
 /* ── Site header ─────────────────────────────────────────────────────── */
+/* Edition-stable dark chrome. The markup keeps backgroundColor:wake-deep — that
+   token is the darkest in every style variation, so the ground stays dark — but
+   drops the inverting textColor binding; skin sets the text from the fixed
+   --wake-chrome-* tokens here so the masthead never collapses to dark-on-dark in
+   an inverted edition (where wake-cream would flip to near-black). */
 .wake-site-header {
 	position: sticky;
 	top: 0;
 	z-index: 100;
-	border-block-end: 1px solid var(--wp--preset--color--wake-rule);
-	background-color: var(--wp--preset--color--wake-white);
+	border-block-end: 1px solid rgba(255, 255, 255, 0.12);
+	background-color: var(--wake-chrome-bg);
+	color: var(--wake-chrome-fg);
+}
+
+.wake-site-header .wp-block-site-title a,
+.wake-site-header .wp-block-navigation,
+.wake-site-header .wp-block-navigation a {
+	color: var(--wake-chrome-fg);
 }
 
 .wake-header-inner {
@@ -207,7 +243,7 @@ body {
 }
 
 .wake-post-meta {
-	color: var(--wp--preset--color--wake-fog);
+	color: var(--wp--preset--color--wake-steel);
 	border-block: 1px solid var(--wp--preset--color--wake-rule);
 	padding-block: var(--wp--preset--spacing--3);
 	margin-block: var(--wp--preset--spacing--6);
@@ -218,9 +254,13 @@ body {
 	align-items: center;
 }
 
-/* ── Byline (date in brass) ──────────────────────────────────────────── */
+/* ── Byline (date) ───────────────────────────────────────────────────── */
+/* Steel, not brass: brass as small date text falls below AA (≈3:1) on the
+   light reading grounds and inverts unpredictably across style variations.
+   Brass is reserved for non-text accents — the tide-rule separator, borders,
+   and the brass-tint surfaces — where contrast rules do not apply. */
 .wp-block-post-date {
-	color: var(--wp--preset--color--wake-brass);
+	color: var(--wp--preset--color--wake-steel);
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
 	font-size: var(--wp--preset--font-size--2xs);
@@ -279,24 +319,54 @@ body {
 }
 
 /* ── Site footer ─────────────────────────────────────────────────────── */
+/* Same contract as the header: backgroundColor:wake-deep stays (darkest token
+   in every edition) and skin sets the text from the fixed --wake-chrome-* tokens,
+   so the footer reads as a deep-navy band with cream text in all six variations
+   rather than collapsing to dark-on-dark wherever wake-cream inverts. */
 .wake-site-footer {
-	background-color: var(--wp--preset--color--wake-void);
-	color: var(--wp--preset--color--wake-salt);
+	background-color: var(--wake-chrome-bg);
+	color: var(--wake-chrome-fg);
+}
+
+.wake-site-footer h5,
+.wake-site-footer .wp-block-navigation,
+.wake-site-footer .wp-block-navigation a {
+	color: var(--wake-chrome-fg);
 }
 
 .wake-site-footer a {
-	color: var(--wp--preset--color--wake-salt);
+	color: var(--wake-chrome-link);
 	text-decoration: none;
 }
 
-.wake-site-footer a:hover {
-	color: var(--wp--preset--color--wake-brass);
+/* Hover/focus uses a fixed warm-gold chrome token, not the wake-brass palette
+   token. The footer ground is edition-stable (#0a1628), so a palette-bound hover
+   is unsafe: wake-brass falls to 2.92:1 here in Nordic, and wake-brass-tint
+   inverts to a dark brown (1.13:1) in Dusk. The fixed --wake-chrome-link-hover
+   keeps the warm brass feel and clears AA in every edition (9.72:1). */
+.wake-site-footer a:hover,
+.wake-site-footer a:focus-visible {
+	color: var(--wake-chrome-link-hover);
+}
+
+/* The copyright, credit, and tagline sit a step quieter than the column links
+   but still clear AA (8.3:1) against the fixed chrome ground. */
+.wake-copyright,
+.wake-credit,
+.wake-site-footer .wp-block-site-tagline {
+	color: var(--wake-chrome-muted);
 }
 
 .wake-copyright,
 .wake-credit {
-	color: var(--wp--preset--color--wake-fog);
 	font-size: var(--wp--preset--font-size--2xs);
+}
+
+/* The copyright bar's top hairline is bound to wake-steel in the markup, which
+   inverts; on the stable dark chrome a fixed translucent rule reads correctly
+   in every edition. */
+.wake-site-footer .wp-block-group[style*="border-top"] {
+	border-block-start-color: rgba(255, 255, 255, 0.16) !important;
 }
 
 /* ── Related stories section ────────────────────────────────────────── */
@@ -449,7 +519,7 @@ body {
 	font-weight: 600;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
-	color: var(--wp--preset--color--wake-fog);
+	color: var(--wp--preset--color--wake-steel);
 	padding-block: var(--wp--preset--spacing--4);
 	padding-inline: var(--wp--preset--spacing--4);
 	border-block-end: 1px solid var(--wp--preset--color--wake-steel);
@@ -497,19 +567,25 @@ body {
 	padding: 0.2em 0.55em;
 }
 
+/* Status chips. All three resolve to AA-clearing pairings in every style
+   variation: a brass ground inverts to light-on-light (Dusk) or dark-on-dark
+   (Nordic), and a rule ground falls below 4.5:1 on the light editions, so the
+   active "Open" chip is a filled steel block with white text (≥5.2:1
+   everywhere) and "Pending" is an outlined steel chip on the salt surface. */
 .wake-status--results {
 	background-color: var(--wp--preset--color--wake-salt);
 	color: var(--wp--preset--color--wake-steel);
 }
 
 .wake-status--open {
-	background-color: var(--wp--preset--color--wake-brass);
-	color: var(--wp--preset--color--wake-void);
+	background-color: var(--wp--preset--color--wake-steel);
+	color: var(--wp--preset--color--wake-white);
 }
 
 .wake-status--pending {
-	background-color: var(--wp--preset--color--wake-rule);
+	background-color: transparent;
 	color: var(--wp--preset--color--wake-steel);
+	box-shadow: inset 0 0 0 1px var(--wp--preset--color--wake-steel);
 }
 
 @media (max-width: 767px) {
@@ -554,7 +630,7 @@ body {
 	font-weight: 600;
 	font-size: var(--wp--preset--font-size--sm);
 	letter-spacing: 0.06em;
-	color: var(--wp--preset--color--wake-fog);
+	color: var(--wp--preset--color--wake-steel);
 	font-variant-numeric: tabular-nums;
 }
 

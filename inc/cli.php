@@ -23,7 +23,7 @@ if ( ! ( defined( 'WP_CLI' ) && \WP_CLI ) ) {
 }
 
 /**
- * Colophon: theme operations from the command line.
+ * Wake: theme operations from the command line.
  */
 class CLI_Command {
 

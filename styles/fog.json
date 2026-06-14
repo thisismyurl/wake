@@ -47,8 +47,23 @@
         },
         {
           "slug": "wake-brass-tint",
-          "color": "#d0dce5",
+          "color": "#ecf1f5",
           "name": "Wake Brass Tint"
+        },
+        {
+          "slug": "wake-rule",
+          "color": "#c4ccd2",
+          "name": "Wake Rule"
+        },
+        {
+          "slug": "wake-deep",
+          "color": "#0a1628",
+          "name": "Wake Deep"
+        },
+        {
+          "slug": "wake-cream",
+          "color": "#f0f3f5",
+          "name": "Wake Cream"
         }
       ]
     }

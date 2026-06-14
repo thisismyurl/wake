@@ -423,7 +423,7 @@
           "textTransform": "uppercase"
         },
         "color": {
-          "text": "var(--wp--preset--color--wake-fog)"
+          "text": "var(--wp--preset--color--wake-steel)"
         }
       },
       "link": {
@@ -435,7 +435,7 @@
         },
         ":hover": {
           "color": {
-            "text": "var(--wp--preset--color--wake-brass)"
+            "text": "var(--wp--preset--color--wake-steel)"
           }
         }
       },
@@ -489,7 +489,7 @@
           "textTransform": "uppercase"
         },
         "color": {
-          "text": "var(--wp--preset--color--wake-brass)"
+          "text": "var(--wp--preset--color--wake-steel)"
         }
       },
       "core/post-terms": {
@@ -523,7 +523,7 @@
           "textTransform": "uppercase"
         },
         "color": {
-          "text": "var(--wp--preset--color--wake-fog)"
+          "text": "var(--wp--preset--color--wake-steel)"
         }
       },
       "core/navigation": {
