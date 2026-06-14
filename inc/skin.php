@@ -11,23 +11,21 @@
 namespace Wake;
 
 defined( 'ABSPATH' ) || exit;
-// Opt this theme into GitHub-release self-updates (see inc/github-updater.php).
-add_filter( 'wake/github_updater_repo', static function (): string {{
-	return 'thisismyurl/wake';
-}} );
 
 // =========================================================================
 // SETUP — additional menus and navigation
 // =========================================================================
 
 /**
- * Register Wake-specific navigation menus.
+ * Register the navigation menus unique to Wake.
+ *
+ * CORE (inc/setup.php) already registers the primary and footer menus every
+ * theme in the line shares; this adds only Wake's two extra locations so the
+ * registrations don't overlap.
  */
 function skin_setup(): void {
 	register_nav_menus(
 		array(
-			'primary'     => esc_html__( 'Primary Navigation', 'wake' ),
-			'footer'      => esc_html__( 'Footer Navigation', 'wake' ),
 			'social'      => esc_html__( 'Social Links', 'wake' ),
 			'section-nav' => esc_html__( 'Section Navigation', 'wake' ),
 		)

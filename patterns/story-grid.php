@@ -26,11 +26,11 @@
 	<div class="wp-block-group" style="border-bottom:2px solid var(--wp--preset--color--wake-brass);padding-bottom:var(--wp--preset--spacing--8);margin-bottom:var(--wp--preset--spacing--8)">
 
 		<!-- wp:heading {"level":2,"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontWeight":"500","fontSize":"var:preset|font-size|xl","letterSpacing":"-0.01em"},"color":{"text":"var:preset|color|wake-void"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
-		<h2 style="font-family:var(--wp--preset--font-family--jost);font-weight:500;font-size:var(--wp--preset--font-size--xl);letter-spacing:-0.01em;color:var(--wp--preset--color--wake-void);margin-top:0;margin-bottom:0">From the Journal</h2>
+		<h2 style="font-family:var(--wp--preset--font-family--jost);font-weight:500;font-size:var(--wp--preset--font-size--xl);letter-spacing:-0.01em;color:var(--wp--preset--color--wake-void);margin-top:0;margin-bottom:0"><?php esc_html_e( 'From the Journal', 'wake' ); ?></h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.6875rem","fontWeight":"600","letterSpacing":"0.1em","textTransform":"uppercase"},"color":{"text":"var:preset|color|wake-steel"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
-		<p style="font-family:var(--wp--preset--font-family--jost);font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--wp--preset--color--wake-steel);margin-top:0;margin-bottom:0"><a href="/voyage-log" style="color:inherit;text-decoration:none">All entries →</a></p>
+		<p style="font-family:var(--wp--preset--font-family--jost);font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--wp--preset--color--wake-steel);margin-top:0;margin-bottom:0"><a href="#" style="color:inherit;text-decoration:none"><?php esc_html_e( 'All entries &rarr;', 'wake' ); ?></a></p>
 		<!-- /wp:paragraph -->
 
 	</div>
@@ -63,7 +63,7 @@
 
 							<!-- wp:post-excerpt {"moreText":"","showMoreOnNewLine":false,"style":{"typography":{"fontFamily":"var:preset|font-family|literata","fontSize":"var:preset|font-size|base","lineHeight":"1.7"},"color":{"text":"var:preset|color|wake-steel"}}} /-->
 
-							<!-- wp:post-date {"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.6875rem","fontWeight":"500","letterSpacing":"0.08em","textTransform":"uppercase"},"color":{"text":"var:preset|color|wake-brass"},"spacing":{"margin":{"top":"var:preset|spacing|4"}}}} /-->
+							<!-- wp:post-date {"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.6875rem","fontWeight":"500","letterSpacing":"0.08em","textTransform":"uppercase"},"color":{"text":"var:preset|color|wake-steel"},"spacing":{"margin":{"top":"var:preset|spacing|4"}}}} /-->
 
 						</div>
 						<!-- /wp:group -->
@@ -95,7 +95,7 @@
 
 						<!-- wp:post-title {"isLink":true,"level":3,"style":{"typography":{"fontFamily":"var:preset|font-family|literata","fontWeight":"500","fontSize":"var:preset|font-size|xl","lineHeight":"1.22","letterSpacing":"-0.01em"},"color":{"text":"var:preset|color|wake-void"},"spacing":{"margin":{"top":"var:preset|spacing|2","bottom":"var:preset|spacing|3"}}}} /-->
 
-						<!-- wp:post-date {"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.6875rem","fontWeight":"500","letterSpacing":"0.08em","textTransform":"uppercase"},"color":{"text":"var:preset|color|wake-brass"}}} /-->
+						<!-- wp:post-date {"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.6875rem","fontWeight":"500","letterSpacing":"0.08em","textTransform":"uppercase"},"color":{"text":"var:preset|color|wake-steel"}}} /-->
 
 					</div>
 					<!-- /wp:group -->

@@ -21,7 +21,10 @@
 <!-- wp:group {"className":"wake-pattern-nav-band","metadata":{"categories":["wake-editorial"],"name":"Navigation Band"},"style":{"color":{"background":"var:preset|color|wake-navy"},"spacing":{"padding":{"top":"var:preset|spacing|6","bottom":"var:preset|spacing|6"}}},"layout":{"type":"constrained","contentSize":"1280px"}} -->
 <div class="wp-block-group wake-pattern-nav-band" style="background-color:var(--wp--preset--color--wake-navy)">
 
-	<!-- wp:navigation {"menuSlug":"section-nav","className":"wake-nav-band","overlayMenu":"never","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center","verticalAlignment":"center"},"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"var:preset|font-size|sm","fontWeight":"600","letterSpacing":"0.12em","textTransform":"uppercase"},"color":{"text":"var:preset|color|wake-fog"},"spacing":{"blockGap":"var:preset|spacing|8"}}} /-->
+	<!-- White, not fog: the nav-band ground is wake-navy, which inverts with the
+	     edition. wake-white inverts in lockstep with it, so the links clear AA
+	     (11:1+) in every style variation; fog floats mid-tone and fails on several. -->
+	<!-- wp:navigation {"menuSlug":"section-nav","className":"wake-nav-band","overlayMenu":"never","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center","verticalAlignment":"center"},"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"var:preset|font-size|sm","fontWeight":"600","letterSpacing":"0.12em","textTransform":"uppercase"},"color":{"text":"var:preset|color|wake-white"},"spacing":{"blockGap":"var:preset|spacing|8"}}} /-->
 
 </div>
 <!-- /wp:group -->

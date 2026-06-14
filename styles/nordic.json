@@ -69,6 +69,7 @@
     }
   },
   "styles": {
+    "css": ":root{--wake-cta-ink:#ffffff;}",
     "color": {
       "background": "var(--wp--preset--color--wake-white)",
       "text": "var(--wp--preset--color--wake-void)"

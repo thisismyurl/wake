@@ -2,7 +2,6 @@
 # The colophon CLI and WP.org deploy tooling both read this file.
 
 # Internal CLI tooling — not for distribution
-inc/github-updater.php
 inc/cli.php
 
 # Internal tooling manifests

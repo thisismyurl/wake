@@ -5,7 +5,7 @@
  *
  * A static template part can't compute the current year, and hardcoding one is
  * a quiet way to look abandoned every January. So parts/footer.html binds its
- * copyright paragraph to the `colophon/copyright` source registered here (WP
+ * copyright paragraph to the `wake/copyright` source registered here (WP
  * 6.5+ block bindings) — one small, removable callback instead of a render
  * filter reinventing what the bindings API already does.
  *
@@ -51,8 +51,54 @@ function register_bindings(): void {
 			'uses_context'       => array(),
 		)
 	);
+
+	register_block_bindings_source(
+		SLUG . '/ui-label',
+		array(
+			'label'              => __( 'Theme chrome label', 'wake' ),
+			'get_value_callback' => __NAMESPACE__ . '\\get_ui_label_value',
+			'uses_context'       => array(),
+		)
+	);
 }
 add_action( 'init', __NAMESPACE__ . '\\register_bindings' );
+
+/**
+ * Resolve a translatable chrome label by key.
+ *
+ * Static block-theme templates and parts cannot wrap visitor-facing prose in
+ * gettext, so the fixed UI strings that are NOT editable post content — the 404
+ * "page not found" line, the "more to read" related-posts heading, the footer
+ * column labels — bind their text to this source instead of hardcoding English.
+ * The template passes its intended label as the binding's own `key` argument
+ * (metadata.bindings.content.args.key); that key is the msgid, so `wp i18n
+ * make-pot` still finds every string in the __() calls below, and a non-English
+ * site renders the chrome in its own locale.
+ *
+ * Unknown keys fall back to the key itself, so a future template can add a label
+ * here, register its __() call, and never render an empty node in the meantime.
+ *
+ * @param array $source_args The binding arguments; 'key' selects the label.
+ * @return string The translated label, or the key when no translation is registered.
+ */
+function get_ui_label_value( array $source_args ): string {
+	$key = isset( $source_args['key'] ) ? (string) $source_args['key'] : '';
+
+	// Each case wraps the literal English in __() so make-pot extracts it and a
+	// translator can override it; the key passed from the template is the msgid.
+	switch ( $key ) {
+		case 'page-not-found':
+			return __( 'Page not found.', 'wake' );
+		case 'more-to-read':
+			return __( 'More to Read', 'wake' );
+		case 'navigate':
+			return __( 'Navigate', 'wake' );
+		case 'follow':
+			return __( 'Follow', 'wake' );
+		default:
+			return $key;
+	}
+}
 
 /**
  * Resolve the copyright line: © {current year} {Site Title}. All rights reserved.

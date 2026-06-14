@@ -12,6 +12,11 @@
  * column with no overlay. A print-precedented layout — the *Latitude 38*
  * front-page format — where the image is evidence, not wallpaper.
  *
+ * Heading level: the section headline is h2, not h1 — this pattern is
+ * inserted into pages that already render the post/page title as the single
+ * h1, so an h1 here would create a duplicate (WCAG 2.1 1.3.1). Promote to h1
+ * only on a page-blank/landing layout that has no other title.
+ *
  * Image: replace the src below with your editorial photograph. Portrait
  * and square crops read well; the image fills the column to any height.
  * Alt text: describe the scene and what is happening — the image is
@@ -30,21 +35,21 @@
 		<div class="wp-block-column" style="flex-basis:42%;background-color:var(--wp--preset--color--wake-void);padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10)">
 
 			<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.6875rem","fontWeight":"600","letterSpacing":"0.12em","textTransform":"uppercase"},"color":{"text":"var:preset|color|wake-fog"},"spacing":{"margin":{"bottom":"var:preset|spacing|4"}}}} -->
-			<p style="font-family:var(--wp--preset--font-family--jost);font-size:0.6875rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--wp--preset--color--wake-fog)">Offshore &nbsp;·&nbsp; Cruising</p>
+			<p style="font-family:var(--wp--preset--font-family--jost);font-size:0.6875rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--wp--preset--color--wake-fog)"><?php echo esc_html( __( 'Offshore', 'wake' ) ); ?>&nbsp;·&nbsp;<?php echo esc_html( __( 'Cruising', 'wake' ) ); ?></p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"level":1,"style":{"typography":{"fontFamily":"var:preset|font-family|literata","fontWeight":"600","lineHeight":"1.06","letterSpacing":"-0.03em","textWrap":"balance"},"color":{"text":"var:preset|color|wake-white"},"spacing":{"margin":{"top":"var:preset|spacing|3","bottom":"var:preset|spacing|6"}}}} -->
-			<h1 style="font-family:var(--wp--preset--font-family--literata);font-weight:600;line-height:1.06;letter-spacing:-0.03em;text-wrap:balance;color:var(--wp--preset--color--wake-white)">The headline that pulls a sailor out of the harbour and keeps them reading.</h1>
+			<!-- wp:heading {"level":2,"style":{"typography":{"fontFamily":"var:preset|font-family|literata","fontWeight":"600","lineHeight":"1.06","letterSpacing":"-0.03em","textWrap":"balance"},"color":{"text":"var:preset|color|wake-white"},"spacing":{"margin":{"top":"var:preset|spacing|3","bottom":"var:preset|spacing|6"}}}} -->
+			<h2 style="font-family:var(--wp--preset--font-family--literata);font-weight:600;line-height:1.06;letter-spacing:-0.03em;text-wrap:balance;color:var(--wp--preset--color--wake-white)"><?php esc_html_e( 'The headline that pulls a sailor out of the harbour and keeps them reading.', 'wake' ); ?></h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|literata","fontStyle":"italic","fontSize":"var:preset|font-size|lg","lineHeight":"1.5"},"color":{"text":"var:preset|color|wake-fog"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
-			<p style="font-family:var(--wp--preset--font-family--literata);font-style:italic;font-size:var(--wp--preset--font-size--lg);line-height:1.5;color:var(--wp--preset--color--wake-fog)">The standfirst earns its place here — one sentence, no more, drawing the reader toward the story the headline promises.</p>
+			<p style="font-family:var(--wp--preset--font-family--literata);font-style:italic;font-size:var(--wp--preset--font-size--lg);line-height:1.5;color:var(--wp--preset--color--wake-fog)"><?php esc_html_e( 'The standfirst earns its place here — one sentence, no more, drawing the reader toward the story the headline promises.', 'wake' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">
 				<!-- wp:button {"className":"is-style-outline","style":{"color":{"text":"var:preset|color|wake-white","background":"transparent"},"border":{"color":"var:preset|color|wake-white","style":"solid","width":"1px","radius":"0"},"typography":{"fontFamily":"var:preset|font-family|jost","fontWeight":"600","letterSpacing":"0.05em"}}} -->
-				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#" style="color:var(--wp--preset--color--wake-white);background-color:transparent;border:1px solid var(--wp--preset--color--wake-white)">Read the story</a></div>
+				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#" style="color:var(--wp--preset--color--wake-white);background-color:transparent;border:1px solid var(--wp--preset--color--wake-white)"><?php esc_html_e( 'Read the story', 'wake' ); ?></a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->

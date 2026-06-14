@@ -40,9 +40,9 @@ Literata is a contemporary serif designed specifically for screen reading at bod
 
 ## Technical notes
 
-- WordPress 6.4 or newer, PHP 8.1 or newer
+- WordPress 6.7 or newer, PHP 7.4 or newer (block bindings for the footer credit require WordPress 6.5+)
 - Full-site editing (FSE/Gutenberg) — no Classic Editor support
-- WCAG 2.2 AA compliant
+- Built to an accessibility floor: keyboard skip link, visible focus outlines, semantic landmarks, one h1 per template, and AA-clearing colour contrast across every bundled style variation
 - Zero JavaScript
 - OFL-licensed fonts: Literata, Jost
 - Self-hosted fonts — no Google Fonts requests

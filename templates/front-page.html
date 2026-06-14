@@ -4,6 +4,11 @@
 <main class="wp-block-group wake-main" id="main-content">
 
 	<!-- HERO — photography-first full-width feature -->
+	<!-- Page heading (WCAG 2.1 1.3.1): the single h1 for this template is the
+	     featured post's title, rendered by the post-title block at "level":1
+	     inside the hero query below (sticky post, or the latest-post fallback).
+	     There is intentionally no static heading block here — the front page is
+	     post-driven and the h1 always resolves to the featured story's title. -->
 	<!-- wp:query {"queryId":1,"query":{"perPage":1,"postType":"post","order":"desc","orderBy":"date","sticky":"only","inherit":false},"className":"wake-hero-query","layout":{"type":"default"}} -->
 	<div class="wp-block-query wake-hero-query">
 
@@ -33,7 +38,11 @@
 
 		<!-- /wp:post-template -->
 
-		<!-- Fallback: latest post if no sticky -->
+		<!-- Fallback: latest post if no sticky. This block renders ONLY when the
+		     sticky query above returns nothing, so its "level":1 post-title is
+		     mutually exclusive with the sticky hero's h1 — exactly one h1 paints
+		     at runtime. The two level:1 occurrences are by design, not a
+		     duplicate-heading bug. -->
 		<!-- wp:query-no-results -->
 		<!-- wp:query {"queryId":100,"query":{"perPage":1,"postType":"post","order":"desc","orderBy":"date","inherit":false},"layout":{"type":"default"}} -->
 		<div class="wp-block-query">
@@ -81,7 +90,7 @@
 			<!-- /wp:post-template -->
 
 			<!-- wp:query-no-results -->
-				<!-- wp:paragraph --><p>No stories yet. Publish your first post to see it here.</p><!-- /wp:paragraph -->
+				<!-- wp:search {"label":"Search","buttonText":"Search","buttonPosition":"button-outside","showLabel":true} /-->
 			<!-- /wp:query-no-results -->
 
 		</div>

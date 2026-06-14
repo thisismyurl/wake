@@ -1,5 +1,9 @@
-<!-- wp:group {"tagName":"footer","className":"wake-site-footer","role":"contentinfo","backgroundColor":"wake-deep","textColor":"wake-cream","style":{"spacing":{"padding":{"top":"var:preset|spacing|16","bottom":"var:preset|spacing|12"}}},"layout":{"type":"constrained","contentSize":"1280px"}} -->
-<footer class="wp-block-group wake-site-footer has-wake-deep-background-color has-wake-cream-color has-background has-text-color" role="contentinfo">
+<!-- Edition-stable dark chrome: backgroundColor:wake-deep is the darkest token in
+     every style variation; the text colour is bound in skin.css to a fixed light
+     value rather than the inverting wake-cream token, so the footer stays a
+     deep-navy band with legible text in all six variations. -->
+<!-- wp:group {"tagName":"footer","className":"wake-site-footer","role":"contentinfo","backgroundColor":"wake-deep","style":{"spacing":{"padding":{"top":"var:preset|spacing|16","bottom":"var:preset|spacing|12"}}},"layout":{"type":"constrained","contentSize":"1280px"}} -->
+<footer class="wp-block-group wake-site-footer has-wake-deep-background-color has-background" role="contentinfo">
 
 	<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|12"},"margin":{"bottom":"var:preset|spacing|12"}}}} -->
 	<div class="wp-block-columns">
@@ -7,13 +11,19 @@
 		<!-- wp:column {"width":"40%"} -->
 		<div class="wp-block-column" style="flex-basis:40%">
 			<!-- wp:site-logo {"width":160,"className":"wake-footer-logo"} /-->
-			<!-- wp:site-tagline {"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.875rem"},"color":{"text":"var:preset|color|wake-fog"},"spacing":{"margin":{"top":"var:preset|spacing|3"}}}} /-->
+			<!-- The footer is edition-stable dark chrome; skin.css paints the tagline
+			     with --wake-chrome-muted so it clears AA in every style variation. No
+			     inline palette colour here, which would invert and break that. -->
+			<!-- wp:site-tagline {"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.875rem"},"spacing":{"margin":{"top":"var:preset|spacing|3"}}}} /-->
 		</div>
 		<!-- /wp:column -->
 
 		<!-- wp:column {"width":"30%"} -->
 		<div class="wp-block-column" style="flex-basis:30%">
-			<!-- wp:heading {"level":5,"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontWeight":"700","fontSize":"0.75rem","letterSpacing":"0.1em","textTransform":"uppercase"},"spacing":{"margin":{"bottom":"var:preset|spacing|4"}}}} -->
+			<!-- Visitor prose: the footer column label is bound to the wake/ui-label
+			     source (inc/bindings.php) so it is translatable. The text below is the
+			     editor fallback only; the rendered string comes from __( 'Navigate' ). -->
+			<!-- wp:heading {"level":5,"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontWeight":"700","fontSize":"0.75rem","letterSpacing":"0.1em","textTransform":"uppercase"},"spacing":{"margin":{"bottom":"var:preset|spacing|4"}}},"metadata":{"bindings":{"content":{"source":"wake/ui-label","args":{"key":"navigate"}}}}} -->
 			<h5>Navigate</h5>
 			<!-- /wp:heading -->
 			<!-- wp:navigation {"className":"wake-footer-nav","overlayMenu":"never","style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.9375rem"}}} /-->
@@ -22,7 +32,10 @@
 
 		<!-- wp:column {"width":"30%"} -->
 		<div class="wp-block-column" style="flex-basis:30%">
-			<!-- wp:heading {"level":5,"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontWeight":"700","fontSize":"0.75rem","letterSpacing":"0.1em","textTransform":"uppercase"},"spacing":{"margin":{"bottom":"var:preset|spacing|4"}}}} -->
+			<!-- Visitor prose: the footer column label is bound to the wake/ui-label
+			     source (inc/bindings.php) so it is translatable. The text below is the
+			     editor fallback only; the rendered string comes from __( 'Follow' ). -->
+			<!-- wp:heading {"level":5,"style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontWeight":"700","fontSize":"0.75rem","letterSpacing":"0.1em","textTransform":"uppercase"},"spacing":{"margin":{"bottom":"var:preset|spacing|4"}}},"metadata":{"bindings":{"content":{"source":"wake/ui-label","args":{"key":"follow"}}}}} -->
 			<h5>Follow</h5>
 			<!-- /wp:heading -->
 			<!-- wp:navigation {"className":"wake-social-nav","overlayMenu":"never","style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.9375rem"}}} /-->
@@ -36,12 +49,15 @@
 	<!-- wp:group {"style":{"border":{"top":{"color":"var:preset|color|wake-steel","style":"solid","width":"1px"}},"spacing":{"padding":{"top":"var:preset|spacing|6"}}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} -->
 	<div class="wp-block-group">
 
-		<!-- wp:paragraph {"className":"wake-copyright","style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.8125rem"},"color":{"text":"var:preset|color|wake-fog"}},"metadata":{"bindings":{"content":{"source":"wake/copyright"}}}} -->
-		<p class="wake-copyright" style="font-family:var(--wp--preset--font-family--jost);font-size:0.8125rem;color:var(--wp--preset--color--wake-fog)"></p>
+		<!-- The copyright and credit colours come from skin.css (--wake-chrome-muted)
+		     so they stay legible on the stable dark chrome in every style variation;
+		     an inline palette colour here would invert with the edition and fail. -->
+		<!-- wp:paragraph {"className":"wake-copyright","style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.8125rem"}},"metadata":{"bindings":{"content":{"source":"wake/copyright"}}}} -->
+		<p class="wake-copyright" style="font-family:var(--wp--preset--font-family--jost);font-size:0.8125rem"></p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:paragraph {"className":"wake-credit","style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.8125rem"},"color":{"text":"var:preset|color|wake-fog"}},"metadata":{"bindings":{"content":{"source":"wake/footer-credit"}}}} -->
-		<p class="wake-credit" style="font-family:var(--wp--preset--font-family--jost);font-size:0.8125rem;color:var(--wp--preset--color--wake-fog)"></p>
+		<!-- wp:paragraph {"className":"wake-credit","style":{"typography":{"fontFamily":"var:preset|font-family|jost","fontSize":"0.8125rem"}},"metadata":{"bindings":{"content":{"source":"wake/footer-credit"}}}} -->
+		<p class="wake-credit" style="font-family:var(--wp--preset--font-family--jost);font-size:0.8125rem"></p>
 		<!-- /wp:paragraph -->
 
 	</div>
