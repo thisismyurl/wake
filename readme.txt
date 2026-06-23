@@ -6,7 +6,10 @@ Requires PHP: 8.1
 Stable tag: 1.6150
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Tags: blog, one-column, two-columns, full-site-editing, block-patterns, editor-style, custom-colors, custom-logo, custom-menu, featured-images, accessibility-ready, translation-ready, rtl-language-support, wide-blocks, threaded-comments
+Tags: blog, one-column, two-columns, full-site-editing, block-patterns, editor-style, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, rtl-language-support, wide-blocks, threaded-comments
+
+Colophon WordPress Theme, Copyright 2026 Christopher Ross
+Colophon is distributed under the terms of the GNU GPL v2 or later.
 
 A literary full-site-editing theme — warm type, classical proportions, zero front-end JavaScript — and the documented starter core behind the This Is My URL free theme line.
 

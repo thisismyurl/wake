@@ -11,7 +11,7 @@ Requires PHP:       8.1
 License:            GNU General Public License v2 or later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:        colophon
-Tags:               blog, one-column, two-columns, full-site-editing, block-patterns, editor-style, custom-colors, custom-logo, custom-menu, featured-images, accessibility-ready, translation-ready, rtl-language-support, wide-blocks, threaded-comments
+Tags:               blog, one-column, two-columns, full-site-editing, block-patterns, editor-style, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, rtl-language-support, wide-blocks, threaded-comments
 
 This is the theme HEADER ONLY. Colophon's real styles are enqueued in cascade
 order from inc/assets.php: assets/css/core/* (synced, portable) then
