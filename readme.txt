@@ -1,15 +1,15 @@
-=== Colophon ===
+=== Wake ===
 Contributors: thisismyurl
 Requires at least: 7.0
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 1.6150
+Stable tag: 1.6162.1430
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, one-column, two-columns, full-site-editing, block-patterns, editor-style, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, rtl-language-support, wide-blocks, threaded-comments
 
-Colophon WordPress Theme, Copyright 2026 Christopher Ross
-Colophon is distributed under the terms of the GNU GPL v2 or later.
+Wake WordPress Theme, Copyright 2026 Christopher Ross
+Wake is distributed under the terms of the GNU GPL v2 or later.
 
 A literary full-site-editing theme — warm type, classical proportions, zero front-end JavaScript — and the documented starter core behind the This Is My URL free theme line.
 
@@ -107,8 +107,8 @@ To build your own theme on Colophon, see GUIDE.md in the theme folder.
 
 == Copyright ==
 
-Colophon WordPress Theme, (C) 2026 Christopher Ross.
-Colophon is distributed under the terms of the GNU General Public License v2 or later.
+Wake WordPress Theme, (C) 2026 Christopher Ross.
+Wake is distributed under the terms of the GNU General Public License v2 or later.
 
 EB Garamond, (C) 2017 The EB Garamond Project Authors.
 EB Garamond is distributed under the SIL Open Font License 1.1.
