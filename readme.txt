@@ -1,7 +1,7 @@
 === Wake ===
 Contributors: thisismyurl
 Requires at least: 7.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 8.1
 Stable tag: 1.6162.1430
 License: GNU General Public License v2 or later
