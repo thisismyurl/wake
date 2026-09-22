@@ -2,9 +2,14 @@
 # Build-time and development artefacts only — never user-facing theme code.
 # `colophon new` copies this into every generated theme so the line ships clean.
 #
-# NOTE: inc/github-updater.php is intentionally NOT listed here.
-# It is excluded from WP.org builds only — GitHub release builds include it.
-# package-theme.sh handles this distinction via --wporg / --github flags.
+# Colophon core dropped the --wporg/--github build split and the
+# self-updater it existed for (themes.trac #276778); current
+# package-theme.sh does one rsync --exclude-from=.distignore build and
+# hard-fails if inc/github-updater.php reaches the dist directory. Both
+# CLI-only files are excluded below; functions.php guards each require
+# with file_exists() so excluding them here is safe under WP-CLI too.
+/inc/github-updater.php
+/inc/cli.php
 /.distignore
 /.git
 /.github
