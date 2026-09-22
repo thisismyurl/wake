@@ -102,6 +102,20 @@ IBM Plex Sans, (C) 2017 IBM Corp., with Reserved Font Name "Plex".
 IBM Plex Sans is distributed under the SIL Open Font License 1.1.
 https://github.com/IBM/plex
 
-The theme ships with no photographs, so no image credit is required. The
-harbor-hero and about-split patterns include an empty image block — add
-your own marina photo and describe it in the alt text.
+The theme code ships with no bundled photographs — the harbor-hero and
+about-split patterns include an empty image block; add your own marina
+photo and describe it in the alt text.
+
+screenshot.png demonstrates the design filled in with two licensed stock
+photographs, credited here since the screenshot itself ships as part of
+the theme package:
+
+"Aerial view of a marina" (used in screenshot.png only), photographer
+unattributed on source, via Wikimedia Commons.
+Licensed CC0 1.0 Universal (public domain dedication).
+https://commons.wikimedia.org/wiki/File:Aerial_view_of_a_marina_(Unsplash).jpg
+
+"221107 Brickyard Marina 70" (used in screenshot.png only), by Pokebanana
+(Wikimedia Commons).
+Licensed CC BY-SA 4.0.
+https://commons.wikimedia.org/wiki/File:221107_Brickyard_Marina_70.jpg
