@@ -162,7 +162,7 @@
 		},
 		"elements": {
 			"h1": {
-				"typography": { "fontFamily": "var(--wp--preset--font-family--dm-sans)", "fontSize": "var(--wp--preset--font-size--2xl)", "fontWeight": "800", "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontStyle": "normal" },
+				"typography": { "fontFamily": "var(--wp--preset--font-family--dm-sans)", "fontSize": "var(--wp--preset--font-size--2-xl)", "fontWeight": "800", "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontStyle": "normal" },
 				"color": { "text": "var(--wp--preset--color--ink)" }
 			},
 			"h2": {
