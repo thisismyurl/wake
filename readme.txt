@@ -102,10 +102,6 @@ IBM Plex Sans, (C) 2017 IBM Corp., with Reserved Font Name "Plex".
 IBM Plex Sans is distributed under the SIL Open Font License 1.1.
 https://github.com/IBM/plex
 
-"Aerial view of a marina" (assets/images/wake-marina-hero.jpg), photographer unattributed on source, via Wikimedia Commons.
-Licensed CC0 1.0 Universal (public domain dedication).
-https://commons.wikimedia.org/wiki/File:Aerial_view_of_a_marina_(Unsplash).jpg
-
-"221107 Brickyard Marina 70" (assets/images/wake-marina-docks.jpg), by Pokebanana (Wikimedia Commons).
-Licensed CC BY-SA 4.0.
-https://commons.wikimedia.org/wiki/File:221107_Brickyard_Marina_70.jpg
+The theme ships with no photographs, so no image credit is required. The
+harbor-hero and about-split patterns include an empty image block — add
+your own marina photo and describe it in the alt text.

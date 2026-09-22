@@ -10,21 +10,23 @@
  * gradient, a tracked eyebrow, a short bold headline, a deck line, and a
  * primary CTA. Use as the first block on the front page.
  *
+ * The pattern ships without a photograph so nothing needs a separate license
+ * — the same convention every other theme in this line uses (see Masthead's
+ * breaking-story.php). Click the empty image block below to add your own
+ * aerial or dockside photo; describe it in the alt text once it's a real,
+ * specific photograph (an empty alt is only correct for a truly decorative
+ * image, which a real marina photo is not — see WCAG 1.1.1).
+ *
  * @package wake
  */
 ?>
 <!-- wp:group {"tagName":"section","className":"wk-hero","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|16","left":"var:preset|spacing|5","right":"var:preset|spacing|5"}}},"layout":{"type":"default"}} -->
 <section class="wp-block-group alignfull wk-hero" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--16);padding-left:var(--wp--preset--spacing--5);padding-right:var(--wp--preset--spacing--5)">
 
-	<!-- The photograph is a real <img>, not a CSS background — screen readers
-	     and image-search both see it, and it degrades sanely with images off.
-	     alt is empty because the headline already states the same information;
-	     a repeated description would be redundant for assistive tech (WCAG 1.1.1
-	     decorative-image guidance). -->
 	<!-- wp:group {"className":"wk-hero__media","layout":{"type":"default"}} -->
 	<div class="wp-block-group wk-hero__media">
 		<!-- wp:image {"sizeSlug":"full","className":"size-full"} -->
-		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/wake-marina-hero.jpg' ); ?>" alt="" /></figure>
+		<figure class="wp-block-image size-full"><img alt="" /></figure>
 		<!-- /wp:image -->
 	</div>
 	<!-- /wp:group -->

@@ -10,6 +10,11 @@
  * (the wk-notice paragraph style) demonstrated in place — the everyday
  * "fuel dock closed for maintenance" note a marina actually posts.
  *
+ * The pattern ships without a photograph so nothing needs a separate license
+ * — the same convention every other theme in this line uses (see Masthead's
+ * breaking-story.php). Click the empty image block to add a real dock photo,
+ * then write real alt text describing it.
+ *
  * @package wake
  */
 ?>
@@ -22,7 +27,7 @@
 		<!-- wp:column {"verticalAlignment":"center","width":"48%"} -->
 		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:48%">
 			<!-- wp:image {"sizeSlug":"wake-wide","className":"cl-card","style":{"border":{"radius":"14px"}}} -->
-			<figure class="wp-block-image size-wake-wide cl-card" style="border-radius:14px"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/wake-marina-docks.jpg' ); ?>" alt="<?php echo esc_attr__( 'Sailboats moored along the finger docks at golden hour, with the harbourside boardwalk running alongside.', 'wake' ); ?>" style="border-radius:14px" /></figure>
+			<figure class="wp-block-image size-wake-wide cl-card" style="border-radius:14px"><img alt="" style="border-radius:14px" /></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
