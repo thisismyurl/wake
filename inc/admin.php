@@ -4,7 +4,7 @@
  *
  * This is the mechanism, and it's portable. Every theme in the line inherits a
  * WordPress.org-compliant onboarding flow for free; the WORDS on the page come
- * from the theme, supplied through the `colophon/get_started_content` filter
+ * from the theme, supplied through the `WAKE_SLUG . '/get_started_content'` filter
  * (inc/skin.php is the conventional home for it). Core ships a plain, honest default so the page is coherent even
  * before a theme writes its own copy.
  *
@@ -15,10 +15,8 @@
  * they want to. The single wp_safe_redirect() below is in the post-dismiss
  * handler, after a state change — never on activation.
  *
- * @package colophon
+ * @package wake
  */
-
-namespace Colophon;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -28,62 +26,62 @@ defined( 'ABSPATH' ) || exit;
  * An option, not a transient: it must survive an object-cache flush and clear
  * deterministically. Stored autoload=no — it is read only on wp-admin requests.
  */
-const WELCOME_FLAG = 'colophon_welcome_notice';
+define( 'WAKE_WELCOME_FLAG', 'wake_welcome_notice' ); // hardcoded slug — CLI rewrites on re-skin.
 
 /**
- * admin_post action + nonce action string for dismissing the welcome notice.
+ * Admin-post action and nonce action string for dismissing the welcome notice.
  */
-const DISMISS_ACTION = 'colophon_dismiss_welcome';
+define( 'WAKE_DISMISS_ACTION', 'wake_dismiss_welcome' ); // hardcoded slug — CLI rewrites on re-skin.
 
 /**
  * Admin-menu slug for the Get-started page.
  */
-const GET_STARTED_SLUG = 'colophon-get-started';
+define( 'WAKE_GET_STARTED_SLUG', 'wake-get-started' );
 
 /**
  * Raise the one-time welcome flag when the theme becomes active.
  *
- * after_switch_theme fires once, on the activating request — the correct hook
+ * The after_switch_theme hook fires once, on the activating request — the correct hook
  * for a one-time cue. autoload=no keeps it off the front-end option bundle.
  */
-function flag_welcome_notice(): void {
-	add_option( WELCOME_FLAG, '1', '', 'no' );
+function wake_flag_welcome_notice(): void {
+	add_option( WAKE_WELCOME_FLAG, '1', '', 'no' );
 }
-add_action( 'after_switch_theme', __NAMESPACE__ . '\\flag_welcome_notice' );
+add_action( 'after_switch_theme', 'wake_flag_welcome_notice' );
 
 /**
  * Clear the welcome flag — from the dismiss handler, and once the user reaches
  * the Get-started page (seeing it is its own dismissal).
  */
-function clear_welcome_notice(): void {
-	delete_option( WELCOME_FLAG );
+function wake_clear_welcome_notice(): void {
+	delete_option( WAKE_WELCOME_FLAG );
 }
 
 /**
  * Register the "Get started" page under Appearance.
  *
- * The required capability comes from get_onboarding_capability() — default is
+ * The required capability comes from wake_get_onboarding_capability() — default is
  * edit_theme_options (users who can switch themes and configure global styles),
- * filterable via colophon/onboarding_capability.
+ * filterable via WAKE_SLUG . '/onboarding_capability'.
  */
-function register_get_started_page(): void {
+function wake_register_get_started_page(): void {
 	add_theme_page(
 		/* translators: %s: theme name. */
-		sprintf( esc_html__( '%s: Get started', 'colophon' ), get_theme_name() ),
-		get_theme_name(),
-		get_onboarding_capability(),
-		GET_STARTED_SLUG,
-		__NAMESPACE__ . '\\render_get_started_page'
+		sprintf( esc_html__( '%s: Get started', 'wake' ), wake_get_theme_name() ),
+		wake_get_theme_name(),
+		wake_get_onboarding_capability(),
+		WAKE_GET_STARTED_SLUG,
+		'wake_render_get_started_page'
 	);
 }
-add_action( 'admin_menu', __NAMESPACE__ . '\\register_get_started_page' );
+add_action( 'admin_menu', 'wake_register_get_started_page' );
 
 /**
  * The active theme's display name, for headings and notices.
  *
  * @return string The theme Name from the style.css header.
  */
-function get_theme_name(): string {
+function wake_get_theme_name(): string {
 	return (string) wp_get_theme()->get( 'Name' );
 }
 
@@ -97,7 +95,7 @@ function get_theme_name(): string {
  *
  * @return string WordPress capability slug.
  */
-function get_onboarding_capability(): string {
+function wake_get_onboarding_capability(): string {
 	/**
 	 * Filters the capability required to see the Get-started page and welcome notice.
 	 *
@@ -108,7 +106,7 @@ function get_onboarding_capability(): string {
 	 *
 	 * @param string $capability WordPress capability slug.
 	 */
-	return (string) apply_filters( 'colophon/onboarding_capability', 'edit_theme_options' );
+	return (string) apply_filters( WAKE_SLUG . '/onboarding_capability', 'edit_theme_options' ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 }
 
 /**
@@ -119,77 +117,76 @@ function get_onboarding_capability(): string {
  *
  * @param string $hook_suffix The current admin page's hook suffix.
  */
-function enqueue_get_started_assets( string $hook_suffix ): void {
-	if ( 'appearance_page_' . GET_STARTED_SLUG !== $hook_suffix ) {
+function wake_enqueue_get_started_assets( string $hook_suffix ): void {
+	if ( 'appearance_page_' . WAKE_GET_STARTED_SLUG !== $hook_suffix ) {
 		return;
 	}
 
-	$sheet = DIR . '/assets/css/admin-get-started.css';
+	$sheet = WAKE_DIR . '/assets/css/admin-get-started.css';
 	if ( ! file_exists( $sheet ) ) {
 		return;
 	}
 
 	wp_enqueue_style(
-		SLUG . '-get-started',
-		URI . '/assets/css/admin-get-started.css',
+		WAKE_SLUG . '-get-started',
+		WAKE_URI . '/assets/css/admin-get-started.css',
 		array(),
 		(string) filemtime( $sheet )
 	);
 }
-add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\enqueue_get_started_assets' );
+add_action( 'admin_enqueue_scripts', 'wake_enqueue_get_started_assets' );
 
 /**
  * Show the dismissible welcome notice while the flag is set.
  *
- * Shown only to users who pass get_onboarding_capability(), and never on the Get-started
+ * Shown only to users who pass wake_get_onboarding_capability(), and never on the Get-started
  * page itself. A standard `notice is-dismissible`, so core renders the close
  * button and handles keyboard dismissal; the persistent server-side dismissal
  * rides the nonce link.
  */
-function render_welcome_notice(): void {
-	if ( ! current_user_can( get_onboarding_capability() ) ) {
+function wake_render_welcome_notice(): void {
+	if ( ! current_user_can( wake_get_onboarding_capability() ) ) {
 		return;
 	}
 
-	if ( '1' !== get_option( WELCOME_FLAG ) ) {
+	if ( '1' !== get_option( WAKE_WELCOME_FLAG ) ) {
 		return;
 	}
 
 	$screen = get_current_screen();
-	if ( $screen instanceof \WP_Screen && 'appearance_page_' . GET_STARTED_SLUG === $screen->id ) {
+	if ( $screen instanceof \WP_Screen && 'appearance_page_' . WAKE_GET_STARTED_SLUG === $screen->id ) {
 		return;
 	}
 
-	$page_url  = admin_url( 'themes.php?page=' . GET_STARTED_SLUG );
-	$theme     = get_theme_name();
-	$dismiss   = wp_nonce_url( admin_url( 'admin-post.php?action=' . DISMISS_ACTION ), DISMISS_ACTION );
+	$page_url = admin_url( 'themes.php?page=' . WAKE_GET_STARTED_SLUG );
+	$theme    = wake_get_theme_name();
+	$dismiss  = wp_nonce_url( admin_url( 'admin-post.php?action=' . WAKE_DISMISS_ACTION ), WAKE_DISMISS_ACTION );
 	?>
-	<div class="notice notice-info is-dismissible colophon-welcome-notice">
+	<div class="notice notice-info is-dismissible wake-welcome-notice">
 		<p>
 			<strong>
 				<?php
 				/* translators: %s: theme name. */
-				printf( esc_html__( 'Welcome to %s.', 'colophon' ), esc_html( $theme ) );
+				printf( esc_html__( 'Welcome to %s.', 'wake' ), esc_html( $theme ) );
 				?>
 			</strong>
-			<?php esc_html_e( 'Thanks for giving it a home. A few small steps will have your site reading the way it should.', 'colophon' ); ?>
+			<?php esc_html_e( 'Thanks for giving it a home. A few small steps will have your site reading the way it should.', 'wake' ); ?>
 		</p>
 		<p>
 			<a class="button button-primary" href="<?php echo esc_url( $page_url ); ?>">
 				<?php
 				/* translators: %s: theme name. */
-				printf( esc_html__( 'Set up %s', 'colophon' ), esc_html( $theme ) );
-				?> <span aria-hidden="true">→</span><?php
+				printf( esc_html__( 'Set up %s →', 'wake' ), esc_html( $theme ) );
 				?>
 			</a>
-			<a class="colophon-welcome-notice__dismiss" href="<?php echo esc_url( $dismiss ); ?>">
-				<?php esc_html_e( 'Dismiss', 'colophon' ); ?>
+			<a class="wake-welcome-notice__dismiss" href="<?php echo esc_url( $dismiss ); ?>">
+				<?php esc_html_e( 'Dismiss', 'wake' ); ?>
 			</a>
 		</p>
 	</div>
 	<?php
 }
-add_action( 'admin_notices', __NAMESPACE__ . '\\render_welcome_notice' );
+add_action( 'admin_notices', 'wake_render_welcome_notice' );
 
 /**
  * Handle the persistent dismissal of the welcome notice.
@@ -197,79 +194,87 @@ add_action( 'admin_notices', __NAMESPACE__ . '\\render_welcome_notice' );
  * State-changing request, so the order holds: capability check, nonce, then the
  * mutation. Redirects back to the dashboard so a refresh does not replay it.
  */
-function handle_welcome_dismiss(): void {
-	if ( ! current_user_can( get_onboarding_capability() ) ) {
-		wp_die( esc_html__( 'You do not have permission to do that.', 'colophon' ) );
+function wake_handle_welcome_dismiss(): void {
+	if ( ! current_user_can( wake_get_onboarding_capability() ) ) {
+		wp_die( esc_html__( 'You do not have permission to do that.', 'wake' ) );
 	}
 
-	check_admin_referer( DISMISS_ACTION );
-	clear_welcome_notice();
+	check_admin_referer( WAKE_DISMISS_ACTION );
+	wake_clear_welcome_notice();
 	wp_safe_redirect( admin_url() );
 	exit;
 }
-add_action( 'admin_post_' . DISMISS_ACTION, __NAMESPACE__ . '\\handle_welcome_dismiss' );
+add_action( 'admin_post_' . WAKE_DISMISS_ACTION, 'wake_handle_welcome_dismiss' );
 
 /**
  * The Get-started page content.
  *
  * Core supplies a plain, honest default so the page is coherent out of the box.
- * A theme overrides any part of it through the `colophon/get_started_content`
+ * A theme overrides any part of it through the `WAKE_SLUG . '/get_started_content'`
  * filter in inc/skin.php — that is where each theme's voice lives, kept out of
  * this synced file.
  *
- * @return array{lead:string,steps:array<int,array{title:string,body:string}>,optimize:string[],credit:string,developers:array{text:string,url:string,label:string}} The page content.
+ * @return array{lead:string,steps:array<int,array{title:string,body:string}>,optimize:string[],developers:array{text:string,url:string,label:string}} The page content.
  */
-function get_started_content(): array {
-	$theme = get_theme_name();
+function wake_get_started_content(): array {
+	$theme = wake_get_theme_name();
 
 	$default = array(
-		'lead'     => sprintf(
+		'lead'       => sprintf(
 			/* translators: %s: theme name. */
-			__( '%s is a free, full-site-editing theme built to get out of the way of your content. Here is how to make it yours.', 'colophon' ),
+			esc_html__( '%s is a free, full-site-editing theme built to get out of the way of your content. Here is how to make it yours.', 'wake' ),
 			$theme
 		),
-		'steps'    => array(
+		/*
+		 * Step titles, the developer-guide label, and the developer-guide text below
+		 * stay bare __() ON PURPOSE. Each is escaped with esc_html() at the point of
+		 * echo in wake_render_get_started_page() (the 'title' at the <strong>, the
+		 * 'label' inside the anchor, the 'text' as the sprintf format). Wrapping them
+		 * in esc_html__() here would escape the same string twice, so an apostrophe
+		 * would render on screen as a literal &#039;. Every other translated string in
+		 * this theme uses esc_html__(); these seven are the escape-at-output exceptions.
+		 */
+		'steps'      => array(
 			array(
-				'title' => __( 'Choose what people land on.', 'colophon' ),
-				'body'  => __( "A visitor's first second decides whether they stay. Set a static front page under Settings → Reading, and give your posts a page of their own.", 'colophon' ),
+				'title' => __( 'Choose what people land on.', 'wake' ),
+				'body'  => esc_html__( "A visitor's first second decides whether they stay. Set a static front page under Settings → Reading, and give your posts a page of their own.", 'wake' ),
 			),
 			array(
-				'title' => __( 'Give people a way around.', 'colophon' ),
-				'body'  => __( 'A site without a menu is a room without doors. Open the Site Editor, edit the header, and assign your menu to Primary Navigation.', 'colophon' ),
+				'title' => __( 'Give people a way around.', 'wake' ),
+				'body'  => esc_html__( 'A site without a menu is a room without doors. Open the Site Editor, edit the header, and assign your menu to Primary Navigation.', 'wake' ),
 			),
 			array(
-				'title' => __( 'Start from a pattern, not a blank page.', 'colophon' ),
-				'body'  => __( 'In any page or post, open the block inserter, choose Patterns, and find this theme\'s group. Drop one in and change the words.', 'colophon' ),
+				'title' => __( 'Start from a pattern, not a blank page.', 'wake' ),
+				'body'  => esc_html__( 'In any page or post, open the block inserter, choose Patterns, and find this theme\'s group. Drop one in and change the words.', 'wake' ),
 			),
 			array(
-				'title' => __( 'Make it sound like you.', 'colophon' ),
-				'body'  => __( 'In the Site Editor, open Styles to change colours and typefaces. Nothing you do there can break the theme — experiment freely.', 'colophon' ),
+				'title' => __( 'Make it sound like you.', 'wake' ),
+				'body'  => esc_html__( 'In the Site Editor, open Styles to change colours and typefaces. Nothing you do there can break the theme — experiment freely.', 'wake' ),
 			),
 		),
-		'optimize' => array(
-			__( "This theme is already fast by design: zero front-end JavaScript, self-hosted fonts that don't phone home, and tuning against the Core Web Vitals search engines actually measure.", 'colophon' ),
-			__( 'It meets WCAG 2.2 AA — real focus outlines, a skip link, sensible heading order, and motion that respects a reduce-motion setting. Keep your own copy and images to that bar and the whole site stays welcoming.', 'colophon' ),
+		'optimize'   => array(
+			esc_html__( "This theme is fast by design: reading is JavaScript-free (only the breaking-news dismiss control ships a small script), self-hosted fonts that don't phone home, and tuning against the Core Web Vitals search engines actually measure.", 'wake' ),
+			esc_html__( 'It is built to WCAG 2.2 AA guidance — real focus outlines, a skip link, sensible heading order, and motion that respects a reduce-motion setting. Keep your own copy and images to that bar and the whole site stays welcoming.', 'wake' ),
 		),
-		'credit'   => __( "There's a small credit in your footer. It's a thank-you, not a tax — remove it in two clicks in the Site Editor → Footer, or filter it out in code. No hard feelings either way.", 'colophon' ),
 		'developers' => array(
 			/* translators: %s: linked developer-guide anchor. */
-			'text'  => __( 'This theme is built on Colophon, a small documented core meant to be reused. The %s walks through how to build your own theme on it.', 'colophon' ),
-			'url'   => 'https://thisismyurl.com/colophon',
-			'label' => __( 'developer guide', 'colophon' ),
+			'text'  => __( 'This theme is built on Colophon, a small documented core meant to be reused. The %s walks through how to build your own theme on it.', 'wake' ),
+			'url'   => apply_filters( WAKE_SLUG . '/developer_guide_url', 'https://thisismyurl.com/wake/' ), // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
+			'label' => __( 'developer guide', 'wake' ),
 		),
 	);
 
 	/**
 	 * Filters the Get-started page content.
 	 *
-	 * A theme replaces any key with its own voice. See get_started_content() for
+	 * A theme replaces any key with its own voice. See wake_get_started_content() for
 	 * the array shape.
 	 *
 	 * @since 1.0.0
 	 *
 	 * @param array $default The default page content.
 	 */
-	return (array) apply_filters( 'colophon/get_started_content', $default );
+	return (array) apply_filters( WAKE_SLUG . '/get_started_content', $default ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 }
 
 /**
@@ -278,38 +283,44 @@ function get_started_content(): array {
  * One <h1>, then <h2> sections in reading order. All dynamic output is escaped
  * at the point of echo. Reaching this page clears the welcome flag.
  */
-function render_get_started_page(): void {
-	if ( ! current_user_can( get_onboarding_capability() ) ) {
+function wake_render_get_started_page(): void {
+	if ( ! current_user_can( wake_get_onboarding_capability() ) ) {
 		return;
 	}
 
-	clear_welcome_notice();
+	wake_clear_welcome_notice();
 
-	$theme   = get_theme_name();
-	$content = get_started_content();
+	$theme   = wake_get_theme_name();
+	$content = wake_get_started_content();
 
 	// Step / lead / optimize / credit bodies may carry inline links to admin
 	// destinations (a theme links its setup steps to Settings, the Site Editor,
 	// and so on), so they render through a link-only kses allow-list rather than
 	// esc_html. Step titles stay plain text.
-	$cl_inline = array( 'a' => array( 'href' => array(), 'target' => array(), 'rel' => array() ) );
+	$cl_inline = array(
+		'a' => array(
+			'href'   => array(),
+			'target' => array(),
+			'rel'    => array(),
+		),
+	);
 	?>
-	<div class="wrap colophon-get-started">
+	<div class="wrap wake-get-started">
 
 		<h1>
 			<?php
 			/* translators: %s: theme name. */
-			printf( esc_html__( '%s: Get started', 'colophon' ), esc_html( $theme ) );
+			printf( esc_html__( '%s: Get started', 'wake' ), esc_html( $theme ) );
 			?>
 		</h1>
 
 		<?php if ( ! empty( $content['lead'] ) ) : ?>
-			<p class="colophon-get-started__lead"><?php echo wp_kses( $content['lead'], $cl_inline ); ?></p>
+			<p class="wake-get-started__lead"><?php echo wp_kses( $content['lead'], $cl_inline ); ?></p>
 		<?php endif; ?>
 
 		<?php if ( ! empty( $content['steps'] ) && is_array( $content['steps'] ) ) : ?>
-			<h2><?php esc_html_e( 'Set up', 'colophon' ); ?></h2>
-			<ol class="colophon-get-started__steps">
+			<h2><?php esc_html_e( 'Set up', 'wake' ); ?></h2>
+			<ol class="wake-get-started__steps">
 				<?php foreach ( $content['steps'] as $step ) : ?>
 					<li>
 						<strong><?php echo esc_html( $step['title'] ?? '' ); ?></strong>
@@ -320,27 +331,33 @@ function render_get_started_page(): void {
 		<?php endif; ?>
 
 		<?php if ( ! empty( $content['optimize'] ) && is_array( $content['optimize'] ) ) : ?>
-			<h2><?php esc_html_e( 'Optimize', 'colophon' ); ?></h2>
+			<h2><?php esc_html_e( 'Optimize', 'wake' ); ?></h2>
 			<?php foreach ( $content['optimize'] as $para ) : ?>
 				<p><?php echo wp_kses( $para, $cl_inline ); ?></p>
 			<?php endforeach; ?>
 		<?php endif; ?>
 
-		<?php if ( ! empty( $content['credit'] ) ) : ?>
-			<h2><?php esc_html_e( 'The footer credit', 'colophon' ); ?></h2>
-			<p><?php echo wp_kses( $content['credit'], $cl_inline ); ?></p>
-		<?php endif; ?>
-
 		<?php if ( ! empty( $content['developers']['text'] ) ) : ?>
-			<h2><?php esc_html_e( 'For developers', 'colophon' ); ?></h2>
+			<h2><?php esc_html_e( 'For developers', 'wake' ); ?></h2>
 			<p>
 				<?php
 				$dev  = $content['developers'];
 				$link = '<a href="' . esc_url( $dev['url'] ?? '' ) . '" target="_blank" rel="noopener noreferrer">'
 					. esc_html( $dev['label'] ?? '' ) . '</a>';
-				// The text carries one %s for the link. wp_kses preserves the
-				// placeholder for sprintf substitution and allows the anchor built above.
-				printf( wp_kses( $dev['text'], $cl_inline ), $link );
+				// sprintf builds the composed string; wp_kses then sanitizes the
+				// result against the minimal anchor allow-list. Both the format
+				// string and the link are escaped before composition, and the
+				// composed output is filtered after — belt-and-braces, no suppression.
+				echo wp_kses(
+					sprintf( esc_html( $dev['text'] ?? '' ), $link ),
+					array(
+						'a' => array(
+							'href'   => array(),
+							'target' => array(),
+							'rel'    => array(),
+						),
+					)
+				);
 				?>
 			</p>
 		<?php endif; ?>

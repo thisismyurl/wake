@@ -8,14 +8,8 @@
  * Get-started copy you want to override. The core inc/ files stay portable
  * because none of this leaks into them — that's the whole point of the split.
  *
- * When the CLI generates a theme, it copies this file and rewrites the
- * `Colophon`/`colophon`/`cl-` tokens to the new theme's, then leaves it alone
- * forever after. Edit it freely.
- *
- * @package colophon
+ * @package wake
  */
-
-namespace Colophon;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -25,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
  * Hooked on after_setup_theme (not the core setup() function) so a re-skin
  * changes crops here without touching inc/setup.php.
  */
-function skin_image_sizes(): void {
+function wake_skin_image_sizes(): void {
 	add_image_size( 'cl-wide', 1600, 900, true ); // 16:9 wide/hero crop.
 	add_image_size( 'cl-card', 720, 480, true );  // 3:2 card crop.
 
@@ -37,23 +31,23 @@ function skin_image_sizes(): void {
 	 *
 	 * @since 1.6150
 	 */
-	do_action( 'colophon/register_image_sizes' );
+	do_action( WAKE_SLUG . '/register_image_sizes' );
 }
-add_action( 'after_setup_theme', __NAMESPACE__ . '\\skin_image_sizes' );
+add_action( 'after_setup_theme', 'wake_skin_image_sizes' );
 
 /**
  * Register this theme's block styles (the is-style-{name} options in the editor).
  *
- * Colophon's defaults are deliberately few — a generic card group and an
- * eyebrow paragraph. A real theme adds the styles its patterns lean on. The CSS
- * for each lives in assets/css/skin.css @layer components.
+ * The defaults are deliberately few — a generic card group and an eyebrow
+ * paragraph. A real skin adds the styles its patterns lean on. The CSS for
+ * each lives in assets/css/skin.css @layer components.
  */
-function skin_block_styles(): void {
+function wake_skin_block_styles(): void {
 	register_block_style(
 		'core/group',
 		array(
 			'name'  => 'cl-card',
-			'label' => __( 'Card', 'colophon' ),
+			'label' => __( 'Card', 'wake' ),
 		)
 	);
 
@@ -61,7 +55,7 @@ function skin_block_styles(): void {
 		'core/paragraph',
 		array(
 			'name'  => 'cl-eyebrow',
-			'label' => __( 'Eyebrow', 'colophon' ),
+			'label' => __( 'Eyebrow', 'wake' ),
 		)
 	);
 
@@ -73,22 +67,23 @@ function skin_block_styles(): void {
 	 *
 	 * @since 1.6150
 	 */
-	do_action( 'colophon/register_block_styles' );
+	do_action( WAKE_SLUG . '/register_block_styles' );
 }
-add_action( 'init', __NAMESPACE__ . '\\skin_block_styles' );
+add_action( 'init', 'wake_skin_block_styles' );
 
 /**
  * Register this theme's pattern categories.
  *
- * Prefixed with SLUG so a theme installed beside its siblings never collides.
- * Pattern files in /patterns/*.php declare which category they slot into.
+ * Prefixed with the theme's own slug so a theme installed beside its
+ * siblings never collides. Pattern files in /patterns/*.php declare which
+ * category they slot into.
  */
-function skin_pattern_categories(): void {
+function wake_skin_pattern_categories(): void {
 	register_block_pattern_category(
-		SLUG . '-sections',
+		WAKE_SLUG . '-sections',
 		array(
-			'label'       => __( 'Colophon: Sections', 'colophon' ),
-			'description' => __( 'Section patterns for building pages.', 'colophon' ),
+			'label'       => __( 'Wake: Sections', 'wake' ),
+			'description' => __( 'Section patterns for building pages.', 'wake' ),
 		)
 	);
 
@@ -100,21 +95,9 @@ function skin_pattern_categories(): void {
 	 *
 	 * @since 1.6150
 	 */
-	do_action( 'colophon/register_pattern_categories' );
+	do_action( WAKE_SLUG . '/register_pattern_categories' );
 }
-add_action( 'init', __NAMESPACE__ . '\\skin_pattern_categories' );
-
-/*
- * Opt this theme into GitHub-release self-updates from its own repo.
- *
- * The updater (inc/github-updater.php) is dormant until this filter returns a
- * non-empty 'owner/name'. Each theme points it at its own repo here, in the one
- * file the CLI never overwrites. Remove this filter (or delete the updater file)
- * before a WordPress.org submission — .org supplies updates there.
- */
-add_filter( 'colophon/github_updater_repo', static function () {
-	return 'thisismyurl/thisismyurl-colophon';
-} );
+add_action( 'init', 'wake_skin_pattern_categories' );
 
 /*
  * Preload the LCP font — EB Garamond is the display serif used for headings,
@@ -123,7 +106,7 @@ add_filter( 'colophon/github_updater_repo', static function () {
  * the browser fetches the latin-ext file separately and only when the page
  * content actually requires those glyphs.
  */
-add_filter( 'colophon/preload_fonts', static function ( array $fonts ): array {
+add_filter( WAKE_SLUG . '/preload_fonts', static function ( array $fonts ): array {
 	$fonts[] = 'assets/fonts/eb-garamond/eb-garamond-normal.woff2';
 	return $fonts;
 } );
