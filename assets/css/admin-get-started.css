@@ -4,42 +4,49 @@
    Loaded only on its own admin screen (inc/admin.php gates the enqueue on the
    page's hook suffix), so nothing here leaks into the rest of wp-admin. Kept
    intentionally calm — it should feel like part of WordPress, not a takeover.
+
+   The selectors below target .wake-get-started — the wrapper class
+   inc/admin.php actually renders (`<div class="wrap wake-get-started">`).
+   This file previously targeted .colophon-get-started, a class nothing in
+   this theme outputs; every rule in it was dead on arrival. Caught during
+   the Wake re-skin — worth a note here so the next re-skin greps for its
+   own slug instead of assuming the selectors already match.
    ===================================================================== */
 
-.colophon-get-started {
+.wake-get-started {
 	max-width: 760px;
 }
 
-.colophon-get-started__lead {
+.wake-get-started__lead {
 	font-size: 15px;
 	line-height: 1.7;
 	max-width: 60ch;
 	color: #2c3338;
 }
 
-.colophon-get-started h2 {
+.wake-get-started h2 {
 	margin-top: 2rem;
 	padding-top: 1.25rem;
 	border-top: 1px solid #dcdcde;
 }
 
-.colophon-get-started__steps {
+.wake-get-started__steps {
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	counter-reset: cl-step;
+	counter-reset: wk-step;
 }
 
-.colophon-get-started__steps li {
+.wake-get-started__steps li {
 	position: relative;
 	padding: 0 0 1rem 2.5rem;
 	max-width: 60ch;
 	line-height: 1.6;
 }
 
-.colophon-get-started__steps li::before {
-	counter-increment: cl-step;
-	content: counter(cl-step);
+.wake-get-started__steps li::before {
+	counter-increment: wk-step;
+	content: counter(wk-step);
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -48,15 +55,14 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #1d2327;
+	background: #1d6fc4;
 	color: #fff;
 	font-weight: 600;
 	font-size: 13px;
 	border-radius: 50%;
 }
 
-.colophon-get-started__steps strong {
+.wake-get-started__steps strong {
 	display: block;
 	margin-bottom: 0.15rem;
 }
-

@@ -6,114 +6,106 @@ Requires PHP: 8.1
 Stable tag: 1.6162.1430
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Tags: blog, one-column, two-columns, full-site-editing, block-patterns, editor-style, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, rtl-language-support, wide-blocks, threaded-comments
+Tags: full-site-editing, block-patterns, editor-style, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, rtl-language-support, wide-blocks, one-column, two-columns, threaded-comments, e-commerce
 
 Wake WordPress Theme, Copyright 2026 Christopher Ross
 Wake is distributed under the terms of the GNU GPL v2 or later.
 
-A literary full-site-editing theme — warm type, classical proportions, zero front-end JavaScript — and the documented starter core behind the This Is My URL free theme line.
+A full-site-editing theme for marinas, boat and yacht charter operators, sailing schools, and marina management companies — built on the Colophon starter core.
 
 == Description ==
 
-Colophon is for people who take reading seriously.
+Wake is built for the people who run a working waterfront, not for a stock photo of one.
 
-The type is EB Garamond for headings and Spectral for prose — a classical-revival display serif paired with a screen-optimised old-style that reads comfortably at body size. The palette runs warm: stone whites, ink browns, and a single forest-green accent. The layout is reading-first, the proportions are classical, and nothing competes with the words. Literary details — drop caps, pull-quote bracket rules, old-style numerals, the paragraph indent convention from printed literary magazines — are included and documented. Remove any of them in two minutes by editing skin.css.
+Every marina site in the directory reaches for the same three components — a hero photo, a feature grid, a contact form — and stops there. Wake goes one step further: it ships a **slip-status board**, a berth-availability pattern styled on the whiteboard behind the dock office window. Slip number, vessel class, length overall, and a colour-coded status pill — Available, Reserved, Waitlist — laid out the way a harbormaster already tracks it on paper. No other WordPress theme in the directory ships this, because it isn't a hospitality concept; it's a working-waterfront one.
 
-It is also technically exacting: zero front-end JavaScript, self-hosted OFL fonts that do not phone home, WCAG 2.2 AA accessibility scaffolding, Core Web Vitals tuning, and a six-layer CSS cascade you can extend predictably. Every template is editable in the Site Editor. A WP-CLI command gives you version, info, and cache-flush without touching the admin.
+The type pairing carries the rest of the personality: DM Sans, a geometric grotesque, sets the headlines and the UI in bold, tracked caps; IBM Plex Sans — a technical, instrument-panel humanist sans — carries the reading and the rate sheet. Both are self-hosted OFL fonts; neither phones home. The palette runs deep harbor teal into near-black, with one working blue accent used sparingly and two functional status colours reserved for the slip board alone.
 
-And it is the shared core behind a small family of free WordPress themes. Each theme in the line is copied from Colophon and re-skinned — not inherited. There is no parent/child coupling, no runtime dependency, and no Pro tier behind a gate. A theme built on Colophon is a standalone, self-contained thing you can install, audit, and trust without dragging a parent along. GUIDE.md, which ships inside the theme folder, explains how to build your own.
+Wake also carries a dock-signage notice style — the amber hazard-stripe paragraph a marina already posts for a fuel-dock closure or a storm advisory — so an editor can flag something the way the dock already does, without reaching for a generic "alert box."
+
+It inherits everything the Colophon core provides: zero front-end JavaScript, self-hosted OFL fonts, WCAG 2.2 AA accessibility scaffolding, a six-layer CSS cascade, and WooCommerce compatibility for a marina that sells chandlery goods or gift cards online.
 
 * Full-site editing — every template and template part editable in the Site Editor.
-* EB Garamond (display) and Spectral (body) — self-hosted OFL fonts, zero third-party requests.
-* Literary CSS — drop caps, pull-quote rules, old-style numerals, common ligatures, paragraph indent convention. Each feature is isolated and removable.
+* Slip Status Board — Wake's signature pattern, a colour-coded berth-availability board (see wake/slip-status-board).
+* DM Sans (headings/UI) and IBM Plex Sans (body/data) — self-hosted OFL fonts, zero third-party requests.
+* Dock-signage notice style (is-style-wk-notice) — a hazard-stripe paragraph for closures and advisories.
+* Seven block patterns: a harbor hero, the service intro grid, the slip board, a priced services list, an about split, a testimonial & trust section, and a reserve CTA band.
 * Zero front-end JavaScript, zero plugin dependencies.
 * WCAG 2.2 AA accessibility — skip link, visible focus, sensible heading order, prefers-reduced-motion honoured globally.
 * Core Web Vitals discipline — self-hosted fonts, font-display: swap, LCP font preloaded, no render-blocking requests.
 * Six-layer CSS cascade (reset, base, layout, components, blocks, utilities).
-* WP-CLI — wp colophon version, info, flush.
-* Filterable hooks at every extension point — content_width, skip_link_target, skip_link_label, register_nav_menus, copyright_date_format, register_image_sizes, register_block_styles, register_pattern_categories, onboarding_capability, footer_credit, and more.
+* WP-CLI — wp wake version, info, flush.
+* Filterable hooks at every extension point — content_width, skip_link_target, skip_link_label, register_nav_menus, copyright_date_format, register_image_sizes, register_block_styles, register_pattern_categories, onboarding_capability, get_started_content, and more.
+* WooCommerce-compatible — for a marina shop selling chandlery goods, apparel, or gift cards.
 * Translation-ready — every user-facing string is internationalised.
 * RTL-ready through CSS logical properties.
 
 == Setting up your site ==
 
-Three touchpoints get you from an installed theme to a reading site:
+Three touchpoints get you from an installed theme to a working marina site:
 
-1. Settings > Reading. Choose a static front page and give your posts their own page. This is the most important step — without it, your home page is a raw post stream.
+1. Settings > Reading. Choose a static front page — Wake's front-page.html template is built around the harbor hero and the slip board. Without a static front page assigned, your home page is a raw post stream.
 
-2. Appearance > Editor. Open Styles to see the warm palette and type choices. Use the template editor to adjust any layout. Nothing you do in the Editor is permanent until you click Save, and nothing breaks the theme from underneath.
+2. Appearance > Editor. Open the Footer template part and update the dock office hours, VHF channels, phone number, and address. Open Styles to see the harbor palette and type choices.
 
-3. Posts > Add New. Write something. The theme gets out of the way.
+3. Insert the Slip Status Board pattern on any page and edit the rows to match your own berths. It ships with five realistic demo rows; replace the slip numbers, vessel classes, and statuses with your own.
 
 == Frequently Asked Questions ==
 
 = Does this theme contact any third-party servers? =
 
-No. EB Garamond and Spectral are bundled as self-hosted WOFF2 files inside the theme folder. No fonts load from Google Fonts, Adobe Fonts, or any other external service. No analytics or tracking scripts are included.
+No. DM Sans and IBM Plex Sans are bundled as self-hosted WOFF2 files inside the theme folder. No fonts load from Google Fonts, Adobe Fonts, or any other external service. No analytics or tracking scripts are included.
+
+= Is the slip-status board connected to a real booking system? =
+
+Out of the box, no — it ships as editable demo content you update by hand, the same as any other pattern. A developer who wants to drive it from post meta can bind the status paragraph to the `wake/slip-status` block-bindings source registered in inc/skin.php, reading a `_wake_slip_status` meta key. No companion plugin is required either way.
 
 = Is this related to other themes in a line? =
 
-Yes. Masthead, Margin, and Quillwork are each built on the same Colophon core: copied and re-skinned with their own type families, palettes, and template personalities. Each theme is standalone; installing Colophon is not required to use them. GUIDE.md, included in the theme folder, describes how to build your own theme in the same way.
+Yes. Masthead, Margin, Quillwork, Ligature, and Gutter are each built on the same Colophon core: copied and re-skinned with their own type families, palettes, and template personalities. Each theme is standalone; installing Colophon is not required to use them.
 
 = Can I add a different typeface? =
 
-Yes. Add your font files to assets/fonts/, declare them in theme.json under settings.typography.fontFamilies, and assign them in Styles inside the Site Editor. The theme ships with EB Garamond and Spectral; nothing prevents you from adding others alongside them or replacing them entirely.
-
-= How do I remove the literary paragraph indent convention? =
-
-Open assets/css/skin.css and delete the three rules in the "Paragraph rhythm" block (the p+p text-indent section). The comment marks exactly where they are.
+Yes. Add your font files to assets/fonts/, declare them in theme.json under settings.typography.fontFamilies, and assign them in Styles inside the Site Editor. The theme ships with DM Sans and IBM Plex Sans; nothing prevents you from adding others alongside them or replacing them entirely.
 
 = How do I remove the footer credit? =
 
-Two ways. In the Site Editor, open the Footer template part and delete the credit paragraph — takes about 30 seconds. Or, in a child theme or custom plugin, add:
-
-  add_filter( 'colophon/footer_credit', '__return_empty_string' );
-
-Either way. No hard feelings.
+In the Site Editor, open the Footer template part and delete the "Built with Wake" paragraph — takes about 30 seconds. It carries no binding and no filter; it is one static line, on purpose.
 
 == Installation ==
 
 1. In your WordPress admin, go to Appearance > Themes > Add New.
-2. Click Upload Theme, choose the Colophon .zip, and click Install Now.
+2. Click Upload Theme, choose the Wake .zip, and click Install Now.
 3. Click Activate.
-4. Visit Appearance > Colophon: Get started for setup guidance.
-
-To build your own theme on Colophon, see GUIDE.md in the theme folder.
+4. Visit Appearance > Wake: Get started for setup guidance.
 
 == Changelog ==
 
-= 1.6150 =
-* Added EB Garamond and Spectral as self-hosted OFL fonts. Zero Google Fonts requests.
-* New warm literary palette: stone whites (#faf9f6 paper, #f2f0eb paper-soft), ink browns (#1c1917 ink, #433e3b ink-soft, #6b6460 ink-muted), forest-green accent (#3d6b5e).
-* Literary CSS: drop caps, pull-quote bracket rules, OpenType features (common ligatures, old-style numerals), paragraph text-indent convention, text-wrap: pretty, hanging-punctuation. Each feature isolated and removable.
-* LCP font preload wired up for EB Garamond normal subset.
-* WP-CLI: wp colophon version / info / flush commands.
-* New templates: author.html (author archive), attachment.html (media attachment), singular.html (showpiece post variant).
-* New hooks: colophon/content_width, colophon/skip_link_target, colophon/skip_link_label, colophon/register_nav_menus, colophon/copyright_date_format, colophon/register_image_sizes, colophon/register_block_styles, colophon/register_pattern_categories, colophon/onboarding_capability.
-* admin.php: get_onboarding_capability() helper centralises the capability check. All four gate points now use it; one filter changes all four at once.
-* New xs font size (0.75rem) in type scale.
-* editor-style.css expanded: OpenType features, pull-quote treatment, eyebrow style — all mirrored from the front end.
-
-= 1.6148 =
-* Updated Theme URI to https://thisismyurl.com/colophon.
-* Removed external video iframes from the admin onboarding page for WordPress.org compliance.
-
-= 1.6147 =
-* Unified versioning to the x.Yddd calendar scheme used across the This Is My URL family.
-* Confirmed compatibility with WordPress 7.0.
-
-= 1.0.0 =
-* Initial release — the shared starter core.
+= 1.6162.1430 =
+* Initial public release.
+* Marina/marine-services skin on the Colophon core: DM Sans + IBM Plex Sans, harbor-teal palette, twelve WCAG-verified colour tokens including two functional status colours.
+* Slip Status Board pattern (wake/slip-status-board) — the theme's signature feature, with a companion wake/slip-status block-bindings source for sites that want to drive it from post meta.
+* Dock-signage notice block style (is-style-wk-notice) and icon-badge group style (is-style-wk-badge-icon).
+* Seven patterns: harbor-hero, service-intro-grid, slip-status-board, services-list, about-split, testimonial-trust, reserve-cta-band.
+* Footer template part rebuilt with dock-office hours, VHF channel details, and address — footer binding corrected to the theme's own wake/copyright source.
+* Get-started admin page copy overridden for Wake's own audience and zero-JavaScript claim.
 
 == Copyright ==
 
 Wake WordPress Theme, (C) 2026 Christopher Ross.
 Wake is distributed under the terms of the GNU General Public License v2 or later.
 
-EB Garamond, (C) 2017 The EB Garamond Project Authors.
-EB Garamond is distributed under the SIL Open Font License 1.1.
-https://github.com/octaviopardo/EBGaramond12
+DM Sans, (C) 2014 The DM Sans Project Authors (https://github.com/googlefonts/dm-fonts).
+DM Sans is distributed under the SIL Open Font License 1.1.
 
-Spectral, (C) 2017 The Spectral Project Authors (Production Type).
-Spectral is distributed under the SIL Open Font License 1.1.
-https://github.com/productiontype/Spectral
+IBM Plex Sans, (C) 2017 IBM Corp., with Reserved Font Name "Plex".
+IBM Plex Sans is distributed under the SIL Open Font License 1.1.
+https://github.com/IBM/plex
+
+"Aerial view of a marina" (assets/images/wake-marina-hero.jpg), photographer unattributed on source, via Wikimedia Commons.
+Licensed CC0 1.0 Universal (public domain dedication).
+https://commons.wikimedia.org/wiki/File:Aerial_view_of_a_marina_(Unsplash).jpg
+
+"221107 Brickyard Marina 70" (assets/images/wake-marina-docks.jpg), by Pokebanana (Wikimedia Commons).
+Licensed CC BY-SA 4.0.
+https://commons.wikimedia.org/wiki/File:221107_Brickyard_Marina_70.jpg

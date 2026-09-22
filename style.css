@@ -3,7 +3,7 @@ Theme Name:         Wake
 Theme URI:          https://thisismyurl.com/wake/
 Author:             Christopher Ross
 Author URI:         https://thisismyurl.com/
-Description:        The shared starter core behind the This Is My URL free theme line. A deliberately plain, technically exacting full-site-editing base built to be copied and re-skinned — not inherited. Zero front-end JavaScript, self-hostable OFL fonts, WCAG 2.2 AA accessibility scaffolding, a six-layer CSS cascade contract, and a one-file re-prefixing point. The bones; bring your own skin.
+Description:        A full-site-editing theme for marinas, boat and yacht charter operators, sailing schools, and marina management companies. Wake ships a slip-status board — a berth-availability pattern styled on the whiteboard behind every dock office window, colour-coded and readable at a glance — alongside a harbor-toned hero, a priced services list, and dock-signage notice styling. DM Sans carries the headings; IBM Plex Sans carries the reading and the rate sheet. Self-hosted OFL fonts, zero front-end JavaScript, WCAG 2.2 AA.
 Version:            1.6162.1430
 Requires at least:  7.0
 Tested up to:       7.1
@@ -11,7 +11,7 @@ Requires PHP:       8.1
 License:            GNU General Public License v2 or later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:        wake
-Tags:               blog, one-column, two-columns, full-site-editing, block-patterns, editor-style, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, rtl-language-support, wide-blocks, threaded-comments
+Tags:               full-site-editing, block-patterns, editor-style, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, rtl-language-support, wide-blocks, one-column, two-columns, threaded-comments, e-commerce
 
 This is the theme HEADER ONLY. Colophon's real styles are enqueued in cascade
 order from inc/assets.php: assets/css/core/* (synced, portable) then

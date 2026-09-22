@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Wake theme icon: anchor — used inside the service-intro-grid pattern's
+     circular icon badges. Line-art only, white stroke on transparent ground,
+     designed to sit over the .wk-badge circle painted in CSS behind the
+     <img>. External file per the SVG-in-content rule: never inline in
+     pattern markup. -->
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
+	<g fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+		<circle cx="32" cy="14" r="6" />
+		<line x1="32" y1="20" x2="32" y2="50" />
+		<line x1="20" y1="26" x2="44" y2="26" />
+		<path d="M14 34c0 10 8 18 18 18s18-8 18-18" />
+		<line x1="14" y1="30" x2="14" y2="38" />
+		<line x1="50" y1="30" x2="50" y2="38" />
+	</g>
+</svg>

@@ -1,32 +1,29 @@
 /* =====================================================================
-   [SKIN] skin.css — Colophon's own personality, and the worked example of
-   how a skin slots into the core cascade.
+   [SKIN] skin.css — Wake's personality: a marina/marine-services identity
+   built on deep harbor teal, one working blue, and the operational rhythm
+   of a working waterfront (slip boards, dock hours, hazard signage).
    ---------------------------------------------------------------------
-   Two jobs:
-   1. BIND the --cl-* semantic tokens that core/base.css references, drawing
-      from this theme's theme.json palette. These live in an UNLAYERED :root
-      block on purpose — unlayered declarations beat layered ones, so they
-      reliably override the neutral fallbacks core ships. (This is the same
-      cascade-layer rule that bites people when WordPress core's own unlayered
-      CSS wins; here we use it deliberately.)
-   2. POPULATE @layer layout / components / blocks / utilities — the four
-      skin layers in the order reset.css declared. The bones (reset, base) are
-      core; everything you see below is design, and it's yours to rewrite.
+   Two jobs, same as every Colophon skin:
+   1. BIND the --cl-* semantic tokens core/base.css references, drawing
+      from Wake's own theme.json palette. Unlayered on purpose — see
+      core/base.css's own header comment for why that ordering matters.
+   2. POPULATE @layer layout / components / blocks / utilities.
 
-   `colophon sync` never touches this file. Make it loud; make it yours.
+   `colophon sync` never touches this file.
    ===================================================================== */
 
 /* ---- 1. Token bindings (unlayered, so they win over core defaults) ---- */
 :root {
-	--cl-focus-ring:         var(--wp--preset--color--accent);
+	--cl-focus-ring:         var(--wp--preset--color--tide);
 	--cl-focus-ring-inverse: var(--wp--preset--color--paper);
-	--cl-skip-bg:            var(--wp--preset--color--ink);
+	--cl-skip-bg:            var(--wp--preset--color--harbor);
 	--cl-skip-fg:            var(--wp--preset--color--paper);
 
 	/* Skin runtime tokens — no theme.json equivalent exists for these. */
-	--cl-gutter:      clamp(1.25rem, 5vw, 3rem);
-	--cl-section-gap: clamp(3rem, 8vw, 6rem);
-	--cl-transition:  200ms cubic-bezier(0.4, 0, 0.2, 1);
+	--wk-gutter:      clamp(1.25rem, 5vw, 3rem);
+	--wk-section-gap: clamp(3rem, 8vw, 6rem);
+	--wk-transition:  200ms cubic-bezier(0.4, 0, 0.2, 1);
+	--wk-radius:      14px;
 }
 
 /* ---- 2. The skin layers ---- */
@@ -34,48 +31,51 @@
 
 	.cl-main { isolation: isolate; }
 
-	/* Sticky header: warm paper tint with frosted-glass blur.
-	   rgba(250, 249, 246) is paper (#faf9f6) at 95% opacity — pure white
-	   would fight the warm literary palette. z-index sits below core's
-	   mobile-nav overlay (100000) so the menu always paints over the header. */
+	/* Sticky header: paper ground, hairline seam. The header rides above the
+	   hero's dark gradient with a light, low-noise bar — the reference this
+	   design works from keeps its header transparent-over-photo, but a
+	   transparent header fails WCAG contrast the instant a page has no hero
+	   (an inner page, a search result). A solid paper bar holds up
+	   everywhere the hero doesn't. */
 	.cl-header {
 		position: sticky;
 		inset-block-start: 0;
 		z-index: 100;
-		background: rgba(250, 249, 246, 0.95);
+		background: rgba(251, 251, 249, 0.96);
 		-webkit-backdrop-filter: blur(8px);
 		backdrop-filter: blur(8px);
-		border-block-end: 1px solid var(--wp--preset--color--line, #dedad3);
+		border-block-end: 1px solid var(--wp--preset--color--line);
 	}
 
 	.cl-section {
-		padding-block: var(--cl-section-gap);
-		padding-inline: var(--cl-gutter);
+		padding-block: var(--wk-section-gap);
+		padding-inline: var(--wk-gutter);
 	}
-	.cl-section--soft { background: var(--wp--preset--color--paper-soft, #f2f0eb); }
-	.cl-section--ink {
-		background: var(--wp--preset--color--ink-deep, #0f0d0c);
-		color: var(--wp--preset--color--paper, #faf9f6);
+	.cl-section--soft { background: var(--wp--preset--color--paper-soft); }
+	.cl-section--harbor {
+		background: var(--wp--preset--color--harbor);
+		color: var(--wp--preset--color--paper);
 	}
 }
 
 @layer components {
 
-	/* Header nav: ink at rest, accent on interaction. Type comes from theme.json
-	   core/navigation; colour and underline behaviour are skin. */
+	/* ------------------------------------------------------------------ */
+	/* HEADER NAV                                                          */
+	/* ------------------------------------------------------------------ */
 	.cl-header .wp-block-navigation a {
-		color: var(--wp--preset--color--ink-soft, #433e3b);
+		color: var(--wp--preset--color--ink-soft);
 		text-decoration: none;
 	}
 	.cl-header .wp-block-navigation a:hover,
 	.cl-header .wp-block-navigation a:focus {
-		color: var(--wp--preset--color--accent, #3d6b5e);
+		color: var(--wp--preset--color--tide);
 	}
 
-	/* Footer sits on the ink-deep band; paper text clears contrast there. */
+	/* Footer sits on the harbor-dark band; paper text clears contrast there. */
 	.cl-footer .wp-block-navigation a,
 	.cl-footer__bottom a {
-		color: var(--wp--preset--color--paper, #faf9f6);
+		color: var(--wp--preset--color--paper);
 	}
 	.cl-footer .wp-block-navigation a:hover,
 	.cl-footer .wp-block-navigation a:focus,
@@ -85,8 +85,7 @@
 		text-underline-offset: 0.15em;
 	}
 
-	/* Tap targets reach the 44px floor: footer nav links and the mobile-nav
-	   open/close toggles. */
+	/* Tap targets reach the 44px floor. */
 	.cl-footer .wp-block-navigation a {
 		min-block-size: 44px;
 		display: inline-flex;
@@ -101,139 +100,299 @@
 		justify-content: center;
 	}
 
-	/* On dark bands the accent focus ring fails 3:1, so use the inverse token
-	   core left us for exactly this. */
-	.cl-section--ink :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible,
+	/* On dark bands the accent focus ring fails 3:1, so use the inverse token. */
+	.cl-section--harbor :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible,
+	.wk-hero :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible,
 	.cl-footer :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
-		outline-color: var(--cl-focus-ring-inverse, #faf9f6);
+		outline-color: var(--cl-focus-ring-inverse);
 	}
 
 	/* Card hover — a quiet lift, neutralised for reduced-motion by core/reset. */
 	.cl-card {
-		transition: transform var(--cl-transition);
+		background: var(--wp--preset--color--paper);
+		border: 1px solid var(--wp--preset--color--line);
+		border-radius: var(--wk-radius);
+		transition: transform var(--wk-transition), box-shadow var(--wk-transition);
 	}
 	.cl-card:hover,
 	.cl-card:focus-within {
 		transform: translateY(-4px);
+		box-shadow: 0 12px 28px -16px rgba(11, 46, 54, 0.35);
 	}
+
+	/* ------------------------------------------------------------------ */
+	/* HERO — full-bleed aerial marina photo, harbor-dusk gradient overlay  */
+	/* ------------------------------------------------------------------ */
+	/* The gradient is applied as a WordPress gradient preset (see the
+	   pattern markup) via ::before rather than a background-image stack, so
+	   the underlying <img> stays a real, indexable <img> element (good for
+	   image SEO and for users with images disabled) instead of a CSS
+	   background — and so the gradient can be swapped in the editor like any
+	   other gradient block. */
+	.wk-hero {
+		position: relative;
+		overflow: clip;
+		color: var(--wp--preset--color--paper);
+		min-height: clamp(32rem, 72vh, 48rem);
+		display: flex;
+		align-items: flex-end;
+	}
+	.wk-hero__media {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+	}
+	.wk-hero__media img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.wk-hero__overlay {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		/* Harbor Dusk gradient preset, restated here as a literal so the
+		   overlay works even if a user later removes the gradient preset —
+		   see theme.json settings.color.gradients "harbor-dusk". */
+		background: linear-gradient(165deg, rgba(11, 46, 54, 0.28) 0%, rgba(6, 15, 18, 0.94) 68%);
+	}
+	.wk-hero__content {
+		position: relative;
+		z-index: 2;
+		width: 100%;
+	}
+	.wk-hero__eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--wp--preset--spacing--2);
+		font-family: var(--wp--preset--font-family--dm-sans);
+		font-size: var(--wp--preset--font-size--sm);
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--wp--preset--color--paper);
+		opacity: 0.85;
+	}
+	.wk-hero__headline {
+		font-family: var(--wp--preset--font-family--dm-sans);
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: -0.01em;
+		line-height: 1.02;
+		color: var(--wp--preset--color--paper);
+	}
+	.wk-hero__deck {
+		color: var(--wp--preset--color--paper);
+		opacity: 0.88;
+	}
+
+	/* The wordmark mark: a minimal triangular sail glyph rendered in pure
+	   CSS (a clip-path triangle), not an image — it never needs an alt
+	   attribute, never blocks on a network request, and re-colours for
+	   free wherever it's dropped (the paper header, the harbor footer). */
+	.wk-mark {
+		display: inline-block;
+		inline-size: 1.15em;
+		block-size: 1.15em;
+		background: var(--wp--preset--color--tide);
+		clip-path: polygon(15% 100%, 15% 0%, 100% 100%);
+		flex-shrink: 0;
+	}
+	.cl-footer .wk-mark { background: var(--wp--preset--color--paper); }
+
+	/* ------------------------------------------------------------------ */
+	/* ICON BADGE — the circular icon marker behind the service grid        */
+	/* ------------------------------------------------------------------ */
+	.is-style-wk-badge-icon,
+	.wk-badge {
+		inline-size: 4.5rem;
+		block-size: 4.5rem;
+		border-radius: 50%;
+		background: var(--wp--preset--color--tide);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+	.wk-badge img {
+		inline-size: 2rem;
+		block-size: 2rem;
+		display: block;
+	}
+
+	/* ------------------------------------------------------------------ */
+	/* SLIP STATUS BOARD — Wake's signature feature.                       */
+	/* See patterns/slip-status-board.php for the full "why this exists"   */
+	/* case. This is presentational only: a status token (Available /      */
+	/* Reserved / Waitlist) rendered as a small tracked pill, colour-coded  */
+	/* from the two functional palette tokens status-open / status-hold.   */
+	/* ------------------------------------------------------------------ */
+	.wk-board {
+		border: 1px solid var(--wp--preset--color--line);
+		border-radius: var(--wk-radius);
+		overflow: clip;
+		background: var(--wp--preset--color--paper);
+	}
+	.wk-board__row {
+		display: grid;
+		grid-template-columns: 5rem 1fr 8rem 9rem;
+		align-items: center;
+		gap: var(--wp--preset--spacing--4);
+		padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--5);
+		border-block-end: 1px solid var(--wp--preset--color--line);
+	}
+	.wk-board__row:last-child { border-block-end: 0; }
+	.wk-board__row--head {
+		background: var(--wp--preset--color--paper-soft);
+		font-family: var(--wp--preset--font-family--dm-sans);
+		font-size: var(--wp--preset--font-size--xs);
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--wp--preset--color--ink-muted);
+	}
+	.wk-board__slip {
+		font-family: var(--wp--preset--font-family--ibm-plex-sans);
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+		color: var(--wp--preset--color--ink);
+	}
+	.wk-board__spec {
+		font-family: var(--wp--preset--font-family--ibm-plex-sans);
+		font-size: var(--wp--preset--font-size--sm);
+		color: var(--wp--preset--color--ink-soft);
+	}
+	.wk-status {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--wp--preset--spacing--2);
+		font-family: var(--wp--preset--font-family--dm-sans);
+		font-size: var(--wp--preset--font-size--xs);
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		padding: 0.3em 0.75em;
+		border-radius: 999px;
+		justify-self: start;
+	}
+	.wk-status::before {
+		content: "";
+		inline-size: 0.5em;
+		block-size: 0.5em;
+		border-radius: 50%;
+		background: currentColor;
+		flex-shrink: 0;
+	}
+	.wk-status--open {
+		color: var(--wp--preset--color--status-open);
+		background: color-mix(in srgb, var(--wp--preset--color--status-open) 12%, var(--wp--preset--color--paper));
+	}
+	.wk-status--hold {
+		color: var(--wp--preset--color--status-hold);
+		background: color-mix(in srgb, var(--wp--preset--color--status-hold) 12%, var(--wp--preset--color--paper));
+	}
+
+	@media (max-width: 46.25rem) {
+		.wk-board__row {
+			grid-template-columns: 3.5rem 1fr;
+			row-gap: var(--wp--preset--spacing--2);
+		}
+		.wk-board__row--head { display: none; }
+		.wk-board__spec { grid-column: 1 / -1; }
+		.wk-status { grid-column: 1 / -1; }
+	}
+
+	/* ------------------------------------------------------------------ */
+	/* HAZARD NOTICE — the amber/ink dock-signage callout.                  */
+	/* A working marina's real vocabulary: the laminated sign on the fuel   */
+	/* dock, the whiteboard note at the office window. Registered as a      */
+	/* paragraph block style (core/paragraph → is-style-wk-notice) so an    */
+	/* editor can flag a closure or advisory the way the dock already does. */
+	/* ------------------------------------------------------------------ */
+	.is-style-wk-notice {
+		display: block;
+		background: repeating-linear-gradient(
+			135deg,
+			var(--wp--preset--color--status-hold) 0 14px,
+			#8a4415 14px 28px
+		);
+		color: var(--wp--preset--color--paper);
+		font-family: var(--wp--preset--font-family--dm-sans);
+		font-weight: 700;
+		padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--5);
+		border-radius: 6px;
+	}
+	.is-style-wk-notice::before {
+		content: "\26A0  ";
+	}
+
+	/* ------------------------------------------------------------------ */
+	/* SERVICE ROW — the dockage & services list.                          */
+	/* ------------------------------------------------------------------ */
+	.wk-service-row {
+		border-block-end: 1px solid var(--wp--preset--color--line);
+		padding-block: var(--wp--preset--spacing--5);
+	}
+	.wk-service-row:last-child { border-block-end: 0; }
 }
 
 @layer blocks {
 
-	/* Reading-column link underline offset. */
 	.cl-main :where(p, li) a { text-underline-offset: 0.15em; }
 
-	/* ------------------------------------------------------------------ */
-	/* LITERARY READING REFINEMENTS                                         */
-	/* theme.json expresses typefaces, weights, and sizes. CSS handles the  */
-	/* micro-typographic features theme.json has no key for: font-variant-* */
-	/* properties, text-wrap, hanging punctuation, and the paragraph indent  */
-	/* convention. These are the details that make body text feel like a     */
-	/* book rather than a web page.                                          */
-	/* ------------------------------------------------------------------ */
-
-	/* OpenType features and reading comfort for prose columns.
-	   common-ligatures gives fi/fl/ff joins; oldstyle-nums drops numerals
-	   below the baseline like lowercase letters — both are Garamond-school
-	   conventions that Spectral was designed to support. */
-	.cl-prose :is(p, li) {
-		font-variant-ligatures: common-ligatures;
-		font-variant-numeric:   oldstyle-nums;
-		text-wrap:              pretty;             /* multi-line orphan prevention */
-		hanging-punctuation:    first allow-end last;
+	/* Working-copy micro-typography for body text: tabular numerals so
+	   dockage rates and slip dimensions line up in a list, not the
+	   proportional oldstyle figures a literary skin would want. */
+	.cl-main :is(p, li) {
+		font-variant-numeric: tabular-nums;
+		text-wrap: pretty;
 	}
 
-	/* Paragraph rhythm: indent continuation paragraphs instead of spacing them.
-	   This is the printed-prose convention used in literary magazines (n+1,
-	   Ploughshares, NYRB). The first paragraph after a heading is never indented
-	   — only genuine continuation paragraphs.
-	   To revert to the more common margin-gap approach: remove the p+p block. */
-	.cl-prose p {
-		text-indent: 0;
-	}
-	.cl-prose p + p {
-		text-indent:        1.5em;
-		margin-block-start: 0;
-	}
-	.cl-prose :is(h2, h3, h4, h5, h6) + p {
-		text-indent: 0;
-	}
-	/* Blockquotes and list items never inherit the indent. */
-	.cl-prose blockquote p,
-	.cl-prose li > p {
-		text-indent: 0;
-	}
-
-	/* Drop cap: the first letter of the opening paragraph on single posts.
-	   EB Garamond's classical cut needs the 0.05em block-start nudge to
-	   sit its baseline flush with the body text — a quirk of the font's
-	   cap-height proportion.
-	   The .no-dropcap class on .cl-prose suppresses it when a post opens
-	   with a heading or when the design calls for a plain open. */
-	.single .cl-prose:not(.no-dropcap) > .wp-block-post-content > p:first-of-type::first-letter,
-	.cl-prose.cl-dropcap > p:first-of-type::first-letter {
-		font-family:        var(--wp--preset--font-family--eb-garamond), Georgia, serif;
-		font-size:          3.4em;
-		font-weight:        500;
-		line-height:        0.78;
-		float:              left;
-		margin-inline-end:  0.06em;
-		margin-block-start: 0.05em;
-		color:              var(--wp--preset--color--ink);
-	}
-
-	/* Pull quote: the magazine standout — centred, EB Garamond italic,
-	   bracketed by rules at the weight of a separator, not a border. */
+	/* Pull quote: bold DM Sans, left rule instead of a centred bracket —
+	   reads as a testimonial callout rather than a literary standout. */
 	.wp-block-pullquote {
-		border-block:  2px solid var(--wp--preset--color--line);
-		padding-block: var(--wp--preset--spacing--8);
-		text-align:    center;
+		border-inline-start: 4px solid var(--wp--preset--color--tide);
+		border-block: 0;
+		padding-inline-start: var(--wp--preset--spacing--6);
+		padding-block: var(--wp--preset--spacing--2);
+		text-align: left;
 	}
 	.wp-block-pullquote blockquote p {
-		font-family:            var(--wp--preset--font-family--eb-garamond), Georgia, serif;
-		font-style:             italic;
-		font-size:              clamp(1.25rem, 2.5vw, 1.75rem);
-		line-height:            1.35;
-		font-variant-ligatures: common-ligatures;
-		text-indent:            0; /* reset the p+p convention inside pull quotes */
+		font-family: var(--wp--preset--font-family--dm-sans);
+		font-weight: 700;
+		font-size: clamp(1.15rem, 2vw, 1.5rem);
+		line-height: 1.35;
 	}
 	.wp-block-pullquote cite {
-		display:        block;
-		margin-top:     0.75em;
-		font-size:      0.8125rem;
-		font-style:     normal;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		color:          var(--wp--preset--color--ink-muted);
+		display: block;
+		margin-top: 0.75em;
+		font-family: var(--wp--preset--font-family--ibm-plex-sans);
+		font-size: 0.8125rem;
+		font-style: normal;
+		letter-spacing: 0.04em;
+		color: var(--wp--preset--color--ink-muted);
 	}
 
-	/* Story card: the atom of every index and archive loop. */
-	.cl-story {
-		padding-block-end: var(--wp--preset--spacing--8);
-		border-block-end:  1px solid var(--wp--preset--color--line);
-	}
-
-	/* Byline strip: the author name and date cap under a post title. */
-	.cl-byline .wp-block-post-author__name {
-		font-size:      0.875rem;
-		letter-spacing: 0.02em;
-		color:          var(--wp--preset--color--ink-soft);
-	}
-	.cl-byline .wp-block-post-date {
-		font-size: 0.875rem;
-		color:     var(--wp--preset--color--ink-muted);
-	}
-
-	/* Eyebrow label: the small uppercase line above a section heading.
-	   Registered as a block style (core/paragraph → is-style-cl-eyebrow)
-	   so editors can apply it from the block toolbar. */
+	/* Eyebrow label — tracked DM Sans small caps above section headings. */
 	.is-style-cl-eyebrow,
 	.cl-eyebrow {
-		font-size:      0.75rem;
-		font-weight:    400;
-		letter-spacing: 0.12em;
+		display: inline-block;
+		font-family: var(--wp--preset--font-family--dm-sans);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
 		text-transform: uppercase;
-		color:          var(--wp--preset--color--ink-muted);
+		color: var(--wp--preset--color--tide);
+	}
+
+	/* Trust marks: small dm-sans caps strip used in the testimonial section. */
+	.wk-trust-mark {
+		font-family: var(--wp--preset--font-family--dm-sans);
+		font-size: var(--wp--preset--font-size--xs);
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--wp--preset--color--ink-muted);
 	}
 }
 

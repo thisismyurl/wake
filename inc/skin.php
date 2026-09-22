@@ -2,11 +2,13 @@
 /**
  * [SKIN] The skin layer — the one PHP file the `colophon` CLI never overwrites.
  *
- * Everything theme-specific that needs PHP lives here: which image crops to
- * register, which font to preload for the largest paint, the block styles and
- * pattern categories that make up this theme's editor vocabulary, and any
- * Get-started copy you want to override. The core inc/ files stay portable
- * because none of this leaks into them — that's the whole point of the split.
+ * Wake is built for marina operators, charter companies, sailing schools, and
+ * marina management services. Everything theme-specific lives here: image
+ * crops sized for aerial marina photography and card grids, the block
+ * styles this theme's patterns lean on, the pattern categories that group
+ * Wake's editorial vocabulary in the inserter, and the block-bindings source
+ * that powers the slip-status board — Wake's signature feature (see
+ * patterns/slip-status-board.php for the full "why").
  *
  * @package wake
  */
@@ -18,10 +20,15 @@ defined( 'ABSPATH' ) || exit;
  *
  * Hooked on after_setup_theme (not the core setup() function) so a re-skin
  * changes crops here without touching inc/setup.php.
+ *
+ * wake-hero and wake-wide are 16:9 — the aerial marina photography this
+ * theme is built around reads best wide and shallow. wake-card is 3:2, the
+ * conventional card ratio for service and story grids.
  */
 function wake_skin_image_sizes(): void {
-	add_image_size( 'cl-wide', 1600, 900, true ); // 16:9 wide/hero crop.
-	add_image_size( 'cl-card', 720, 480, true );  // 3:2 card crop.
+	add_image_size( 'wake-hero', 2000, 1125, true ); // 16:9 full-bleed hero.
+	add_image_size( 'wake-wide', 1440, 810, true );  // 16:9 wide section image.
+	add_image_size( 'wake-card', 720, 480, true );   // 3:2 card crop.
 
 	/**
 	 * Fires after the theme registers its image crop sizes.
@@ -36,11 +43,35 @@ function wake_skin_image_sizes(): void {
 add_action( 'after_setup_theme', 'wake_skin_image_sizes' );
 
 /**
+ * Expose Wake's image sizes in the block editor media library.
+ *
+ * @param array<string, string> $sizes Existing size labels.
+ * @return array<string, string>
+ */
+function wake_skin_image_size_names( array $sizes ): array {
+	return array_merge(
+		$sizes,
+		array(
+			'wake-hero' => esc_html__( 'Wake Hero (2000×1125)', 'wake' ),
+			'wake-wide' => esc_html__( 'Wake Wide (1440×810)', 'wake' ),
+			'wake-card' => esc_html__( 'Wake Card (720×480)', 'wake' ),
+		)
+	);
+}
+add_filter( 'image_size_names_choose', 'wake_skin_image_size_names' );
+
+/**
  * Register this theme's block styles (the is-style-{name} options in the editor).
  *
- * The defaults are deliberately few — a generic card group and an eyebrow
- * paragraph. A real skin adds the styles its patterns lean on. The CSS for
- * each lives in assets/css/skin.css @layer components.
+ * cl-card and cl-eyebrow are the Colophon-core defaults, kept because Wake's
+ * patterns use both. wk-badge-icon and wk-notice are Wake's own additions:
+ * wk-badge-icon is the circular icon-badge treatment behind the feature grid
+ * (Pillar 8, Kodawari — a group style, not a one-off inline style, so an
+ * editor building a fourth feature column gets the same badge for free).
+ * wk-notice is the amber/black hazard-stripe callout: the marine-signage
+ * convention ("NO WAKE ZONE", "FUEL DOCK CLOSED") applied to an editorial
+ * paragraph, so a marina operator can flag a closure or an advisory the way
+ * they already flag one on the dock.
  */
 function wake_skin_block_styles(): void {
 	register_block_style(
@@ -56,6 +87,22 @@ function wake_skin_block_styles(): void {
 		array(
 			'name'  => 'cl-eyebrow',
 			'label' => __( 'Eyebrow', 'wake' ),
+		)
+	);
+
+	register_block_style(
+		'core/group',
+		array(
+			'name'  => 'wk-badge-icon',
+			'label' => __( 'Icon Badge (Wake)', 'wake' ),
+		)
+	);
+
+	register_block_style(
+		'core/paragraph',
+		array(
+			'name'  => 'wk-notice',
+			'label' => __( 'Hazard Notice (Wake)', 'wake' ),
 		)
 	);
 
@@ -79,13 +126,24 @@ add_action( 'init', 'wake_skin_block_styles' );
  * category they slot into.
  */
 function wake_skin_pattern_categories(): void {
-	register_block_pattern_category(
-		WAKE_SLUG . '-sections',
-		array(
+	$categories = array(
+		'wake-hero'     => array(
+			'label'       => __( 'Wake: Hero', 'wake' ),
+			'description' => __( 'Full-bleed opening sections for the front page.', 'wake' ),
+		),
+		'wake-sections' => array(
 			'label'       => __( 'Wake: Sections', 'wake' ),
-			'description' => __( 'Section patterns for building pages.', 'wake' ),
-		)
+			'description' => __( 'Service, feature, and trust section patterns for building pages.', 'wake' ),
+		),
+		'wake-cta'      => array(
+			'label'       => __( 'Wake: Calls to Action', 'wake' ),
+			'description' => __( 'Booking and enquiry call-to-action bands.', 'wake' ),
+		),
 	);
+
+	foreach ( $categories as $slug => $args ) {
+		register_block_pattern_category( $slug, $args );
+	}
 
 	/**
 	 * Fires after the theme registers its pattern categories.
@@ -100,13 +158,72 @@ function wake_skin_pattern_categories(): void {
 add_action( 'init', 'wake_skin_pattern_categories' );
 
 /*
- * Preload the LCP font — EB Garamond is the display serif used for headings,
- * so it is the Largest Contentful Paint candidate on single posts and landing
- * pages. Only the latin-subset file is preloaded (the smaller of the two);
+ * Preload the LCP font — DM Sans carries the hero headline on the front page,
+ * which is the Largest Contentful Paint candidate on Wake's primary landing
+ * template. Only the latin-subset file is preloaded (the smaller of the two);
  * the browser fetches the latin-ext file separately and only when the page
  * content actually requires those glyphs.
  */
 add_filter( WAKE_SLUG . '/preload_fonts', static function ( array $fonts ): array {
-	$fonts[] = 'assets/fonts/eb-garamond/eb-garamond-normal.woff2';
+	$fonts[] = 'assets/fonts/dm-sans/dm-sans-variable-latin.woff2';
 	return $fonts;
 } );
+
+/**
+ * Override the "Get started" page copy for Wake.
+ *
+ * Core's default 'optimize' paragraph names "the breaking-news dismiss
+ * control" as Wake's one script — that is Masthead's copy, not this
+ * theme's. Wake ships zero front-end JavaScript, full stop, so the default
+ * would be a false claim on this theme's own onboarding page. Overridden
+ * here rather than edited in inc/admin.php, which `colophon sync` owns.
+ *
+ * @param array $content The default Get-started content (see wake_get_started_content()).
+ * @return array The content with Wake's own lead and optimize copy.
+ */
+function wake_skin_get_started_content( array $content ): array {
+	$content['lead'] = esc_html__( 'Wake is a free, full-site-editing theme built for marinas, charter operators, sailing schools, and marina management companies. Here is how to make it your dock.', 'wake' );
+
+	$content['optimize'] = array(
+		esc_html__( 'This theme ships zero front-end JavaScript — the slip-status board, the service grid, and every pattern are plain HTML and CSS. Fonts are self-hosted and do not phone home, and the theme is tuned against the Core Web Vitals search engines actually measure.', 'wake' ),
+		esc_html__( 'It is built to WCAG 2.2 AA guidance — real focus outlines, a skip link, sensible heading order, and motion that respects a reduce-motion setting. Keep your own copy and images to that bar and the whole site stays welcoming.', 'wake' ),
+	);
+
+	return $content;
+}
+add_filter( WAKE_SLUG . '/get_started_content', 'wake_skin_get_started_content' );
+
+/**
+ * Register a Block Bindings source for a slip's status label.
+ *
+ * The slip-status-board pattern (Wake's signature feature — see that file's
+ * docblock for the full case) hardcodes each row's status as plain text in
+ * the pattern markup, which is enough for the pattern to ship real,
+ * inspectable demo content out of the box. This binding source exists so a
+ * site that wants to drive the board from post meta — a real per-slip
+ * "status" custom field, kept current from the dock office — can bind the
+ * status paragraph to it instead of hand-editing the pattern, with no
+ * companion plugin required. It is opt-in: nothing in this theme calls it
+ * unless a user's own binding attribute does.
+ *
+ * @since 1.6150
+ */
+function wake_skin_register_bindings(): void {
+	if ( ! function_exists( 'register_block_bindings_source' ) ) {
+		return;
+	}
+
+	register_block_bindings_source(
+		'wake/slip-status',
+		array(
+			'label'              => esc_html__( 'Slip Status', 'wake' ),
+			'get_value_callback' => static function ( array $source_args ): string {
+				$meta_key = isset( $source_args['key'] ) ? sanitize_key( (string) $source_args['key'] ) : '_wake_slip_status';
+				$value    = get_post_meta( get_the_ID(), $meta_key, true );
+
+				return $value ? esc_html( (string) $value ) : esc_html__( 'Available', 'wake' );
+			},
+		)
+	);
+}
+add_action( 'init', 'wake_skin_register_bindings' );

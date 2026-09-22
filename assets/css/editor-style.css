@@ -5,59 +5,82 @@
    theme.json already gives the editor canvas the palette, type, and global
    styles, so the editor mirrors the front end for free. This file carries
    only what theme.json has no key for:
-   - font-variant-ligatures and font-variant-numeric (OpenType features)
-   - text-wrap: pretty (orphan prevention)
-   - pull-quote bracket rules and italic treatment
-   - the eyebrow paragraph style
+   - tabular numerals for rate sheets and the slip board (mirrors skin.css)
+   - the testimonial-style pull-quote treatment
+   - the eyebrow, hazard-notice, and icon-badge styles, so an editor sees
+     each block style's real look before publishing, not a guess
    - the card lift (already present from the original stub)
-
-   Note: the front-end p+p text-indent convention lives in skin.css
-   @layer blocks. In the block editor each Paragraph block is wrapped in
-   its own container, so the adjacent-sibling selector does not fire in
-   the editing canvas — intentionally left out here to avoid confusion.
 
    Loaded via add_editor_style() in inc/setup.php.
    ===================================================================== */
 
-/* OpenType reading refinements — mirrors skin.css @layer blocks. */
+/* Tabular numerals for reading — mirrors skin.css @layer blocks. Rate
+   sheets and slip specs line up whether you're reading or editing. */
 .editor-styles-wrapper :is(p, li) {
-	font-variant-ligatures: common-ligatures;
-	font-variant-numeric:   oldstyle-nums;
-	text-wrap:              pretty;
-	hanging-punctuation:    first allow-end last;
+	font-variant-numeric: tabular-nums;
+	text-wrap:            pretty;
 }
 
 /* Pull quote — mirrored so the editor preview matches the front end. */
 .editor-styles-wrapper .wp-block-pullquote {
-	border-block:  2px solid var(--wp--preset--color--line);
-	padding-block: var(--wp--preset--spacing--8);
-	text-align:    center;
+	border-inline-start: 4px solid var(--wp--preset--color--tide);
+	border-block:        0;
+	padding-inline-start: var(--wp--preset--spacing--6);
+	padding-block:        var(--wp--preset--spacing--2);
+	text-align:           left;
 }
 .editor-styles-wrapper .wp-block-pullquote blockquote p {
-	font-family:            var(--wp--preset--font-family--eb-garamond), Georgia, serif;
-	font-style:             italic;
-	font-size:              clamp(1.25rem, 2.5vw, 1.75rem);
-	line-height:            1.35;
-	font-variant-ligatures: common-ligatures;
-	text-indent:            0;
+	font-family: var(--wp--preset--font-family--dm-sans);
+	font-weight: 700;
+	font-size:   clamp(1.15rem, 2vw, 1.5rem);
+	line-height: 1.35;
 }
 .editor-styles-wrapper .wp-block-pullquote cite {
 	display:        block;
 	margin-top:     0.75em;
+	font-family:    var(--wp--preset--font-family--ibm-plex-sans);
 	font-size:      0.8125rem;
 	font-style:     normal;
-	letter-spacing: 0.06em;
-	text-transform: uppercase;
+	letter-spacing: 0.04em;
 	color:          var(--wp--preset--color--ink-muted);
 }
 
 /* Eyebrow paragraph style — lets editors see the treatment at write-time. */
 .editor-styles-wrapper .is-style-cl-eyebrow {
+	font-family:    var(--wp--preset--font-family--dm-sans);
 	font-size:      0.75rem;
-	font-weight:    400;
-	letter-spacing: 0.12em;
+	font-weight:    700;
+	letter-spacing: 0.14em;
 	text-transform: uppercase;
-	color:          var(--wp--preset--color--ink-muted);
+	color:          var(--wp--preset--color--tide);
+}
+
+/* Dock-signage hazard notice — see skin.css for the front-end rule this
+   mirrors. Shown here so an editor sees the amber stripe while writing a
+   closure notice, not just after publish. */
+.editor-styles-wrapper .is-style-wk-notice {
+	display: block;
+	background: repeating-linear-gradient(
+		135deg,
+		var(--wp--preset--color--status-hold) 0 14px,
+		#8a4415 14px 28px
+	);
+	color:        var(--wp--preset--color--paper);
+	font-family:  var(--wp--preset--font-family--dm-sans);
+	font-weight:  700;
+	padding:      var(--wp--preset--spacing--4) var(--wp--preset--spacing--5);
+	border-radius: 6px;
+}
+
+/* Icon badge — the circular group style behind the service grid. */
+.editor-styles-wrapper .is-style-wk-badge-icon {
+	width:  4.5rem;
+	height: 4.5rem;
+	border-radius: 50%;
+	background: var(--wp--preset--color--tide);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 /* Card lift — mirrored so the editor preview matches the front end. */
