@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-screenshot.py — Playwright screenshot capture for the Colophon theme preview.
+screenshot.py — Playwright screenshot capture for the Wake theme preview.
 
 Usage:
-    cd /path/to/colophon/preview
+    cd /path/to/wake/preview
     python3 screenshot.py
 
 Requirements:
@@ -23,19 +23,15 @@ SCREENSHOTS.mkdir(exist_ok=True)
 
 PAGES = [
     # WP.org submission — exactly 1200×900, no full-page
-    ("01-front-page.html",    1200, 900,  "01-front-page-wporg.png",    False),
+    ("01-front-page.html",         1200, 900,  "01-front-page-wporg.png",   False),
     # Desktop full-page shots
-    ("02-article.html",       1440, 900,  "02-article.png",             True),
-    ("03-archive.html",       1280, 900,  "03-archive.png",             True),
-    ("04-about.html",         1200, 900,  "04-about.png",               True),
-    ("05-portfolio.html",     1200, 900,  "05-portfolio.png",           True),
-    ("06-services.html",      1200, 900,  "06-services.png",            True),
+    ("02-services.html",           1200, 900,  "02-services.png",           True),
+    ("03-archive.html",            1280, 900,  "03-archive.png",            True),
+    ("04-trust.html",              1200, 900,  "04-trust.png",              True),
+    ("00-elements.html",           1200, 900,  "00-elements.png",           True),
     # Mobile viewports
-    ("07-front-mobile.html",   375, 812,  "07-front-mobile-375.png",   True),
-    ("08-article-mobile.html", 390, 844,  "08-article-mobile-390.png", True),
-    # Color variants
-    ("09-warm-slate.html",    1200, 900,  "09-warm-slate.png",         True),
-    ("10-midnight.html",      1200, 900,  "10-midnight.png",           True),
+    ("05-front-mobile.html",        375, 812,  "05-front-mobile-375.png",   True),
+    ("06-slip-board-mobile.html",   390, 844,  "06-slip-board-mobile-390.png", True),
 ]
 
 WPORG_FILE = "01-front-page-wporg.png"
@@ -69,7 +65,7 @@ async def capture(browser, html_file, width, height, output_name, full_page):
 
 
 async def main():
-    print("Colophon theme — screenshot capture")
+    print("Wake theme — screenshot capture")
     print(f"  Output: {SCREENSHOTS}")
     print()
 

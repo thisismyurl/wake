@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wake: Elements (type, colour, buttons, status pills, forms)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..800&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wake-preview.css">
+<style>
+  .pv-section { border-top: 1px solid var(--wp--preset--color--line); padding-block: 2.5rem; }
+  .pv-section:first-of-type { border-top: none; }
+  .pv-label { font-family: var(--wp--preset--font-family--dm-sans); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--wp--preset--color--ink-muted); margin-bottom: 1.25rem; }
+  .pv-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+  form.pv-form { display: grid; gap: 1rem; max-width: 420px; }
+  form.pv-form label { font-family: var(--wp--preset--font-family--dm-sans); font-size: 0.8125rem; font-weight: 700; color: var(--wp--preset--color--ink-soft); display: block; margin-bottom: 0.4rem; }
+  form.pv-form input, form.pv-form select, form.pv-form textarea {
+    width: 100%; font-family: var(--wp--preset--font-family--ibm-plex-sans); font-size: var(--wp--preset--font-size--base);
+    padding: 0.7em 0.9em; border: 1px solid var(--wp--preset--color--line); border-radius: 8px;
+    background: var(--wp--preset--color--paper); color: var(--wp--preset--color--ink);
+  }
+  form.pv-form input:focus, form.pv-form select:focus, form.pv-form textarea:focus {
+    outline: 2px solid var(--wp--preset--color--tide); outline-offset: 1px; border-color: var(--wp--preset--color--tide);
+  }
+</style>
+</head>
+<body>
+
+<header class="cl-header">
+  <div class="cl-header__inner">
+    <div class="cl-header__branding">
+      <span class="wk-mark" aria-hidden="true"></span>
+      <a class="wk-site-title" href="01-front-page.html">Beacon Point Marina</a>
+    </div>
+    <nav aria-label="Primary">
+      <a href="01-front-page.html">Slips &amp; Rates</a>
+      <a href="02-services.html">About &amp; Services</a>
+      <a href="03-archive.html">Harbor News</a>
+      <a href="04-trust.html">Reviews</a>
+    </nav>
+  </div>
+</header>
+
+<main class="cl-main">
+  <section class="cl-section" style="padding-bottom:0;">
+    <div class="wk-wrap wk-wrap--narrow">
+      <p class="wk-eyebrow" style="display:block;">Style guide</p>
+      <h1>Elements</h1>
+      <p style="color:var(--wp--preset--color--ink-soft); font-size:var(--wp--preset--font-size--md); max-width:56ch; margin-top:0.75rem;">Type, colour, buttons, and the slip-status pill vocabulary at a glance. DM Sans carries headings and UI, IBM Plex Sans carries reading copy and the rate sheet.</p>
+    </div>
+  </section>
+
+  <section class="cl-section wk-wrap wk-wrap--narrow">
+
+    <div class="pv-section">
+      <p class="pv-label">Typography: DM Sans (headings) / IBM Plex Sans (body)</p>
+      <h1 style="margin-bottom:0.5rem;">H1: Your slip. Your season.</h1>
+      <h2 style="margin-bottom:0.5rem;">H2: Rates, plain and current</h2>
+      <h3 style="margin-bottom:0.5rem;">H3: Seasonal wet slip</h3>
+      <h4 style="margin-bottom:0.5rem;">H4: Dock Office hours</h4>
+      <h5 style="margin-bottom:0.5rem;">H5: Uppercase Tracked Label</h5>
+      <h6 style="margin-bottom:1rem;">H6: Muted Micro-Label</h6>
+      <p style="max-width:62ch;">Body copy runs in IBM Plex Sans at 1.65 line-height: a technical, instrument-panel humanist face chosen because it reads right for a marina's operational content: rates, hours, and slip specs, not just prose. Numerals are tabular throughout the site so a dockage rate lines up in a list the way it does on a printed rate sheet. <a href="#">A link looks like this</a> inside a paragraph.</p>
+      <p class="wk-eyebrow" style="display:block; margin-top:1.25rem;">Eyebrow label</p>
+    </div>
+
+    <div class="pv-section">
+      <p class="pv-label">Colour palette: twelve tokens, the doctrine ceiling</p>
+      <div class="pv-grid">
+        <div class="pv-swatch"><div class="pv-swatch__chip" style="background:#10201f;"></div><span class="pv-swatch__label">Ink</span><span class="pv-swatch__hex">#10201f</span></div>
+        <div class="pv-swatch"><div class="pv-swatch__chip" style="background:#3a4d4f;"></div><span class="pv-swatch__label">Ink Soft</span><span class="pv-swatch__hex">#3a4d4f</span></div>
+        <div class="pv-swatch"><div class="pv-swatch__chip" style="background:#647476;"></div><span class="pv-swatch__label">Ink Muted</span><span class="pv-swatch__hex">#647476</span></div>
+        <div class="pv-swatch"><div class="pv-swatch__chip" style="background:#0b2e36;"></div><span class="pv-swatch__label">Harbor</span><span class="pv-swatch__hex">#0b2e36</span></div>
+        <div class="pv-swatch"><div class="pv-swatch__chip" style="background:#1d6fc4;"></div><span class="pv-swatch__label">Tide (accent)</span><span class="pv-swatch__hex">#1d6fc4</span></div>
+        <div class="pv-swatch"><div class="pv-swatch__chip" style="background:#e8f1fb;"></div><span class="pv-swatch__label">Tide Soft</span><span class="pv-swatch__hex">#e8f1fb</span></div>
+        <div class="pv-swatch"><div class="pv-swatch__chip" style="background:#dbe2e4;"></div><span class="pv-swatch__label">Hairline</span><span class="pv-swatch__hex">#dbe2e4</span></div>
+        <div class="pv-swatch"><div class="pv-swatch__chip" style="background:#a9bdc0;"></div><span class="pv-swatch__label">Fog</span><span class="pv-swatch__hex">#a9bdc0</span></div>
+        <div class="pv-swatch"><div class="pv-swatch__chip" style="background:#fbfbf9; border:1px solid #dbe2e4;"></div><span class="pv-swatch__label">Paper</span><span class="pv-swatch__hex">#fbfbf9</span></div>
+        <div class="pv-swatch"><div class="pv-swatch__chip" style="background:#eef2f3;"></div><span class="pv-swatch__label">Paper Soft</span><span class="pv-swatch__hex">#eef2f3</span></div>
+        <div class="pv-swatch"><div class="pv-swatch__chip" style="background:#146346;"></div><span class="pv-swatch__label">Status: Open</span><span class="pv-swatch__hex">#146346</span></div>
+        <div class="pv-swatch"><div class="pv-swatch__chip" style="background:#a5591c;"></div><span class="pv-swatch__label">Status: Hold</span><span class="pv-swatch__hex">#a5591c</span></div>
+      </div>
+      <p style="margin-top:1.25rem; color:var(--wp--preset--color--ink-muted); font-size:var(--wp--preset--font-size--sm); max-width:64ch;">Status Open and Status Hold are kept deliberately separate from Tide, the brand accent. On the slip board, green and amber mean real availability, never brand decoration.</p>
+    </div>
+
+    <div class="pv-section">
+      <p class="pv-label">Buttons</p>
+      <div class="pv-row">
+        <a class="wk-btn" href="#">Start a reservation &rarr;</a>
+        <a class="wk-btn wk-btn--ink" href="#">Check availability</a>
+        <span style="background:var(--wp--preset--color--harbor); padding:0.75rem 1rem; border-radius:8px; display:inline-flex;">
+          <a class="wk-btn wk-btn--outline" href="#">Call the dock office</a>
+        </span>
+      </div>
+    </div>
+
+    <div class="pv-section">
+      <p class="pv-label">Status pills: the slip-status board vocabulary</p>
+      <div class="pv-row">
+        <span class="wk-status wk-status--open">Available</span>
+        <span class="wk-status wk-status--hold">Reserved</span>
+        <span class="wk-status wk-status--hold">Waitlist</span>
+        <span class="wk-status wk-status--placeholder">Not yet set</span>
+      </div>
+      <p style="margin-top:0.5rem; color:var(--wp--preset--color--ink-muted); font-size:var(--wp--preset--font-size--sm);">An unset slip shows placeholder text, never a false "Available" claim.</p>
+    </div>
+
+    <div class="pv-section">
+      <p class="pv-label">Dock-signage advisory (is-style-wk-notice)</p>
+      <p class="is-style-wk-notice" style="max-width:52ch;">Fuel dock closed for scheduled maintenance, Tuesday 7&ndash;11am. Slips unaffected.</p>
+    </div>
+
+    <div class="pv-section">
+      <p class="pv-label">Form styles: a reservation-request field set</p>
+      <form class="pv-form" onsubmit="return false;">
+        <div>
+          <label for="pv-name">Name</label>
+          <input id="pv-name" type="text" placeholder="Your name">
+        </div>
+        <div>
+          <label for="pv-vessel">Vessel &amp; length</label>
+          <input id="pv-vessel" type="text" placeholder="e.g. Beneteau Oceanis, 38 ft">
+        </div>
+        <div>
+          <label for="pv-dates">Dates needed</label>
+          <input id="pv-dates" type="text" placeholder="e.g. June 12 – 19">
+        </div>
+        <div>
+          <label for="pv-type">Dockage type</label>
+          <select id="pv-type">
+            <option>Seasonal wet slip</option>
+            <option>Transient dockage</option>
+            <option>Winter storage</option>
+          </select>
+        </div>
+        <div>
+          <label for="pv-notes">Notes</label>
+          <textarea id="pv-notes" rows="3" placeholder="Draft, beam, or special requests"></textarea>
+        </div>
+        <button type="submit" class="wk-btn" style="justify-self:start;">Request a slip &rarr;</button>
+      </form>
+    </div>
+
+  </section>
+</main>
+
+<footer class="cl-footer cl-section cl-section--harbor">
+  <div class="wk-wrap" style="text-align:center;">
+    <p style="color:var(--wp--preset--color--fog); font-size:var(--wp--preset--font-size--sm);">Built with the <a href="https://thisismyurl.com/wake" style="color:var(--wp--preset--color--fog); text-decoration:underline;">Wake</a> theme.</p>
+  </div>
+</footer>
+
+</body>
+</html>

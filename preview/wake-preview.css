@@ -1,0 +1,432 @@
+/* =====================================================================
+   wake-preview.css , standalone preview CSS for Playwright captures.
+   Translates theme.json (palette, type scale, spacing) and assets/css/
+   skin.css (the .wk-* / .cl-* component classes) into a static, no-build
+   stylesheet the preview HTML pages can load directly from file://.
+   Fonts load from Google Fonts CDN here only , the live theme self-hosts
+   DM Sans + IBM Plex Sans from assets/fonts/ per theme.json fontFace.
+   ===================================================================== */
+@layer reset, base, layout, components, blocks, utilities, preview;
+
+/* ---- WP preset tokens, copied 1:1 from theme.json settings.color.palette
+   and settings.typography.fontSizes/fontFamilies ---- */
+:root {
+  /* Marina/marine-services palette , twelve tokens, the doctrine ceiling */
+  --wp--preset--color--ink:         #10201f;
+  --wp--preset--color--ink-soft:    #3a4d4f;
+  --wp--preset--color--ink-muted:   #647476;
+  --wp--preset--color--harbor:      #0b2e36;
+  --wp--preset--color--tide:        #1d6fc4;
+  --wp--preset--color--tide-soft:   #e8f1fb;
+  --wp--preset--color--line:        #dbe2e4;
+  --wp--preset--color--fog:         #a9bdc0;
+  --wp--preset--color--paper:       #fbfbf9;
+  --wp--preset--color--paper-soft:  #eef2f3;
+  --wp--preset--color--status-open: #146346;
+  --wp--preset--color--status-hold: #a5591c;
+
+  /* Gradients */
+  --wp--preset--gradient--harbor-dusk: linear-gradient(165deg, rgba(11,46,54,0.28) 0%, rgba(6,15,18,0.94) 68%);
+  --wp--preset--gradient--tide-flow:   linear-gradient(135deg, #1d6fc4 0%, #3f93e8 100%);
+
+  /* Font families */
+  --wp--preset--font-family--dm-sans:      'DM Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --wp--preset--font-family--ibm-plex-sans:'IBM Plex Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --wp--preset--font-family--mono:         ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Font sizes , fluid clamps, copied from theme.json */
+  --wp--preset--font-size--xs:      0.75rem;
+  --wp--preset--font-size--sm:      clamp(0.875rem, 0.85rem + 0.12vw, 0.9375rem);
+  --wp--preset--font-size--base:    clamp(1.0625rem, 1rem + 0.25vw, 1.125rem);
+  --wp--preset--font-size--md:      clamp(1.2rem, 1.1rem + 0.4vw, 1.45rem);
+  --wp--preset--font-size--lg:      clamp(1.5rem, 1.3rem + 0.9vw, 2rem);
+  --wp--preset--font-size--xl:      clamp(2rem, 1.6rem + 1.8vw, 3rem);
+  --wp--preset--font-size--2xl:     clamp(2.5rem, 1.9rem + 3vw, 4.5rem);
+  --wp--preset--font-size--3xl:     clamp(3rem, 2.2rem + 4vw, 5rem);
+  --wp--preset--font-size--display: clamp(3rem, 1.8rem + 6vw, 6.5rem);
+
+  /* Spacing scale, copied from theme.json */
+  --wp--preset--spacing--1: 0.25rem;
+  --wp--preset--spacing--2: 0.5rem;
+  --wp--preset--spacing--3: 0.75rem;
+  --wp--preset--spacing--4: 1rem;
+  --wp--preset--spacing--5: 1.5rem;
+  --wp--preset--spacing--6: 2rem;
+  --wp--preset--spacing--8: 2.5rem;
+  --wp--preset--spacing--10: 3rem;
+  --wp--preset--spacing--12: 4rem;
+  --wp--preset--spacing--16: 6rem;
+  --wp--preset--spacing--20: 8rem;
+
+  /* Skin runtime tokens, copied from assets/css/skin.css */
+  --wk-gutter:      clamp(1.25rem, 5vw, 3rem);
+  --wk-section-gap: clamp(3rem, 8vw, 6rem);
+  --wk-transition:  200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --wk-radius:      14px;
+  --wk-max:         1140px;
+}
+
+/* =====================================================================
+   RESET
+   ===================================================================== */
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { -webkit-font-smoothing: antialiased; }
+  img  { max-width: 100%; height: auto; display: block; }
+  a    { color: inherit; }
+  ol, ul { list-style: none; }
+  button { font: inherit; cursor: pointer; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* =====================================================================
+   BASE , theme.json styles.elements, translated literally
+   ===================================================================== */
+@layer base {
+  body {
+    font-family: var(--wp--preset--font-family--ibm-plex-sans);
+    font-size: var(--wp--preset--font-size--base);
+    line-height: 1.65;
+    color: var(--wp--preset--color--ink);
+    background: var(--wp--preset--color--paper);
+  }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--wp--preset--font-family--dm-sans); }
+  h1 { font-size: var(--wp--preset--font-size--2xl); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; color: var(--wp--preset--color--ink); text-wrap: balance; }
+  h2 { font-size: var(--wp--preset--font-size--xl); font-weight: 700; line-height: 1.15; letter-spacing: -0.015em; color: var(--wp--preset--color--ink); text-wrap: balance; }
+  h3 { font-size: var(--wp--preset--font-size--lg); font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; color: var(--wp--preset--color--ink); }
+  h4 { font-size: var(--wp--preset--font-size--md); font-weight: 700; line-height: 1.3; color: var(--wp--preset--color--ink); }
+  h5 { font-size: var(--wp--preset--font-size--sm); font-weight: 700; line-height: 1.4; letter-spacing: 0.06em; text-transform: uppercase; color: var(--wp--preset--color--ink-soft); }
+  h6 { font-size: var(--wp--preset--font-size--xs); font-weight: 700; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--wp--preset--color--ink-muted); }
+  p { font-family: var(--wp--preset--font-family--ibm-plex-sans); font-size: var(--wp--preset--font-size--base); line-height: 1.65; font-variant-numeric: tabular-nums; text-wrap: pretty; }
+  a { color: var(--wp--preset--color--tide); text-decoration: underline; }
+  a:hover, a:focus { color: var(--wp--preset--color--ink); }
+  strong { font-weight: 600; }
+
+  .wk-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--wp--preset--font-family--dm-sans);
+    font-size: var(--wp--preset--font-size--sm);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    color: var(--wp--preset--color--paper);
+    background: var(--wp--preset--gradient--tide-flow);
+    border-radius: 999px;
+    padding: var(--wp--preset--spacing--3) var(--wp--preset--spacing--6);
+    border: none;
+    transition: filter var(--wk-transition);
+  }
+  .wk-btn:hover, .wk-btn:focus { filter: brightness(0.92); color: var(--wp--preset--color--paper); }
+  .wk-btn--outline {
+    background: transparent;
+    color: var(--wp--preset--color--paper);
+    border: 1px solid var(--wp--preset--color--paper);
+  }
+  .wk-btn--outline:hover, .wk-btn--outline:focus { background: rgba(251,251,249,0.1); color: var(--wp--preset--color--paper); }
+  .wk-btn--ink {
+    background: var(--wp--preset--color--tide);
+    color: var(--wp--preset--color--paper);
+  }
+}
+
+/* =====================================================================
+   LAYOUT
+   ===================================================================== */
+@layer layout {
+  .wk-wrap { max-width: var(--wk-max); margin-inline: auto; padding-inline: var(--wk-gutter); }
+  .wk-wrap--narrow { max-width: 760px; }
+  .wk-wrap--read { max-width: 720px; }
+
+  .cl-main { isolation: isolate; }
+
+  .cl-header {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 100;
+    background: rgba(251, 251, 249, 0.96);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-block-end: 1px solid var(--wp--preset--color--line);
+  }
+  .cl-header__inner {
+    max-width: var(--wk-max);
+    margin-inline: auto;
+    padding-block: var(--wp--preset--spacing--4);
+    padding-inline: var(--wk-gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--wp--preset--spacing--8);
+    flex-wrap: wrap;
+  }
+
+  .cl-section {
+    padding-block: var(--wk-section-gap);
+    padding-inline: var(--wk-gutter);
+  }
+  .cl-section--soft   { background: var(--wp--preset--color--paper-soft); }
+  .cl-section--harbor {
+    background: var(--wp--preset--color--harbor);
+    color: var(--wp--preset--color--paper);
+  }
+  .cl-section--harbor h2 { color: var(--wp--preset--color--paper); }
+
+  .wk-cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--wp--preset--spacing--10); align-items: center; }
+  .wk-cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--wp--preset--spacing--8); }
+}
+
+/* =====================================================================
+   COMPONENTS , translated from assets/css/skin.css @layer components
+   ===================================================================== */
+@layer components {
+
+  .cl-header nav { display: flex; align-items: center; gap: var(--wp--preset--spacing--6); flex-wrap: wrap; }
+  .cl-header nav a { color: var(--wp--preset--color--ink-soft); text-decoration: none; font-family: var(--wp--preset--font-family--dm-sans); font-size: var(--wp--preset--font-size--sm); font-weight: 600; letter-spacing: 0.01em; }
+  .cl-header nav a:hover, .cl-header nav a:focus, .cl-header nav a.is-current { color: var(--wp--preset--color--tide); }
+  .cl-header__branding { display: flex; align-items: center; gap: var(--wp--preset--spacing--2); }
+  .cl-header__branding .wk-site-title { font-family: var(--wp--preset--font-family--dm-sans); font-size: var(--wp--preset--font-size--lg); font-weight: 800; letter-spacing: -0.01em; text-decoration: none; color: var(--wp--preset--color--ink); }
+
+  .cl-footer .wk-nav a, .cl-footer__bottom a { color: var(--wp--preset--color--paper); }
+  .cl-footer .wk-nav a:hover, .cl-footer .wk-nav a:focus, .cl-footer__bottom a:hover { text-decoration: underline; text-underline-offset: 0.15em; }
+
+  .cl-card {
+    background: var(--wp--preset--color--paper);
+    border: 1px solid var(--wp--preset--color--line);
+    border-radius: var(--wk-radius);
+    transition: transform var(--wk-transition), box-shadow var(--wk-transition);
+    overflow: clip;
+  }
+  .cl-card:hover, .cl-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px -16px rgba(11, 46, 54, 0.35);
+  }
+
+  /* ---- HERO , full-bleed aerial marina photo, harbor-dusk gradient ---- */
+  .wk-hero {
+    position: relative;
+    overflow: clip;
+    color: var(--wp--preset--color--paper);
+    min-height: clamp(32rem, 72vh, 48rem);
+    display: flex;
+    align-items: flex-end;
+    padding-block: var(--wp--preset--spacing--20) var(--wp--preset--spacing--16);
+    padding-inline: var(--wk-gutter);
+  }
+  .wk-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    /* No aerial photograph is bundled with the theme (see harbor-hero.php ,
+       it ships empty so nothing needs a separate license). This gradient
+       stands in for the marina photograph an editor drops in. */
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(29,111,196,0.35), transparent 55%),
+      linear-gradient(160deg, #123842 0%, #0b2e36 45%, #0a2027 100%);
+  }
+  .wk-hero__media::after {
+    content: "Aerial marina photograph , placeholder";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--wp--preset--font-family--dm-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(251,251,249,0.28);
+  }
+  .wk-hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--wp--preset--gradient--harbor-dusk);
+  }
+  .wk-hero__content { position: relative; z-index: 2; width: 100%; max-width: 760px; margin-inline: auto var(--wk-gutter); }
+  .wk-hero__eyebrow {
+    display: inline-flex; align-items: center; gap: var(--wp--preset--spacing--2);
+    font-family: var(--wp--preset--font-family--dm-sans); font-size: var(--wp--preset--font-size--sm);
+    font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--wp--preset--color--paper); opacity: 0.85;
+  }
+  .wk-hero__headline {
+    font-family: var(--wp--preset--font-family--dm-sans); font-weight: 800; text-transform: uppercase;
+    letter-spacing: -0.01em; line-height: 1.02; color: var(--wp--preset--color--paper);
+    font-size: var(--wp--preset--font-size--2xl);
+    margin-block: var(--wp--preset--spacing--4) var(--wp--preset--spacing--5);
+  }
+  .wk-hero__deck {
+    color: var(--wp--preset--color--paper); opacity: 0.88;
+    font-size: var(--wp--preset--font-size--md);
+    margin-bottom: var(--wp--preset--spacing--8);
+    max-width: 46ch;
+  }
+
+  /* Wordmark: CSS clip-path triangle, no image request, ever. */
+  .wk-mark {
+    display: inline-block;
+    inline-size: 1.15em; block-size: 1.15em;
+    background: var(--wp--preset--color--tide);
+    clip-path: polygon(15% 100%, 15% 0%, 100% 100%);
+    flex-shrink: 0;
+  }
+  .cl-footer .wk-mark { background: var(--wp--preset--color--paper); }
+
+  /* ---- Icon badge (service-intro-grid) ---- */
+  .wk-badge {
+    inline-size: 4.5rem; block-size: 4.5rem; border-radius: 50%;
+    background: var(--wp--preset--color--tide);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-bottom: var(--wp--preset--spacing--4);
+  }
+  .wk-badge svg { inline-size: 1.8rem; block-size: 1.8rem; stroke: var(--wp--preset--color--paper); fill: none; stroke-width: 1.8; }
+
+  /* ---- SLIP STATUS BOARD , Wake's signature feature ---- */
+  .wk-board {
+    border: 1px solid var(--wp--preset--color--line);
+    border-radius: var(--wk-radius);
+    overflow: clip;
+    background: var(--wp--preset--color--paper);
+  }
+  .wk-board__row {
+    display: grid;
+    grid-template-columns: 5rem 1fr 8rem 9rem;
+    align-items: center;
+    gap: var(--wp--preset--spacing--4);
+    padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--5);
+    border-block-end: 1px solid var(--wp--preset--color--line);
+  }
+  .wk-board__row:last-child { border-block-end: 0; }
+  .wk-board__row--head {
+    background: var(--wp--preset--color--paper-soft);
+    font-family: var(--wp--preset--font-family--dm-sans);
+    font-size: var(--wp--preset--font-size--xs);
+    font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--wp--preset--color--ink-muted);
+  }
+  .wk-board__slip { font-family: var(--wp--preset--font-family--ibm-plex-sans); font-weight: 600; font-variant-numeric: tabular-nums; color: var(--wp--preset--color--ink); }
+  .wk-board__spec { font-family: var(--wp--preset--font-family--ibm-plex-sans); font-size: var(--wp--preset--font-size--sm); color: var(--wp--preset--color--ink-soft); }
+  .wk-status {
+    display: inline-flex; align-items: center; gap: var(--wp--preset--spacing--2);
+    font-family: var(--wp--preset--font-family--dm-sans); font-size: var(--wp--preset--font-size--xs);
+    font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.3em 0.75em; border-radius: 999px; justify-self: start;
+  }
+  .wk-status::before { content: ""; inline-size: 0.5em; block-size: 0.5em; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+  .wk-status--open { color: var(--wp--preset--color--status-open); background: color-mix(in srgb, var(--wp--preset--color--status-open) 12%, var(--wp--preset--color--paper)); }
+  .wk-status--hold { color: var(--wp--preset--color--status-hold); background: color-mix(in srgb, var(--wp--preset--color--status-hold) 12%, var(--wp--preset--color--paper)); }
+  .wk-status--placeholder { color: var(--wp--preset--color--ink-muted); background: var(--wp--preset--color--paper-soft); }
+  .wk-status--placeholder::before { background: var(--wp--preset--color--fog); }
+
+  @media (max-width: 46.25rem) {
+    .wk-board__row { grid-template-columns: 3.5rem 1fr; row-gap: var(--wp--preset--spacing--2); }
+    .wk-board__row--head { display: none; }
+    .wk-board__spec { grid-column: 1 / -1; }
+    .wk-status { grid-column: 1 / -1; }
+  }
+
+  /* ---- Hazard notice , dock-signage advisory paragraph style ---- */
+  .is-style-wk-notice {
+    display: block;
+    background: repeating-linear-gradient(135deg, var(--wp--preset--color--status-hold) 0 14px, #8a4415 14px 28px);
+    color: var(--wp--preset--color--paper);
+    font-family: var(--wp--preset--font-family--dm-sans);
+    font-weight: 700;
+    padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--5);
+    border-radius: 6px;
+  }
+  .is-style-wk-notice::before { content: "\26A0  "; }
+
+  /* ---- Service row (services-list) ---- */
+  .wk-service-row {
+    display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--wp--preset--spacing--4);
+    border-block-end: 1px solid var(--wp--preset--color--line);
+    padding-block: var(--wp--preset--spacing--5);
+  }
+  .wk-service-row:last-child { border-block-end: 0; }
+  .wk-service-row__title { font-family: var(--wp--preset--font-family--dm-sans); font-size: var(--wp--preset--font-size--md); font-weight: 700; color: var(--wp--preset--color--ink); margin-bottom: 0.3em; }
+  .wk-service-row__desc { color: var(--wp--preset--color--ink-soft); font-size: var(--wp--preset--font-size--sm); max-width: 460px; }
+  .wk-service-row__price { font-family: var(--wp--preset--font-family--dm-sans); font-size: var(--wp--preset--font-size--md); color: var(--wp--preset--color--ink); white-space: nowrap; }
+
+  /* ---- Media placeholder (about-split image slot) ---- */
+  .wk-media-slot {
+    aspect-ratio: 4/3;
+    border-radius: var(--wk-radius);
+    background: linear-gradient(155deg, var(--wp--preset--color--paper-soft) 0%, var(--wp--preset--color--tide-soft) 100%);
+    border: 1px solid var(--wp--preset--color--line);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--wp--preset--color--ink-muted);
+    font-family: var(--wp--preset--font-family--dm-sans);
+    font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase;
+    text-align: center; padding: 1rem;
+  }
+}
+
+/* =====================================================================
+   BLOCKS , translated from assets/css/skin.css @layer blocks
+   ===================================================================== */
+@layer blocks {
+  .cl-eyebrow, .wk-eyebrow {
+    display: inline-block;
+    font-family: var(--wp--preset--font-family--dm-sans);
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--wp--preset--color--tide);
+    margin-bottom: var(--wp--preset--spacing--3);
+  }
+  .cl-section--harbor .wk-eyebrow { color: var(--wp--preset--color--fog); }
+
+  .wk-pullquote {
+    border-inline-start: 4px solid var(--wp--preset--color--tide);
+    padding-inline-start: var(--wp--preset--spacing--6);
+    padding-block: var(--wp--preset--spacing--2);
+    text-align: left;
+  }
+  .wk-pullquote p {
+    font-family: var(--wp--preset--font-family--dm-sans);
+    font-weight: 700;
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    line-height: 1.35;
+    color: var(--wp--preset--color--ink);
+  }
+  .wk-pullquote cite {
+    display: block; margin-top: 0.75em;
+    font-family: var(--wp--preset--font-family--ibm-plex-sans);
+    font-size: 0.8125rem; font-style: normal; letter-spacing: 0.04em;
+    color: var(--wp--preset--color--ink-muted);
+  }
+
+  .wk-trust-mark {
+    font-family: var(--wp--preset--font-family--dm-sans);
+    font-size: var(--wp--preset--font-size--xs);
+    font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--wp--preset--color--ink-muted);
+  }
+  .wk-trust-stat { display: flex; align-items: center; gap: var(--wp--preset--spacing--3); }
+  .wk-trust-stat__num { font-family: var(--wp--preset--font-family--dm-sans); font-size: var(--wp--preset--font-size--lg); font-weight: 800; color: var(--wp--preset--color--ink); }
+}
+
+/* =====================================================================
+   UTILITIES
+   ===================================================================== */
+@layer utilities {
+  .wk-center { text-align: center; }
+}
+
+/* =====================================================================
+   PREVIEW-ONLY (not part of the theme) , gallery index, style-guide swatches
+   ===================================================================== */
+@layer preview {
+  .pv-swatch { display: flex; flex-direction: column; gap: 0.4rem; }
+  .pv-swatch__chip { width: 100%; height: 4.5rem; border-radius: 8px; border: 1px solid var(--wp--preset--color--line); }
+  .pv-swatch__label { font-family: var(--wp--preset--font-family--dm-sans); font-size: 0.75rem; font-weight: 700; color: var(--wp--preset--color--ink); }
+  .pv-swatch__hex { font-family: var(--wp--preset--font-family--mono); font-size: 0.7rem; color: var(--wp--preset--color--ink-muted); }
+  .pv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1.25rem; }
+}

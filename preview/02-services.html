@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wake: About &amp; Services (marina rate sheet)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..800&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wake-preview.css">
+</head>
+<body>
+<header class="cl-header">
+  <div class="cl-header__inner">
+    <div class="cl-header__branding">
+      <span class="wk-mark" aria-hidden="true"></span>
+      <a class="wk-site-title" href="01-front-page.html">Beacon Point Marina</a>
+    </div>
+    <nav aria-label="Primary">
+      <a href="01-front-page.html">Slips &amp; Rates</a>
+      <a href="02-services.html">About &amp; Services</a>
+      <a href="03-archive.html">Harbor News</a>
+      <a href="04-trust.html">Reviews</a>
+      <a class="wk-btn wk-btn--ink" href="01-front-page.html#reserve" style="padding:0.5em 1.15em;">Reserve a slip</a>
+    </nav>
+  </div>
+</header>
+<main class="cl-main">
+<!-- Page header band, plain section, no dedicated pattern; the services
+     page opens directly with about-split per the theme's page-building
+     convention (patterns compose, templates stay generic, see page.html). -->
+<section class="cl-section" style="padding-bottom:0;">
+  <div class="wk-wrap wk-wrap--narrow">
+    <p class="wk-eyebrow" style="display:block;">About &amp; services</p>
+    <h1>Dockage, storage, and a yard crew that knows your boat</h1>
+    <p style="color:var(--wp--preset--color--ink-soft); font-size:var(--wp--preset--font-size--md); max-width:52ch; margin-top:0.75rem;">What Beacon Point offers, and what it costs: the same rate sheet the dock office hands a walk-in.</p>
+  </div>
+</section>
+
+<!-- ===================================================================
+     ABOUT SPLIT, patterns/about-split.php
+     =================================================================== -->
+<section class="cl-section">
+  <div class="wk-wrap">
+    <div class="wk-cols-2">
+      <div class="wk-media-slot">Dock photograph, placeholder</div>
+      <div>
+        <p class="wk-eyebrow" style="display:block;">Since 1978</p>
+        <h2>Run by people who are also out on the water</h2>
+        <p style="margin-block:1rem 1.25rem;">Beacon Point started as a single T-dock and a bait shed. Three generations later, we still answer the office phone ourselves, and the harbormaster still does the rounds by dinghy every evening at six.</p>
+        <p class="is-style-wk-notice">Fuel dock closed for scheduled maintenance, Tuesday 7&ndash;11am. Slips unaffected.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     SERVICES LIST, patterns/services-list.php
+     A priced dockage-and-services list, real line items, real prices.
+     =================================================================== -->
+<section class="cl-section cl-section--soft">
+  <div class="wk-wrap wk-wrap--narrow">
+    <p class="wk-eyebrow" style="display:block;">Dockage &amp; services</p>
+    <h2 style="margin-bottom:2.5rem;">Rates, plain and current</h2>
+
+    <div class="wk-service-row">
+      <div>
+        <p class="wk-service-row__title">Seasonal wet slip</p>
+        <p class="wk-service-row__desc">May through October, power and water included, up to 40 ft.</p>
+      </div>
+      <p class="wk-service-row__price">From $2,450 / season</p>
+    </div>
+    <div class="wk-service-row">
+      <div>
+        <p class="wk-service-row__title">Transient dockage</p>
+        <p class="wk-service-row__desc">Overnight or by the week, radio ahead on channel 71.</p>
+      </div>
+      <p class="wk-service-row__price">From $2.25 / ft / night</p>
+    </div>
+    <div class="wk-service-row">
+      <div>
+        <p class="wk-service-row__title">Winter storage &amp; shrink-wrap</p>
+        <p class="wk-service-row__desc">Haul-out, blocking, and cover, November through April.</p>
+      </div>
+      <p class="wk-service-row__price">From $38 / ft</p>
+    </div>
+    <div class="wk-service-row">
+      <div>
+        <p class="wk-service-row__title">Engine &amp; rigging service</p>
+        <p class="wk-service-row__desc">Certified yard crew, parts ordered through our chandlery.</p>
+      </div>
+      <p class="wk-service-row__price">From $95 / hour</p>
+    </div>
+  </div>
+</section>
+
+<section class="cl-section cl-section--harbor">
+  <div class="wk-wrap wk-wrap--narrow wk-center">
+    <h2 style="color:var(--wp--preset--color--paper); margin-bottom:1rem;">Reserve your slip</h2>
+    <p style="color:var(--wp--preset--color--fog); max-width:46ch; margin-inline:auto; margin-bottom:2rem;">Tell us the boat and the dates. The dock office confirms by phone, usually the same day.</p>
+    <a class="wk-btn" href="01-front-page.html#board">Check slip availability &rarr;</a>
+  </div>
+</section>
+</main>
+<footer class="cl-footer cl-section cl-section--harbor">
+  <div class="wk-wrap">
+    <div class="wk-cols-3" style="grid-template-columns: 1.4fr 1fr 1fr; gap: 3rem;">
+      <div>
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">
+          <span class="wk-mark" aria-hidden="true"></span>
+          <span class="wk-site-title" style="color:var(--wp--preset--color--paper);">Beacon Point Marina</span>
+        </div>
+        <p style="color:var(--wp--preset--color--fog); max-width:38ch;">A working marina on the harbor's east shore: wet slips, dry storage, and a crew that answers the radio.</p>
+      </div>
+      <div>
+        <h3 style="font-size:var(--wp--preset--font-size--sm); letter-spacing:0.08em; text-transform:uppercase; color:var(--wp--preset--color--paper); margin-bottom:0.9rem;">Dock Office</h3>
+        <p style="color:var(--wp--preset--color--fog); font-size:var(--wp--preset--font-size--sm); margin-bottom:0.3rem;">Mon&ndash;Fri, 8:00&ndash;18:00</p>
+        <p style="color:var(--wp--preset--color--fog); font-size:var(--wp--preset--font-size--sm); margin-bottom:0.9rem;">Sat&ndash;Sun, 9:00&ndash;17:00</p>
+        <p style="color:var(--wp--preset--color--fog); font-size:var(--wp--preset--font-size--sm); margin-bottom:0.3rem;">VHF Ch. 16 (hailing) &middot; Ch. 71 (working)</p>
+        <p style="color:var(--wp--preset--color--fog); font-size:var(--wp--preset--font-size--sm);">(555) 019-4420 &middot; 140 Harborview Drive</p>
+      </div>
+      <div>
+        <h3 style="font-size:var(--wp--preset--font-size--sm); letter-spacing:0.08em; text-transform:uppercase; color:var(--wp--preset--color--paper); margin-bottom:0.9rem;">Explore</h3>
+        <nav class="wk-nav" aria-label="Footer" style="display:flex; flex-direction:column; gap:0.6rem;">
+          <a href="01-front-page.html">Slip status board</a>
+          <a href="02-services.html">Dockage &amp; services</a>
+          <a href="03-archive.html">Harbor news</a>
+          <a href="04-trust.html">Reviews &amp; trust</a>
+        </nav>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.16); margin-top:2.5rem; padding-top:1.25rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; font-size:var(--wp--preset--font-size--sm); color:var(--wp--preset--color--fog);">
+      <p>&copy; 2026 Beacon Point Marina.</p>
+      <p>Built with the <a href="https://thisismyurl.com/wake" style="color:var(--wp--preset--color--fog); text-decoration:underline;">Wake</a> theme.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

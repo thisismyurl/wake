@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wake: Slip Status Board, 390px (mobile)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..800&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wake-preview.css">
+<style>.cl-header__inner nav{display:none;} .cl-footer .wk-cols-3{grid-template-columns:1fr !important; gap:2rem;}</style>
+</head>
+<body>
+<header class="cl-header">
+  <div class="cl-header__inner">
+    <div class="cl-header__branding">
+      <span class="wk-mark" aria-hidden="true"></span>
+      <a class="wk-site-title" href="01-front-page.html">Beacon Point Marina</a>
+    </div>
+    <nav aria-label="Primary">
+      <a href="01-front-page.html">Slips &amp; Rates</a>
+      <a href="02-services.html">About &amp; Services</a>
+      <a href="03-archive.html">Harbor News</a>
+      <a href="04-trust.html">Reviews</a>
+      <a class="wk-btn wk-btn--ink" href="01-front-page.html#reserve" style="padding:0.5em 1.15em;">Reserve a slip</a>
+    </nav>
+  </div>
+</header>
+<main class="cl-main">
+<section class="cl-section cl-section--soft" style="padding-block:2rem;">
+  <div class="wk-wrap">
+    <p class="wk-eyebrow" style="display:block;">Today at the dock</p>
+    <h1 style="font-size:1.6rem; margin-bottom:0.3rem;">Slip status board</h1>
+    <p style="color:var(--wp--preset--color--ink-muted); font-size:var(--wp--preset--font-size--sm); margin-bottom:1.5rem;">Updated from the dock office each morning.</p>
+    <div class="wk-board">
+      <div class="wk-board__row wk-board__row--head">
+        <span>Slip</span><span>Vessel class</span><span>LOA</span><span>Status</span>
+      </div>
+      <div class="wk-board__row">
+        <span class="wk-board__slip">A-04</span>
+        <span class="wk-board__spec">Sailboat, fin keel</span>
+        <span class="wk-board__spec">to 32 ft</span>
+        <span class="wk-status wk-status--open">Available</span>
+      </div>
+      <div class="wk-board__row">
+        <span class="wk-board__slip">A-11</span>
+        <span class="wk-board__spec">Sport cruiser</span>
+        <span class="wk-board__spec">to 28 ft</span>
+        <span class="wk-status wk-status--hold">Reserved</span>
+      </div>
+      <div class="wk-board__row">
+        <span class="wk-board__slip">B-02</span>
+        <span class="wk-board__spec">Trawler</span>
+        <span class="wk-board__spec">to 42 ft</span>
+        <span class="wk-status wk-status--open">Available</span>
+      </div>
+      <div class="wk-board__row">
+        <span class="wk-board__slip">B-07</span>
+        <span class="wk-board__spec">Catamaran</span>
+        <span class="wk-board__spec">to 38 ft beam</span>
+        <span class="wk-status wk-status--hold">Waitlist</span>
+      </div>
+      <div class="wk-board__row">
+        <span class="wk-board__slip">C-15</span>
+        <span class="wk-board__spec">Sailboat, wing keel</span>
+        <span class="wk-board__spec">to 36 ft</span>
+        <span class="wk-status wk-status--open">Available</span>
+      </div>
+      <!-- An unset slip: placeholder text, never a false "Available" claim
+           (see patterns/slip-status-board.php doc comment). -->
+      <div class="wk-board__row">
+        <span class="wk-board__slip">C-19</span>
+        <span class="wk-board__spec">&ndash;</span>
+        <span class="wk-board__spec">&ndash;</span>
+        <span class="wk-status wk-status--placeholder">Not yet set</span>
+      </div>
+    </div>
+    <p style="color:var(--wp--preset--color--ink-muted); font-size:var(--wp--preset--font-size--sm); margin-top:1.5rem;">Don't see your length or draft? Call the dock office. The board only shows what's open this week.</p>
+  </div>
+</section>
+</main>
+<footer class="cl-footer cl-section cl-section--harbor">
+  <div class="wk-wrap">
+    <div class="wk-cols-3" style="grid-template-columns: 1.4fr 1fr 1fr; gap: 3rem;">
+      <div>
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">
+          <span class="wk-mark" aria-hidden="true"></span>
+          <span class="wk-site-title" style="color:var(--wp--preset--color--paper);">Beacon Point Marina</span>
+        </div>
+        <p style="color:var(--wp--preset--color--fog); max-width:38ch;">A working marina on the harbor's east shore: wet slips, dry storage, and a crew that answers the radio.</p>
+      </div>
+      <div>
+        <h3 style="font-size:var(--wp--preset--font-size--sm); letter-spacing:0.08em; text-transform:uppercase; color:var(--wp--preset--color--paper); margin-bottom:0.9rem;">Dock Office</h3>
+        <p style="color:var(--wp--preset--color--fog); font-size:var(--wp--preset--font-size--sm); margin-bottom:0.3rem;">Mon&ndash;Fri, 8:00&ndash;18:00</p>
+        <p style="color:var(--wp--preset--color--fog); font-size:var(--wp--preset--font-size--sm); margin-bottom:0.9rem;">Sat&ndash;Sun, 9:00&ndash;17:00</p>
+        <p style="color:var(--wp--preset--color--fog); font-size:var(--wp--preset--font-size--sm); margin-bottom:0.3rem;">VHF Ch. 16 (hailing) &middot; Ch. 71 (working)</p>
+        <p style="color:var(--wp--preset--color--fog); font-size:var(--wp--preset--font-size--sm);">(555) 019-4420 &middot; 140 Harborview Drive</p>
+      </div>
+      <div>
+        <h3 style="font-size:var(--wp--preset--font-size--sm); letter-spacing:0.08em; text-transform:uppercase; color:var(--wp--preset--color--paper); margin-bottom:0.9rem;">Explore</h3>
+        <nav class="wk-nav" aria-label="Footer" style="display:flex; flex-direction:column; gap:0.6rem;">
+          <a href="01-front-page.html">Slip status board</a>
+          <a href="02-services.html">Dockage &amp; services</a>
+          <a href="03-archive.html">Harbor news</a>
+          <a href="04-trust.html">Reviews &amp; trust</a>
+        </nav>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.16); margin-top:2.5rem; padding-top:1.25rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; font-size:var(--wp--preset--font-size--sm); color:var(--wp--preset--color--fog);">
+      <p>&copy; 2026 Beacon Point Marina.</p>
+      <p>Built with the <a href="https://thisismyurl.com/wake" style="color:var(--wp--preset--color--fog); text-decoration:underline;">Wake</a> theme.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
