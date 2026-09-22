@@ -16,6 +16,16 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * The single post-meta key the slip-status binding source reads.
+ *
+ * Protected (leading underscore) because it is machine-maintained data, not
+ * editorial copy. The theme registers no meta of its own — data belongs to a
+ * plugin — so a site that wants this binding registers the key itself and the
+ * source reads it read-only.
+ */
+define( 'WAKE_SLIP_STATUS_META_KEY', '_wake_slip_status' );
+
+/**
  * Register this theme's image crop sizes.
  *
  * Hooked on after_setup_theme (not the core setup() function) so a re-skin
@@ -206,6 +216,18 @@ add_filter( WAKE_SLUG . '/get_started_content', 'wake_skin_get_started_content' 
  * companion plugin required. It is opt-in: nothing in this theme calls it
  * unless a user's own binding attribute does.
  *
+ * The source reads one fixed key, WAKE_SLIP_STATUS_META_KEY, rather than a
+ * key named in the binding args: a source that returns whatever meta key the
+ * markup asks for is a read primitive for every private key on the post, and
+ * core's own post-meta source refuses protected keys for exactly that reason.
+ * The post-visibility guard mirrors core's too (see wp-includes/block-bindings/
+ * post-meta.php) so a draft or password-protected post never leaks its status.
+ *
+ * Returning null — not a fallback label — is what makes it degrade well: core
+ * leaves the block's own text in place when a source returns null, so a slip
+ * with no meta keeps whatever the editor typed into the pattern instead of
+ * being relabelled "Available", which is a claim the site cannot stand behind.
+ *
  * @since 1.6150
  */
 function wake_skin_register_bindings(): void {
@@ -214,16 +236,43 @@ function wake_skin_register_bindings(): void {
 	}
 
 	register_block_bindings_source(
-		'wake/slip-status',
+		WAKE_SLUG . '/slip-status',
 		array(
 			'label'              => esc_html__( 'Slip Status', 'wake' ),
-			'get_value_callback' => static function ( array $source_args ): string {
-				$meta_key = isset( $source_args['key'] ) ? sanitize_key( (string) $source_args['key'] ) : '_wake_slip_status';
-				$value    = get_post_meta( get_the_ID(), $meta_key, true );
-
-				return $value ? esc_html( (string) $value ) : esc_html__( 'Available', 'wake' );
-			},
+			'uses_context'       => array( 'postId' ),
+			'get_value_callback' => 'wake_skin_get_slip_status_value',
 		)
 	);
 }
 add_action( 'init', 'wake_skin_register_bindings' );
+
+/**
+ * Resolve a slip's status label from post meta.
+ *
+ * @param array         $source_args    Binding args (unused — the meta key is fixed).
+ * @param WP_Block|null $block_instance The block being rendered.
+ * @return string|null The stored status, or null to leave the block's own text alone.
+ */
+function wake_skin_get_slip_status_value( array $source_args, $block_instance = null ): ?string {
+	unset( $source_args );
+
+	$context = $block_instance instanceof WP_Block ? $block_instance->context : array();
+	$post_id = $context['postId'] ?? get_the_ID();
+	$post    = $post_id ? get_post( (int) $post_id ) : null;
+
+	if ( ! $post instanceof WP_Post ) {
+		return null;
+	}
+
+	if ( post_password_required( $post ) ) {
+		return null;
+	}
+
+	if ( ! is_post_publicly_viewable( $post ) && ! current_user_can( 'read_post', $post->ID ) ) {
+		return null;
+	}
+
+	$value = get_post_meta( $post->ID, WAKE_SLIP_STATUS_META_KEY, true );
+
+	return is_string( $value ) && '' !== $value ? $value : null;
+}

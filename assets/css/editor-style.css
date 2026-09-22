@@ -72,7 +72,101 @@
 	border-radius: 6px;
 }
 
-/* Icon badge — the circular group style behind the service grid. */
+/* Slip status board — the signature pattern. Mirrored here because without
+   it the inserter preview and the editor canvas show the board as a stack of
+   loose paragraphs: the one pattern a marina operator is choosing this theme
+   for would look broken at the moment they decide. Layout only — the hero's
+   absolutely-positioned media/overlay is deliberately NOT mirrored, because
+   the overlay would sit on top of the empty image block's upload placeholder
+   and put the "add your photo" target out of reach in the editor. */
+.editor-styles-wrapper .wk-board {
+	border:        1px solid var(--wp--preset--color--line);
+	border-radius: 14px;
+	overflow:      clip;
+	background:    var(--wp--preset--color--paper);
+}
+.editor-styles-wrapper .wk-board__row {
+	display:               grid;
+	grid-template-columns: 5rem 1fr 8rem 9rem;
+	align-items:           center;
+	gap:                   var(--wp--preset--spacing--4);
+	padding:               var(--wp--preset--spacing--4) var(--wp--preset--spacing--5);
+	border-block-end:      1px solid var(--wp--preset--color--line);
+}
+.editor-styles-wrapper .wk-board__row:last-child { border-block-end: 0; }
+.editor-styles-wrapper .wk-board__row--head {
+	background:     var(--wp--preset--color--paper-soft);
+	font-family:    var(--wp--preset--font-family--dm-sans);
+	font-size:      var(--wp--preset--font-size--xs);
+	font-weight:    700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color:          var(--wp--preset--color--ink-muted);
+}
+.editor-styles-wrapper .wk-board__slip {
+	font-family:          var(--wp--preset--font-family--ibm-plex-sans);
+	font-weight:          600;
+	font-variant-numeric: tabular-nums;
+}
+.editor-styles-wrapper .wk-board__spec {
+	font-family: var(--wp--preset--font-family--ibm-plex-sans);
+	font-size:   var(--wp--preset--font-size--sm);
+	color:       var(--wp--preset--color--ink-soft);
+}
+.editor-styles-wrapper .wk-status {
+	display:        inline-flex;
+	align-items:    center;
+	gap:            var(--wp--preset--spacing--2);
+	font-family:    var(--wp--preset--font-family--dm-sans);
+	font-size:      var(--wp--preset--font-size--xs);
+	font-weight:    700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	padding:        0.3em 0.75em;
+	border-radius:  999px;
+	justify-self:   start;
+}
+.editor-styles-wrapper .wk-status--open {
+	color:      var(--wp--preset--color--status-open);
+	background: color-mix(in srgb, var(--wp--preset--color--status-open) 12%, var(--wp--preset--color--paper));
+}
+.editor-styles-wrapper .wk-status--hold {
+	color:      var(--wp--preset--color--status-hold);
+	background: color-mix(in srgb, var(--wp--preset--color--status-hold) 12%, var(--wp--preset--color--paper));
+}
+
+/* The editor canvas is iframed, so this matches the front end's breakpoint
+   against the canvas width — the board stacks in a narrow canvas instead of
+   overflowing it. */
+@media (max-width: 46.25rem) {
+	.editor-styles-wrapper .wk-board__row {
+		grid-template-columns: 3.5rem 1fr;
+		row-gap:               var(--wp--preset--spacing--2);
+	}
+	.editor-styles-wrapper .wk-board__row--head { display: none; }
+	.editor-styles-wrapper .wk-board__spec,
+	.editor-styles-wrapper .wk-status { grid-column: 1 / -1; }
+}
+
+/* Service row — the priced rate-sheet line. */
+.editor-styles-wrapper .wk-service-row {
+	border-block-end: 1px solid var(--wp--preset--color--line);
+	padding-block:    var(--wp--preset--spacing--5);
+}
+
+/* The CSS sail wordmark, so the header part reads as itself in the editor. */
+.editor-styles-wrapper .wk-mark {
+	display:     inline-block;
+	inline-size: 1.15em;
+	block-size:  1.15em;
+	background:  var(--wp--preset--color--tide);
+	clip-path:   polygon(15% 100%, 15% 0%, 100% 100%);
+	flex-shrink: 0;
+}
+
+/* Icon badge — the circular group style behind the service grid. The pattern
+   applies .wk-badge directly; the block style is the editor-facing option. */
+.editor-styles-wrapper .wk-badge,
 .editor-styles-wrapper .is-style-wk-badge-icon {
 	width:  4.5rem;
 	height: 4.5rem;

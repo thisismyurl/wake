@@ -35,7 +35,7 @@
 			<!-- wp:group {"className":"wk-badge","layout":{"type":"default"},"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|4"}}}} -->
 			<div class="wp-block-group wk-badge" style="margin-bottom:var(--wp--preset--spacing--4)">
 				<!-- wp:image {"width":"32px","height":"32px","sizeSlug":"full","linkDestination":"none"} -->
-				<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/icon-anchor.svg' ); ?>" alt="" width="32" height="32" /></figure>
+				<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/icon-anchor.svg' ); ?>" alt="" style="width:32px;height:32px" /></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:group -->
@@ -53,7 +53,7 @@
 			<!-- wp:group {"className":"wk-badge","layout":{"type":"default"},"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|4"}}}} -->
 			<div class="wp-block-group wk-badge" style="margin-bottom:var(--wp--preset--spacing--4)">
 				<!-- wp:image {"width":"32px","height":"32px","sizeSlug":"full","linkDestination":"none"} -->
-				<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/icon-compass.svg' ); ?>" alt="" width="32" height="32" /></figure>
+				<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/icon-compass.svg' ); ?>" alt="" style="width:32px;height:32px" /></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:group -->
@@ -71,7 +71,7 @@
 			<!-- wp:group {"className":"wk-badge","layout":{"type":"default"},"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|4"}}}} -->
 			<div class="wp-block-group wk-badge" style="margin-bottom:var(--wp--preset--spacing--4)">
 				<!-- wp:image {"width":"32px","height":"32px","sizeSlug":"full","linkDestination":"none"} -->
-				<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/icon-life-ring.svg' ); ?>" alt="" width="32" height="32" /></figure>
+				<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/icon-life-ring.svg' ); ?>" alt="" style="width:32px;height:32px" /></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:group -->

@@ -51,7 +51,7 @@
 			<!-- /wp:heading -->
 		</div>
 		<!-- /wp:group -->
-		<!-- wp:paragraph {"fontSize":"sm","style":{"color":{"text":"var:preset|color|ink-muted"}}} -->
+		<!-- wp:paragraph {"textColor":"ink-muted","fontSize":"sm"} -->
 		<p class="has-ink-muted-color has-text-color has-sm-font-size"><?php echo esc_html__( 'Updated from the dock office each morning.', 'wake' ); ?></p>
 		<!-- /wp:paragraph -->
 	</div>
@@ -120,7 +120,7 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:paragraph {"fontSize":"sm","style":{"spacing":{"margin":{"top":"var:preset|spacing|5"}},"color":{"text":"var:preset|color|ink-muted"}}} -->
+	<!-- wp:paragraph {"textColor":"ink-muted","fontSize":"sm","style":{"spacing":{"margin":{"top":"var:preset|spacing|5"}}}} -->
 	<p class="has-ink-muted-color has-text-color has-sm-font-size" style="margin-top:var(--wp--preset--spacing--5)"><?php echo esc_html__( 'Don\'t see your length or draft? Call the dock office — the board only shows what\'s open this week.', 'wake' ); ?></p>
 	<!-- /wp:paragraph -->
 

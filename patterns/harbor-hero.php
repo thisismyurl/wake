@@ -25,7 +25,7 @@
 
 	<!-- wp:group {"className":"wk-hero__media","layout":{"type":"default"}} -->
 	<div class="wp-block-group wk-hero__media">
-		<!-- wp:image {"sizeSlug":"full","className":"size-full"} -->
+		<!-- wp:image {"sizeSlug":"full"} -->
 		<figure class="wp-block-image size-full"><img alt="" /></figure>
 		<!-- /wp:image -->
 	</div>

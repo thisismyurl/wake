@@ -41,6 +41,7 @@
 			"_comment": "[SKIN] DM Sans (display/headings/UI, geometric, self-hosted variable wght 400-800) paired with IBM Plex Sans (body copy — a technical, instrument-panel humanist sans that reads right for a marina's operational content: rates, hours, slip specs). Both SIL OFL 1.1. System stacks are the fallback chain, never the primary.",
 			"fluid": true,
 			"customFontSize": false,
+			"defaultFontSizes": false,
 			"lineHeight": true,
 			"letterSpacing": true,
 			"textTransform": true,
@@ -113,6 +114,7 @@
 		"spacing": {
 			"_comment": "[CORE structure / SKIN values] A linear step scale, unchanged from Colophon core — Wake's section rhythm uses these as-is.",
 			"customSpacingSize": false,
+			"defaultSpacingSizes": false,
 			"spacingSizes": [
 				{ "name": "1",  "slug": "1",  "size": "0.25rem" },
 				{ "name": "2",  "slug": "2",  "size": "0.5rem" },

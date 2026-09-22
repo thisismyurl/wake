@@ -30,7 +30,7 @@
 			<!-- wp:heading {"level":3,"fontSize":"md"} -->
 			<h3 class="wp-block-heading has-md-font-size"><?php echo esc_html__( 'Seasonal wet slip', 'wake' ); ?></h3>
 			<!-- /wp:heading -->
-			<!-- wp:paragraph {"fontSize":"sm","style":{"color":{"text":"var:preset|color|ink-soft"}}} -->
+			<!-- wp:paragraph {"textColor":"ink-soft","fontSize":"sm"} -->
 			<p class="has-ink-soft-color has-text-color has-sm-font-size"><?php echo esc_html__( 'May through October, power and water included, up to 40 ft.', 'wake' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
@@ -48,7 +48,7 @@
 			<!-- wp:heading {"level":3,"fontSize":"md"} -->
 			<h3 class="wp-block-heading has-md-font-size"><?php echo esc_html__( 'Transient dockage', 'wake' ); ?></h3>
 			<!-- /wp:heading -->
-			<!-- wp:paragraph {"fontSize":"sm","style":{"color":{"text":"var:preset|color|ink-soft"}}} -->
+			<!-- wp:paragraph {"textColor":"ink-soft","fontSize":"sm"} -->
 			<p class="has-ink-soft-color has-text-color has-sm-font-size"><?php echo esc_html__( 'Overnight or by the week, radio ahead on channel 71.', 'wake' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
@@ -66,7 +66,7 @@
 			<!-- wp:heading {"level":3,"fontSize":"md"} -->
 			<h3 class="wp-block-heading has-md-font-size"><?php echo esc_html__( 'Winter storage & shrink-wrap', 'wake' ); ?></h3>
 			<!-- /wp:heading -->
-			<!-- wp:paragraph {"fontSize":"sm","style":{"color":{"text":"var:preset|color|ink-soft"}}} -->
+			<!-- wp:paragraph {"textColor":"ink-soft","fontSize":"sm"} -->
 			<p class="has-ink-soft-color has-text-color has-sm-font-size"><?php echo esc_html__( 'Haul-out, blocking, and cover — November through April.', 'wake' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
@@ -84,7 +84,7 @@
 			<!-- wp:heading {"level":3,"fontSize":"md"} -->
 			<h3 class="wp-block-heading has-md-font-size"><?php echo esc_html__( 'Engine & rigging service', 'wake' ); ?></h3>
 			<!-- /wp:heading -->
-			<!-- wp:paragraph {"fontSize":"sm","style":{"color":{"text":"var:preset|color|ink-soft"}}} -->
+			<!-- wp:paragraph {"textColor":"ink-soft","fontSize":"sm"} -->
 			<p class="has-ink-soft-color has-text-color has-sm-font-size"><?php echo esc_html__( 'Certified yard crew, parts ordered through our chandlery.', 'wake' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>

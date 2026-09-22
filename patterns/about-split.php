@@ -27,7 +27,7 @@
 		<!-- wp:column {"verticalAlignment":"center","width":"48%"} -->
 		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:48%">
 			<!-- wp:image {"sizeSlug":"wake-wide","className":"cl-card","style":{"border":{"radius":"14px"}}} -->
-			<figure class="wp-block-image size-wake-wide cl-card" style="border-radius:14px"><img alt="" style="border-radius:14px" /></figure>
+			<figure class="wp-block-image size-wake-wide has-custom-border cl-card"><img alt="" style="border-radius:14px" /></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->

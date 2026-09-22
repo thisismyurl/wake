@@ -58,7 +58,7 @@ No. DM Sans and IBM Plex Sans are bundled as self-hosted WOFF2 files inside the 
 
 = Is the slip-status board connected to a real booking system? =
 
-Out of the box, no — it ships as editable demo content you update by hand, the same as any other pattern. A developer who wants to drive it from post meta can bind the status paragraph to the `wake/slip-status` block-bindings source registered in inc/skin.php, reading a `_wake_slip_status` meta key. No companion plugin is required either way.
+Out of the box, no — it ships as editable demo content you update by hand, the same as any other pattern. A developer who wants to drive it from post meta can bind the status paragraph to the `wake/slip-status` block-bindings source registered in inc/skin.php, which reads the `_wake_slip_status` meta key on the post being rendered. Themes should not create data, so registering that meta key (with `register_post_meta()`) is the site's or plugin's job; until it holds a value the board keeps whatever status text you typed into the pattern.
 
 = Is this related to other themes in a line? =
 
