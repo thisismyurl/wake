@@ -247,3 +247,40 @@ abstracted into core — abstract them only when a fourth theme proves the shape
 - **The broadsheet double-rule** (`3px double`) is pure CSS — `theme.json` border
   tokens don't express `double`. It lives in `skin.css`. Not a core gap; a note so
   the next editorial skin doesn't hunt for a token that isn't there.
+
+## 9. Template and pattern design notes
+
+Prose HTML comments must never appear inside block markup in `templates/`,
+`parts/` or `patterns/`. Core re-saves each block in the editor and compares
+the result with the stored markup; a comment inside a block's body makes that
+comparison fail and the editor reports "Block contains unexpected or invalid
+content" (the WordPress.org review of Colophon, ticket #292760). A loose
+comment above the first block is read as an unrecognised block, which the
+Theme Review Action reports as an incomplete template. `tools/check-templates.py`
+enforces both. The rationale that used to sit in those comments lives here.
+
+* **footer.html:** the copyright line is bound to the `wake/copyright` source
+  registered in `inc/bindings.php`, a live "(c) {year} {site}." sentence, not a
+  year typed into the template that goes stale every January. There is no
+  binding source for the credit line; it is static text, one line, and easy for
+  a site owner to delete in the editor.
+* **header.html:** the wordmark glyph is CSS, a minimal sail triangle. It needs
+  no image request and no alt text, because the site title next to it already
+  carries the name.
+* **about-split pattern:** the `wk-notice` style is a dock-signage advisory
+  applied to a plain paragraph from the block toolbar. It uses real marina
+  vocabulary, not a generic alert box.
+* **harbor-hero pattern:** it supplies the page's single h1. Pair it only with a
+  template that does not already render an h1 (`front-page.html` does not), or
+  demote it to level 2 in the toolbar.
+* **slip-status-board pattern:** every cell is a real `wp:paragraph`, not raw
+  HTML in a wrapper, so an editor can click into any slip, spec or status and
+  edit it directly, like every other pattern in the theme (Pillar 7, High Agency).
+* **author.html:** the author bio block above the stream is the same component
+  used in the single post footer, hoisted so the archive opens with the writer,
+  not the list.
+* **single.html:** a hairline separates the byline from the content; with a
+  featured image present it reads as a frame under the meta.
+* **single.html and singular.html:** a static section heading always precedes
+  the comment list, so the document outline never jumps from H1 to H3 on a post
+  with no comments (`comments-title` only renders once a comment exists).
