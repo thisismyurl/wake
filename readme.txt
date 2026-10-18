@@ -3,7 +3,7 @@ Contributors: thisismyurl
 Requires at least: 7.0
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.6265.1630
+Stable tag: 1.6291
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: full-site-editing, block-patterns, editor-style, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, rtl-language-support, wide-blocks, one-column, two-columns, threaded-comments, e-commerce
@@ -80,6 +80,11 @@ In the Site Editor, open the Footer template part and delete the "Built with Wak
 4. Visit Appearance > Wake: Get started for setup guidance.
 
 == Changelog ==
+
+= 1.6291 =
+* Fixed "Block contains unexpected or invalid content" in the Site Editor. Some templates, template parts and patterns held hand-written block markup that did not match what the block would save, so the editor flagged those blocks as invalid and offered to recover them. All block markup in this theme now matches the editor's own output.
+* Removed stray HTML comments that sat between or inside blocks. The editor treats text outside a block as an unrecognised block, which is what WordPress.org's theme review check reports as an incomplete template.
+* No visual change.
 
 = 1.6265.1630 =
 Synced two fixes from Colophon core (1.6265.1620), found during independent
